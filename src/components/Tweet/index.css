@@ -1,0 +1,10 @@
+.tweet-section{
+    display: grid;
+     grid-template-columns:2.5rem 1fr;
+     padding: 25px 0px 0px 25px;
+}
+
+.tweet-content > h4{
+    margin-top: 3px;
+}
+

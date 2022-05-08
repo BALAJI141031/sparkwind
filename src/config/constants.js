@@ -1,6 +1,7 @@
 module.exports = {
   PATHS: {
-    HOME_PATH: "/",
+    LANDING_PATH: "/",
+    HOME_PATH: "/home",
   },
   HERO: {
     LANDING_ROUTE_HERO_TEXTS: [
