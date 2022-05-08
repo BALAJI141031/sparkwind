@@ -1,0 +1,28 @@
+.searchbar-div{
+    position: relative;
+    
+}
+
+.search-bar{
+    padding: 0.3rem;
+    border-width: 1px;
+    border-radius:2px;
+    margin: 0px;    
+}
+.search-icon{
+    border:0px;
+    background-color: transparent;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0px;
+    position: absolute;
+    right:3%;
+    padding-top:2px;
+    z-index: 9;
+}
+
+#header-div{
+    width:100vw;
+    background-color:var(pale-white) ;
+    border-bottom: 1px solid;
+}

@@ -1,6 +1,8 @@
 .home-section{
     display: grid;
     grid-template-columns:1fr;
+    padding-top: 5rem;
+    
 }
 
 .bottom-navbar{
