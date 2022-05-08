@@ -1,5 +1,5 @@
 import "./index.css";
-import { Tweet, BottomNavbar } from "../../components";
+import { Tweet, BottomNavbar, SuggestedProfile } from "../../components";
 export default function HomeRoute() {
   return (
     <div className="home-section">
@@ -12,3 +12,4 @@ export default function HomeRoute() {
     </div>
   );
 }
+

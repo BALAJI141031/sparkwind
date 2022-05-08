@@ -1,0 +1,15 @@
+.profile-suggestion-div{
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    padding-top: 10rem;
+}
+
+.profile-suggestion{
+    display: flex;
+    align-items: center;
+}
+
+.profile-suggestion-div > div > div >h6,small{
+    margin: 0px;
+    margin-left:10px;
+}  

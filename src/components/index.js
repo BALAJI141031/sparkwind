@@ -5,6 +5,7 @@ import Tweet from "./Tweet";
 import AnalyticsIcon from "./AnalyticsCta";
 import BottomNavbar from "./Navbar";
 import Header from "./Header";
+import SuggestedProfile from "./SuggestedProfile";
 export {
   LandingHero,
   Cta,
@@ -13,4 +14,5 @@ export {
   AnalyticsIcon,
   BottomNavbar,
   Header,
+  SuggestedProfile,
 };
