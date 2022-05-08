@@ -1,0 +1,16 @@
+.primary-cta{
+    background-color: orange;
+}
+
+.secondary-cta{
+    background-color: palegreen;
+}
+
+#cta{
+    text-align: center;
+    width: 100%;
+    border-style: none;
+    padding: 0.3em;
+    font-size: 1rem;
+}
+
