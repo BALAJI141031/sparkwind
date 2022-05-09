@@ -1,14 +1,20 @@
 import "./index.css";
-import { Tweet, BottomNavbar, SuggestedProfile } from "../../components";
+import {
+  Tweet,
+  BottomNavbar,
+  SuggestedProfile,
+  CreateTweet,
+} from "../../components";
 export default function HomeRoute() {
   return (
     <div className="home-section">
-      <div>
+      {/* <div>
         <Tweet />
       </div>
       <div className="bottom-navbar">
         <BottomNavbar />
-      </div>
+      </div> */}
+      <CreateTweet />
     </div>
   );
 }

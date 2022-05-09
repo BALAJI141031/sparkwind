@@ -1,8 +1,9 @@
-import { BsHeart, BsPlusSquare } from "react-icons/bs";
+import { BsHeart, BsPlusSquare, BsEmojiSmile } from "react-icons/bs";
 import { GoComment } from "react-icons/go";
 import { RiHome7Line } from "react-icons/ri";
 import { MdOutlineNotifications } from "react-icons/md";
-import { BiSearchAlt2 } from "react-icons/bi";
+import { BiSearchAlt2, BiUpload } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
 export {
   BsHeart,
   GoComment,
@@ -10,4 +11,7 @@ export {
   BsPlusSquare,
   MdOutlineNotifications,
   BiSearchAlt2,
+  AiOutlineClose,
+  BiUpload,
+  BsEmojiSmile,
 };

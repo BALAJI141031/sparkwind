@@ -7,6 +7,8 @@ import BottomNavbar from "./Navbar";
 import Header from "./Header";
 import SuggestedProfile from "./SuggestedProfile";
 import ProfileAnalytics from "./ProfileAnalytics";
+import CreateTweet from "./CreateTweet";
+
 export {
   LandingHero,
   Cta,
@@ -17,4 +19,5 @@ export {
   Header,
   SuggestedProfile,
   ProfileAnalytics,
+  CreateTweet,
 };

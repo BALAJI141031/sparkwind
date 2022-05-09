@@ -1,0 +1,84 @@
+.create-tweet-section{
+    padding-bottom:2rem;
+    padding-top: 30%;
+    border:0px solid; 
+    position: fixed;
+    min-width: 90%;
+    position: fixed;
+    top: 0%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0.1,0.1,0.2);
+    z-index: 99; 
+}
+
+.cancel-cta-div{
+    /* border-bottom: 1px solid; */
+    box-shadow: 0 2px 0px rgb(0 0 0 / 0.2);
+}
+
+.crate-tweet-icon{
+    height:1.5rem;
+    width:1.5rem;
+    margin-right: 15px;
+}
+
+.icons-section{
+    display: flex;
+    padding: 5px;
+    margin-right:50%
+   
+}
+
+.icons-section:nth-child(1){
+ 
+}
+
+.tweet-section{
+    display: grid;
+     grid-template-columns:2.5rem 1fr;
+     /* padding: 25px 0px 0px 25px; */
+}
+
+.tweet-content > h4{
+    margin-top: 3px;
+}
+.primary-cta-div{
+    width:90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:1rem
+}
+
+
+input{
+    display: block;
+    width:90%;
+    height:2rem;
+    margin-bottom:5px
+}
+
+textarea{
+    width:90%
+}
+
+.cancel-cta{
+    width:2rem;
+    height:2rem
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.create-tweet{
+   border: 0px solid;
+   margin:0px 10px 0px 10px;
+   padding-bottom: 15px;
+   border-radius: 5px;
+   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+   background-color:white
+
+}
