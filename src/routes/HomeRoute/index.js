@@ -8,13 +8,17 @@ import {
 export default function HomeRoute() {
   return (
     <div className="home-section">
-      {/* <div>
+      <div className="filters-div">
+        <button>Trending Posts</button>
+        <button>Latest Posts</button>
+      </div>
+      <div>
         <Tweet />
       </div>
       <div className="bottom-navbar">
         <BottomNavbar />
-      </div> */}
-      <CreateTweet />
+      </div>
+      {/* <CreateTweet /> */}
     </div>
   );
 }

@@ -1,8 +1,19 @@
+*{
+    box-sizing: border-box;
+}
 .home-section{
     display: grid;
     grid-template-columns:1fr;
     padding-top: 5rem;
     
+}
+
+.filters-div{
+    margin: 0px 5px 0px auto
+}
+
+.filters-div>button {
+    margin-right: 10px;
 }
 
 .bottom-navbar{
