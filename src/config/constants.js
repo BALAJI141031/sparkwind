@@ -2,6 +2,7 @@ module.exports = {
   PATHS: {
     LANDING_PATH: "/",
     HOME_PATH: "/home",
+    PROFILE_PATH: "/profile",
   },
   HERO: {
     LANDING_ROUTE_HERO_TEXTS: [

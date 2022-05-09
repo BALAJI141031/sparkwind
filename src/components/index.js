@@ -6,6 +6,7 @@ import AnalyticsIcon from "./AnalyticsCta";
 import BottomNavbar from "./Navbar";
 import Header from "./Header";
 import SuggestedProfile from "./SuggestedProfile";
+import ProfileAnalytics from "./ProfileAnalytics";
 export {
   LandingHero,
   Cta,
@@ -15,4 +16,5 @@ export {
   BottomNavbar,
   Header,
   SuggestedProfile,
+  ProfileAnalytics,
 };
