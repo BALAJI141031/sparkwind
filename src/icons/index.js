@@ -1,4 +1,9 @@
-import { BsHeart, BsPlusSquare, BsEmojiSmile } from "react-icons/bs";
+import {
+  BsHeart,
+  BsPlusSquare,
+  BsEmojiSmile,
+  BsBookmarkCheck,
+} from "react-icons/bs";
 import { GoComment } from "react-icons/go";
 import { RiHome7Line, RiUserFollowLine } from "react-icons/ri";
 import { MdOutlineNotifications } from "react-icons/md";
@@ -18,4 +23,5 @@ export {
   BsEmojiSmile,
   FiMoreVertical,
   RiUserFollowLine,
+  BsBookmarkCheck,
 };

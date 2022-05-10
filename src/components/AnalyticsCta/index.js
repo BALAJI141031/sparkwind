@@ -1,4 +1,4 @@
-import { BsHeart, GoComment } from "../../icons";
+import { BsHeart, GoComment, BsBookmarkCheck } from "../../icons";
 import "./index.css";
 export default function AnalyticsIcon({ icon }) {
   return (
@@ -11,6 +11,7 @@ export default function AnalyticsIcon({ icon }) {
         <GoComment />
         <p>143</p>
       </div>
+      <BsBookmarkCheck />
     </div>
   );
 }
