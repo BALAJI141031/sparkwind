@@ -11,7 +11,9 @@ export default function AnalyticsIcon({ icon }) {
         <GoComment />
         <p>143</p>
       </div>
-      <BsBookmarkCheck />
+      <div>
+        <BsBookmarkCheck />
+      </div>
     </div>
   );
 }
