@@ -1,0 +1,33 @@
+.notification-section{
+    padding-top: 15%;
+}
+.notification-div{
+display: grid;
+    grid-template-columns:3rem 1fr;
+    
+}
+.notification-from{
+    display: grid;
+    grid-template-columns:2rem max-content ;
+}
+#notification-tweet{
+ border: 1px solid ;   
+ margin: 0px 15px 0px 10px;
+}
+
+.icon-div{
+    /* background-color: beige; */
+     padding: 2px 5px 0px 5px;
+}
+.notification-icon{
+    width: 2rem;
+    height:2rem;
+}
+
+.notification-from > div > h4,p{
+    margin:5px 0px 5px 5px
+} 
+
+.notification-from > p {
+    margin: 0px;
+} 

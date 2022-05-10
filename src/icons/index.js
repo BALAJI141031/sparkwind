@@ -1,10 +1,11 @@
 import { BsHeart, BsPlusSquare, BsEmojiSmile } from "react-icons/bs";
 import { GoComment } from "react-icons/go";
-import { RiHome7Line } from "react-icons/ri";
+import { RiHome7Line, RiUserFollowLine } from "react-icons/ri";
 import { MdOutlineNotifications } from "react-icons/md";
 import { BiSearchAlt2, BiUpload } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiMoreVertical } from "react-icons/fi";
+
 export {
   BsHeart,
   GoComment,
@@ -16,4 +17,5 @@ export {
   BiUpload,
   BsEmojiSmile,
   FiMoreVertical,
+  RiUserFollowLine,
 };
