@@ -5,6 +5,9 @@ module.exports = {
     PROFILE_PATH: "/profile",
     NOTIFICATIONS_PATH: "/notifications",
     BOOKMARKS_PATH: "/bookmarks",
+    USER: "/user",
+    LOGIN: "/user/login",
+    SIGNUP: "/user/signup",
   },
   HERO: {
     LANDING_ROUTE_HERO_TEXTS: [
