@@ -8,6 +8,7 @@ import Header from "./Header";
 import SuggestedProfile from "./SuggestedProfile";
 import ProfileAnalytics from "./ProfileAnalytics";
 import CreateTweet from "./CreateTweet";
+import EditProfile from "./EditProfile";
 
 export {
   LandingHero,
@@ -20,4 +21,5 @@ export {
   SuggestedProfile,
   ProfileAnalytics,
   CreateTweet,
+  EditProfile,
 };

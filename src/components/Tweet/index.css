@@ -1,10 +1,38 @@
 .tweet-section{
     display: grid;
-     grid-template-columns:2.5rem 1fr;
+     grid-template-columns:2.5rem;
      padding: 25px 0px 0px 25px;
+     border: 0px solid;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin:15px
 }
 
 .tweet-content > h4{
     margin-top: 3px;
 }
 
+.options-div{
+    position: relative;
+    /* background-color: aqua; */
+}
+
+.options-detials{
+    position: absolute;
+    width:5rem;
+    border: 0px solid;
+    top: -3%;
+    left:  -240%;
+    padding: 2px;
+    border-radius:5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.options-detials > p{
+    margin: 0px 0px 5px 0px;
+    padding:1px;
+    cursor: pointer;
+}
+
+.options-icon{
+  cursor: pointer;
+}

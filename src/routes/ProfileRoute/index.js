@@ -1,9 +1,10 @@
 import { Cta, ProfileAnalytics } from "../../components";
+import { EditProfile } from "../../components";
 import "./index.css";
 export default function Profile() {
   return (
     <div>
-      <div className="profile-div">
+      {/* <div className="profile-div">
         <img
           src="https://picturepan2.github.io/spectre/img/avatar-4.png"
           className="avatar avatar-md"
@@ -26,7 +27,8 @@ export default function Profile() {
           <ProfileAnalytics />
         </div>
       </div>
-      <h3>Your Posts</h3>
+      <h3>Your Posts</h3> */}
+      <EditProfile />
     </div>
   );
 }

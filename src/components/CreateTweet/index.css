@@ -1,11 +1,11 @@
 .create-tweet-section{
     padding-bottom:2rem;
-    padding-top: 30%;
+    padding-top: 20%;
     border:0px solid; 
     position: fixed;
     min-width: 90%;
     position: fixed;
-    top: 0%;
+    top: 0;
     right: 0;
     left: 0;
     bottom: 0;
@@ -16,6 +16,7 @@
 .cancel-cta-div{
     /* border-bottom: 1px solid; */
     box-shadow: 0 2px 0px rgb(0 0 0 / 0.2);
+    margin-bottom: 5px;
 }
 
 .crate-tweet-icon{
@@ -27,18 +28,12 @@
 .icons-section{
     display: flex;
     padding: 5px;
-    margin-right:50%
-   
-}
-
-.icons-section:nth-child(1){
- 
+    margin-right:50%   
 }
 
 .tweet-section{
     display: grid;
-     grid-template-columns:2.5rem 1fr;
-     /* padding: 25px 0px 0px 25px; */
+    grid-template-columns:2.5rem 1fr 2rem;
 }
 
 .tweet-content > h4{

@@ -1,6 +1,9 @@
 import { AnalyticsIcon } from "../index";
+import { FiMoreVertical } from "../../icons";
+import { useState } from "react";
 import "./index.css";
 export default function Tweet() {
+  const [options, setOptions] = useState(false);
   return (
     <div className="tweet-section">
       <img
@@ -12,7 +15,23 @@ export default function Tweet() {
         <p>Hello World!!!!(content)</p>
         <div>Img's here(if exists)</div>
         <div className="analytics-section">
-          <AnalyticsIcon />
+          <AnalyticsIcon className="icon" />
+        </div>
+      </div>
+      <div className="options-div">
+        <div
+          onMouseEnter={() => setOptions(true)}
+          onMouseLeave={() => {
+            setOptions(false);
+          }}
+        >
+          <FiMoreVertical className="options-icon" />
+          {options && (
+            <div className="options-detials">
+              <p>Edit</p>
+              <p>Delete</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
