@@ -8,11 +8,11 @@ import { useNotifyUser } from "../../contexts";
 export default function Tweet({ post, setIsTweeted }) {
   const { toast } = useNotifyUser();
   const {
-    username,
+    displayname,
     content,
     caption,
     likes,
-    profilePic,
+    displayPicture,
     picture,
     createdAt,
     emailId,
@@ -64,9 +64,9 @@ export default function Tweet({ post, setIsTweeted }) {
   // }
   return (
     <div className="tweet-section">
-      <img src={profilePic} className="avatar avatar-xs" />
+      <img src={displayPicture} className="avatar avatar-xs" />
       <div className="tweet-content">
-        <h4>{username}</h4>
+        <h4>{displayname}</h4>
         <h5>{caption}</h5>
         <p>{content}</p>
         {picture && (

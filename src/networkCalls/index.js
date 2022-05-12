@@ -1,21 +1,40 @@
 // import
 import axios from "axios";
+import { ADMIN } from "../config/constants";
+const getAllUsers = async () => {
+  try {
+    const userList = await axios.get("/api/users");
+    return userList.data.users;
+  } catch (e) {
+    throw e;
+  }
+};
 
 const createTweet = async (payload) => {
   console.log({ post: payload }, "what is this");
   try {
-    const createTweetResposne = await axios.post(
-      "/api/posts",
-      { post: payload },
-      {
-        headers: {
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
-        },
+    const userResponse = await getAllUsers();
+    for (let i = 0; i < userResponse.length; i++) {
+      // i have to decode jwt and need use email id here
+      if (userResponse[i].email === ADMIN.EMAIL) {
+        payload.userId = userResponse[i]._id;
+        // console.log(userResponse.userPhoto);
+        payload.displayPicture = userResponse[i].userPhoto;
+        payload.displayname = userResponse[i].displayname;
       }
-    );
+    }
+    console.log("hey this is payload", payload);
+
+    const createTweetResposne = await axios.post("/api/posts/", payload, {
+      headers: {
+        authorization:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+      },
+    });
+    console.log(createTweetResposne, "asdfgh");
     return createTweetResposne;
   } catch (e) {
+    console.log(e, "whats the error");
     throw e;
   }
 };
@@ -34,7 +53,7 @@ const deleteTweet = async (postid) => {
     const createTweetResposne = await axios.delete(`/api/posts/${postid}`, {
       headers: {
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
       },
     });
     return createTweetResposne;
@@ -52,7 +71,7 @@ const editTweet = async (payload, postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
         },
       }
     );
@@ -71,7 +90,7 @@ const likeTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
         },
       }
     );
@@ -92,7 +111,7 @@ const unlikeTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
         },
       }
     );
@@ -111,7 +130,7 @@ const bookMarkTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
         },
       }
     );
@@ -130,7 +149,7 @@ const removeBookMarkTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
         },
       }
     );
@@ -145,7 +164,7 @@ const getAllBookMarks = async () => {
     const bookMarks = await axios.get("/api/users/bookmark", {
       headers: {
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkZGM3NGRhMC03NDA1LTQ4ZjMtOWEwYy1lY2Q4ZjgzOTlhYzQiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.O5xhr4upZ9a9JuH_DZ9Xp3rCx6lypVssXTeSCRVQoog",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
       },
     });
     return bookMarks;
@@ -164,4 +183,5 @@ export {
   bookMarkTweet,
   removeBookMarkTweet,
   getAllBookMarks,
+  getAllUsers,
 };

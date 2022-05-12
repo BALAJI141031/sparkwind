@@ -37,9 +37,9 @@ export default function HomeRoute() {
           </div>
         ))}
 
-      {/* <div className="bottom-navbar">
+      <div className="bottom-navbar">
         <BottomNavbar setCreateTweet={setCreateTweet} />
-      </div> */}
+      </div>
       {createTweet && (
         <CreateTweet
           setCreateTweet={setCreateTweet}

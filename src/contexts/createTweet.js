@@ -10,7 +10,7 @@ function CreateTweet({ children }) {
       case REDUCER_CONSTANTS.CAPTION:
         return { ...prevTweet, caption: payload };
       case REDUCER_CONSTANTS.TWEETTEXT:
-        return { ...prevTweet, tweetText: payload };
+        return { ...prevTweet, content: payload };
       case REDUCER_CONSTANTS.EMOJI:
         return { ...prevTweet, emoji: payload };
       case REDUCER_CONSTANTS.PICTURE:
@@ -20,7 +20,7 @@ function CreateTweet({ children }) {
 
   const [tweet, setTweet] = useReducer(tweetHandler, {
     caption: null,
-    tweetText: "",
+    content: "",
     picture: null,
     emoji: null,
   });

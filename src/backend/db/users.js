@@ -11,8 +11,10 @@ export const users = [
     firstName: "Adarsh",
     lastName: "Balika",
     email: "adarshbalika@gmail.com",
-    password: "adarshBalika123",
+    password: "adarshBalika1234",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    userPhoto: "https://picturepan2.github.io/spectre/img/avatar-4.png",
+    displayname: "Always_Adarsh",
   },
 ];

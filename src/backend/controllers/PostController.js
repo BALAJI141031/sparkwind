@@ -63,8 +63,48 @@ export const getAllUserPostsHandler = function (schema, request) {
  * body contains {content}
  * */
 
+// export const createPostHandler = function (schema, request) {
+//   const user = requiresAuth.call(this, request);
+//   try {
+//     if (!user) {
+//       return new Response(
+//         404,
+//         {},
+//         {
+//           errors: [
+//             "The username you entered is not Registered. Not Found error",
+//           ],
+//         }
+//       );
+//     }
+//     const { postData } = JSON.parse(request.requestBody);
+//     const post = {
+//       _id: uuid(),
+//       ...postData,
+//       likes: {
+//         likeCount: 0,
+//         likedBy: [],
+//         dislikedBy: [],
+//       },
+//       username: user.username,
+//       createdAt: formatDate(),
+//       updatedAt: formatDate(),
+//     };
+//     this.db.posts.insert(post);
+//     return new Response(201, {}, { posts: this.db.posts });
+//   } catch (error) {
+//     return new Response(
+//       500,
+//       {},
+//       {
+//         error,
+//       }
+//     );
+//   }
+// };
 export const createPostHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
+  console.log(user, "coming here");
   try {
     if (!user) {
       return new Response(
@@ -77,15 +117,24 @@ export const createPostHandler = function (schema, request) {
         }
       );
     }
-    const { postData } = JSON.parse(request.requestBody);
+    const { content, caption, userId, picture, displayname, displayPicture } =
+      JSON.parse(request.requestBody);
     const post = {
       _id: uuid(),
-      ...postData,
+      content: content,
       likes: {
         likeCount: 0,
         likedBy: [],
         dislikedBy: [],
       },
+      comments: [],
+      userId,
+      picture,
+      caption: caption,
+      userPhoto: user?.profilePhoto?.chosen,
+      // userPhoto,
+      displayname,
+      displayPicture,
       username: user.username,
       createdAt: formatDate(),
       updatedAt: formatDate(),
@@ -102,7 +151,6 @@ export const createPostHandler = function (schema, request) {
     );
   }
 };
-
 /**
  * This handler handles updating a post in the db.
  * send POST Request at /api/posts/edit/:postId
