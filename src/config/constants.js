@@ -2,7 +2,7 @@ module.exports = {
   PATHS: {
     LANDING_PATH: "/",
     HOME_PATH: "/home",
-    PROFILE_PATH: "/profile",
+    PROFILE_PATH: "/profile/:userId",
     NOTIFICATIONS_PATH: "/notifications",
     BOOKMARKS_PATH: "/bookmarks",
     USER: "/user",
@@ -26,6 +26,7 @@ module.exports = {
   EMOJIS: ["😊", "😳", "😔", "🥡", "❤️"],
   ADMIN: {
     EMAIL: "adarshbalika@gmail.com",
+    SECOND_EMAIL: "anjalibalika@gmail.com",
   },
   NOTIFICATIONS: {
     TWEET_DELETED: "Successfully Tweet Deleted",

@@ -5,8 +5,10 @@ import "./index.css";
 import { ADMIN, NOTIFICATIONS } from "../../config/constants";
 import { deleteTweet, editTweet, getAllBookMarks } from "../../networkCalls/";
 import { useNotifyUser } from "../../contexts";
+import { useNavigate } from "react-router-dom";
 export default function Tweet({ post, setIsTweeted }) {
   const { toast } = useNotifyUser();
+  const navigate = useNavigate();
   const {
     displayname,
     content,
@@ -17,6 +19,7 @@ export default function Tweet({ post, setIsTweeted }) {
     createdAt,
     emailId,
     _id: postid,
+    userId,
   } = post;
 
   const [options, setOptions] = useState(false);
@@ -62,11 +65,18 @@ export default function Tweet({ post, setIsTweeted }) {
   //     }
   //   }
   // }
+
+  // navigate handler
+  const navigateToProfile = () => navigate(`/profile/${userId ?? "admin"}`);
   return (
     <div className="tweet-section">
-      <img src={displayPicture} className="avatar avatar-xs" />
+      <img
+        src={displayPicture}
+        className="avatar avatar-xs"
+        onClick={navigateToProfile}
+      />
       <div className="tweet-content">
-        <h4>{displayname}</h4>
+        <h4 onClick={navigateToProfile}>{displayname}</h4>
         <h5>{caption}</h5>
         <p>{content}</p>
         {picture && (

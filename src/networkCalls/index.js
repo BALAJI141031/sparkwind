@@ -10,6 +10,16 @@ const getAllUsers = async () => {
   }
 };
 
+const getUser = async (userId) => {
+  try {
+    const user = await axios.get(`/api/users/${userId}`);
+    console.log(user);
+    return user.data.user;
+  } catch (e) {
+    throw e;
+  }
+};
+
 const createTweet = async (payload) => {
   console.log({ post: payload }, "what is this");
   try {
@@ -184,4 +194,5 @@ export {
   removeBookMarkTweet,
   getAllBookMarks,
   getAllUsers,
+  getUser,
 };
