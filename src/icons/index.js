@@ -11,7 +11,7 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import { BiSearchAlt2, BiUpload } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiFillHeart } from "react-icons/ai";
 import { FiMoreVertical } from "react-icons/fi";
 
 export {
@@ -28,4 +28,5 @@ export {
   RiUserFollowLine,
   BsBookmarkCheck,
   MdOutlineKeyboardArrowRight,
+  AiFillHeart,
 };

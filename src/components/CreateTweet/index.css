@@ -68,6 +68,28 @@ textarea:focus, input:focus{
     outline: none;
 }
 
+.emojis-section{
+    position: relative;
+}
+
+.emojis-div{
+    position: absolute;
+    display: flex;
+    top:-155%;
+    padding:5px;
+    z-index: 99;
+    border: 0px solid ;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;;
+    }
+
+li {
+    list-style: none;
+    margin-right:15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
 .create-tweet{
    border: 0px solid;
    margin:0px 10px 0px 10px;

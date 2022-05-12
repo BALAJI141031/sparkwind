@@ -8,6 +8,7 @@ module.exports = {
     USER: "/user",
     LOGIN: "/user/login",
     SIGNUP: "/user/signup",
+    MOCK: "/mock",
   },
   HERO: {
     LANDING_ROUTE_HERO_TEXTS: [
@@ -15,5 +16,19 @@ module.exports = {
       { mainHero: "CONNECT", subHero: "With Your Friends" },
       { mainHero: "SHARE", subHero: "What You are Thinking" },
     ],
+  },
+  REDUCER_CONSTANTS: {
+    CAPTION: "caption",
+    TWEETTEXT: "tweetText",
+    PICTURE: "picture",
+    EMOJI: "emoji",
+  },
+  EMOJIS: ["😊", "😳", "😔", "🥡", "❤️"],
+  ADMIN: {
+    EMAIL: "adarshbalika@gmail.com",
+  },
+  NOTIFICATIONS: {
+    TWEET_DELETED: "Successfully Tweet Deleted",
+    TWEET_UPDATED: "Successfully Tweet Updated",
   },
 };

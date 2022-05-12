@@ -7,13 +7,21 @@
     margin:15px
 }
 
-.tweet-content > h4{
+.tweet-content > h4 {
     margin-top: 3px;
+}
+
+.tweet-content > h5{
+    margin: 0px;
 }
 
 .options-div{
     position: relative;
     /* background-color: aqua; */
+}
+
+.tweet-pic{
+    width:100%
 }
 
 .options-detials{
@@ -35,4 +43,7 @@
 
 .options-icon{
   cursor: pointer;
+}
+.analytics-section{
+    margin-top: 15px;
 }

@@ -11,12 +11,13 @@ import {
 } from "./routes";
 import { PATHS } from "./config/constants";
 import { Header } from "./components";
+import Mockman from "mockman-js";
 function App() {
   return (
     <div>
-      {/* <div className="header">
+      <div className="header">
         <Header />
-      </div> */}
+      </div>
       <Routes>
         <Route path={PATHS.LANDING_PATH} element={<LandingRoute />} />
         <Route path={PATHS.HOME_PATH} element={<HomeRoute />} />
@@ -27,6 +28,7 @@ function App() {
           <Route path={PATHS.LOGIN} element={<Login />} />
           <Route path={PATHS.SIGNUP} element={<Signup />} />
         </Route>
+        <Route path={PATHS.MOCK} element={<Mockman />} />
       </Routes>
     </div>
   );
