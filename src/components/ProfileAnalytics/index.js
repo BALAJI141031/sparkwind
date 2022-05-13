@@ -1,8 +1,8 @@
-export default function ProfileAnalytics() {
+export default function ProfileAnalytics({ type, data }) {
   return (
     <center>
-      <h4>0</h4>
-      <h5>Following</h5>
+      <h4>{data}</h4>
+      <h5>{type}</h5>
     </center>
   );
 }

@@ -7,20 +7,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const users = [
   {
-    _id: uuid(),
-    firstName: "Adarsh",
-    lastName: "Balika",
-    email: "adarshbalika@gmail.com",
-    password: "adarshBalika1234",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    userPhoto: "https://picturepan2.github.io/spectre/img/avatar-4.png",
-    displayname: "Always_Adarsh",
-    portfolioUrl: "www.adarsh.com",
-    bio: "learning front end dev @neogcamp",
-  },
-  {
-    _id: uuid(),
+    _id: "anjali",
     firstName: "Anjali",
     lastName: "Balika",
     email: "anjalibalika@gmail.com",
@@ -32,17 +19,18 @@ export const users = [
     portfolioUrl: "www.anjali.com",
     bio: "learning business dev @neogcamp",
   },
+
   {
     _id: uuid(),
-    firstName: "Titu",
+    firstName: "Adarsh",
     lastName: "Balika",
-    email: "titubalika@gmail.com",
-    password: "tituBalika1234",
+    email: "adarshbalika@gmail.com",
+    password: "adarshBalika1234",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    userPhoto: "https://picturepan2.github.io/spectre/img/avatar-1.png",
-    displayname: "titu_Smart",
-    portfolioUrl: "www.titu.com",
-    bio: "doing masters  @neogcamp",
+    userPhoto: "https://picturepan2.github.io/spectre/img/avatar-4.png",
+    displayname: "Always_Adarsh",
+    portfolioUrl: "www.adarsh.com",
+    bio: "learning front end dev @neogcamp",
   },
 ];

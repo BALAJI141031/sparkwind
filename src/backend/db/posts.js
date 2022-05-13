@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
-
+import { users } from "./users";
+const { _id: userId } = users[0];
 /**
  * Posts can be added here.
  * You can add default posts of your wish with different attributes
@@ -16,14 +17,15 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    displayname: "adarshbalika",
+    displayname: "always_anjali",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     displayPicture: "https://openui.netlify.app/images/avatar1.png",
     caption: "holaaaa",
     picture:
       "https://images.shiksha.com/mediadata/images/articles/1596046112phpALO4Er.jpeg",
-    emailId: "adarshbalika123@gmail.com",
+    emailId: "anjalibalika@gmail.com",
+    userId: "anjali",
   },
   {
     _id: uuid(),
@@ -34,11 +36,12 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    displayname: "shubhamsoni",
+    displayname: "always_anjali",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     displayPicture: "https://picturepan2.github.io/spectre/img/avatar-4.png",
     caption: "holaaaa11",
-    emailId: "adarshbalika@gmail.com",
+    emailId: "anjalibalika@gmail.com",
+    userId: "anjali",
   },
 ];

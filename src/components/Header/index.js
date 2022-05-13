@@ -13,9 +13,9 @@ export default function Header() {
           type="search"
           placeholder="search here...."
         />
-        <button className="search-icon">
+        {/* <button className="search-icon">
           <BiSearchAlt2 />
-        </button>
+        </button> */}
       </div>
       <img
         src="https://picturepan2.github.io/spectre/img/avatar-4.png"

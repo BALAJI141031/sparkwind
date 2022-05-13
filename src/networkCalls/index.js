@@ -1,6 +1,12 @@
 // import
 import axios from "axios";
 import { ADMIN } from "../config/constants";
+import jwt_decode from "jwt-decode";
+const decodedToken = jwt_decode(
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
+  process.env.REACT_APP_JWT_SECRET
+);
+
 const getAllUsers = async () => {
   try {
     const userList = await axios.get("/api/users");
@@ -33,15 +39,13 @@ const createTweet = async (payload) => {
         payload.displayname = userResponse[i].displayname;
       }
     }
-    console.log("hey this is payload", payload);
 
     const createTweetResposne = await axios.post("/api/posts/", payload, {
       headers: {
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
       },
     });
-    console.log(createTweetResposne, "asdfgh");
     return createTweetResposne;
   } catch (e) {
     console.log(e, "whats the error");
@@ -63,7 +67,7 @@ const deleteTweet = async (postid) => {
     const createTweetResposne = await axios.delete(`/api/posts/${postid}`, {
       headers: {
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
       },
     });
     return createTweetResposne;
@@ -81,7 +85,7 @@ const editTweet = async (payload, postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
         },
       }
     );
@@ -100,7 +104,7 @@ const likeTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
         },
       }
     );
@@ -121,7 +125,7 @@ const unlikeTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
         },
       }
     );
@@ -140,7 +144,7 @@ const bookMarkTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
         },
       }
     );
@@ -159,7 +163,7 @@ const removeBookMarkTweet = async (postid) => {
       {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
         },
       }
     );
@@ -174,10 +178,48 @@ const getAllBookMarks = async () => {
     const bookMarks = await axios.get("/api/users/bookmark", {
       headers: {
         authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmNDljMjhjMS0yM2E5LTQ5YzItYTI1Zi0yOWUwODU1MThiOTgifQ.ZlUzxFJPiklMTwWQ8pBrLUkSghbN2SUeBLdxfnGLLqY",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
       },
     });
     return bookMarks;
+  } catch (e) {
+    throw e;
+  }
+};
+
+const followUser = async (userId) => {
+  console.log(userId);
+  try {
+    const followResponse = await axios.post(
+      `/api/users/follow/${userId}`,
+      {},
+      {
+        headers: {
+          authorization:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
+        },
+      }
+    );
+    return followResponse;
+  } catch (e) {
+    throw e;
+  }
+};
+
+const unfollowUser = async (userId) => {
+  try {
+    console.log(userId);
+    const unfollowResponse = await axios.post(
+      `/api/users/unfollow/${userId}`,
+      {},
+      {
+        headers: {
+          authorization:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
+        },
+      }
+    );
+    return unfollowResponse;
   } catch (e) {
     throw e;
   }
@@ -195,4 +237,6 @@ export {
   getAllBookMarks,
   getAllUsers,
   getUser,
+  followUser,
+  unfollowUser,
 };

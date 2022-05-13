@@ -15,7 +15,9 @@ const sign = require("jwt-encode");
  * */
 
 export const signupHandler = function (schema, request) {
-  const { username, password, ...rest } = JSON.parse(request.requestBody);
+  const { username, email, password, ...rest } = JSON.parse(
+    request.requestBody
+  );
   try {
     // check if username already exists
     const foundUser = schema.users.findBy({ username: username });
@@ -36,6 +38,7 @@ export const signupHandler = function (schema, request) {
       updatedAt: formatDate(),
       username,
       password,
+      email,
       ...rest,
       followers: [],
       following: [],
@@ -43,7 +46,7 @@ export const signupHandler = function (schema, request) {
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign(
-      { _id, username },
+      { _id, username, email },
       process.env.REACT_APP_JWT_SECRET
     );
     return new Response(201, {}, { createdUser, encodedToken });
@@ -65,9 +68,9 @@ export const signupHandler = function (schema, request) {
  * */
 
 export const loginHandler = function (schema, request) {
-  const { username, password } = JSON.parse(request.requestBody);
+  const { email, username, password } = JSON.parse(request.requestBody);
   try {
-    const foundUser = schema.users.findBy({ username: username });
+    const foundUser = schema.users.findBy({ email });
     if (!foundUser) {
       return new Response(
         404,
@@ -81,7 +84,7 @@ export const loginHandler = function (schema, request) {
     }
     if (password === foundUser.password) {
       const encodedToken = sign(
-        { _id: foundUser._id, username },
+        { _id: foundUser._id, username, email },
         process.env.REACT_APP_JWT_SECRET
       );
       return new Response(200, {}, { foundUser, encodedToken });

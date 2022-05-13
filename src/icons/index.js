@@ -9,6 +9,7 @@ import { RiHome7Line, RiUserFollowLine } from "react-icons/ri";
 import {
   MdOutlineNotifications,
   MdOutlineKeyboardArrowRight,
+  MdOutlineChangeCircle,
 } from "react-icons/md";
 import { BiSearchAlt2, BiUpload } from "react-icons/bi";
 import { AiOutlineClose, AiFillHeart } from "react-icons/ai";
@@ -29,4 +30,5 @@ export {
   BsBookmarkCheck,
   MdOutlineKeyboardArrowRight,
   AiFillHeart,
+  MdOutlineChangeCircle,
 };

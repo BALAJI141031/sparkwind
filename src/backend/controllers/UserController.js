@@ -1,4 +1,5 @@
 import { Response } from "miragejs";
+// import Schema from "miragejs/orm/schema";
 import { formatDate, requiresAuth } from "../utils/authUtils";
 
 /**
@@ -21,7 +22,10 @@ export const getAllUsersHandler = function () {
 
 export const getUserHandler = function (schema, request) {
   const userId = request.params.userId;
+  console.log(userId, "from get up handler");
   try {
+    // const allUsers = schema.users.find({}).attrs;
+    // console.log(allUsers, "allllllllllll");
     const user = schema.users.findBy({ _id: userId }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
@@ -203,6 +207,14 @@ export const followUserHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   const { followUserId } = request.params;
   const followUser = schema.users.findBy({ _id: followUserId }).attrs;
+  console.log(
+    user,
+    "from ",
+    followUser,
+    "tooooooooooo",
+    followUserId,
+    "params id"
+  );
   try {
     if (!user) {
       return new Response(

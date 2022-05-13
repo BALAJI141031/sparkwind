@@ -32,4 +32,5 @@ module.exports = {
     TWEET_DELETED: "Successfully Tweet Deleted",
     TWEET_UPDATED: "Successfully Tweet Updated",
   },
+  PROFILE_CONTSTANTS: ["Followers", "Following", "Tweets"],
 };
