@@ -3,7 +3,7 @@ import { useTweet } from "contexts/";
 import { useEffect, useState } from "react";
 import { Tweet, BottomNavbar, SuggestedProfile, CreateTweet } from "components";
 import { getAllPosts } from "networkCalls";
-
+import { BiTrendingUp, ImSortNumbericDesc } from "icons";
 export default function HomeRoute() {
   const { tweet, setTweet } = useTweet();
   const [createTweet, setCreateTweet] = useState(false);
@@ -23,11 +23,14 @@ export default function HomeRoute() {
     })();
   }, [isTweeted]);
 
+  //trending posts
+  const toggleTrendingPosts = () => {};
+
   return (
     <div className="home-section">
       <div className="filters-div">
-        <button>Trending Posts</button>
-        <button>Latest Posts</button>
+        <BiTrendingUp className="filter-icon" onClick={toggleTrendingPosts} />
+        <ImSortNumbericDesc className="filter-icon" />
       </div>
 
       {posts &&
@@ -43,13 +46,17 @@ export default function HomeRoute() {
         ))}
 
       <div className="bottom-navbar">
-        <BottomNavbar setCreateTweet={setCreateTweet} />
+        <BottomNavbar
+          setCreateTweet={setCreateTweet}
+          setFromEdit={setFromEdit}
+        />
       </div>
       {createTweet && (
         <CreateTweet
           setCreateTweet={setCreateTweet}
           setIsTweeted={setIsTweeted}
           fromEdit={fromEdit}
+          setFromEdit={setFromEdit}
         />
       )}
     </div>

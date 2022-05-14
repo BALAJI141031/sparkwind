@@ -5,3 +5,7 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+.routes-wrapper{
+  padding-bottom:4rem;
+}

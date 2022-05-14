@@ -14,7 +14,7 @@ import { Header } from "components";
 import Mockman from "mockman-js";
 function App() {
   return (
-    <div>
+    <div className="routes-wrapper">
       <div className="header">
         <Header />
       </div>

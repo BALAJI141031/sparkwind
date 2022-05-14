@@ -9,10 +9,11 @@
 
 .tweet-content > h4 {
     margin-top: 3px;
+    display: inline;
 }
 
 .tweet-content > h5{
-    margin: 0px;
+    margin: 5px;
 }
 
 .options-div{

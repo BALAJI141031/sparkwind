@@ -73,7 +73,7 @@ export default function Tweet({
   // }
 
   // navigate handler
-  const navigateToProfile = () => navigate(`/profile/${userId ?? "admin"}`);
+  const navigateToProfile = () => navigate(`/profile/${userId}`);
   return (
     <div className="tweet-section">
       <img

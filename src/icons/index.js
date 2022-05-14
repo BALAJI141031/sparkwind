@@ -11,9 +11,11 @@ import {
   MdOutlineKeyboardArrowRight,
   MdOutlineChangeCircle,
 } from "react-icons/md";
-import { BiSearchAlt2, BiUpload } from "react-icons/bi";
+import { BiSearchAlt2, BiUpload, BiTrendingUp } from "react-icons/bi";
 import { AiOutlineClose, AiFillHeart } from "react-icons/ai";
 import { FiMoreVertical } from "react-icons/fi";
+
+import { ImSortNumbericDesc } from "react-icons/im";
 
 export {
   BsHeart,
@@ -31,4 +33,6 @@ export {
   MdOutlineKeyboardArrowRight,
   AiFillHeart,
   MdOutlineChangeCircle,
+  BiTrendingUp,
+  ImSortNumbericDesc,
 };

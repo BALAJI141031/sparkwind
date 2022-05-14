@@ -7,11 +7,7 @@ import { REDUCER_CONSTANTS, EMOJIS } from "config/constants";
 import "./index.css";
 import { editTweet } from "../../networkCalls";
 
-export default function CreateTweet({
-  setCreateTweet,
-  setIsTweeted,
-  fromEdit,
-}) {
+export default function CreateTweet({ setCreateTweet, setIsTweeted, fromEdit, setFromEdit }) {
   const { tweet, setTweet } = useTweet();
   const [imageName, setImageName] = useState(null);
   // const [emojis, setEmojis] = useState(null);
@@ -78,7 +74,7 @@ export default function CreateTweet({
             <input
               type="text"
               placeholder="Add caption here"
-              value={tweet.caption}
+              value={fromEdit.editStatus ? tweet.caption : null}
               onChange={(e) =>
                 setTweet({
                   type: REDUCER_CONSTANTS.CAPTION,
@@ -88,7 +84,7 @@ export default function CreateTweet({
             />
             <textarea
               placeholder="what's you are thinking?"
-              value={tweet.content}
+              value={fromEdit.editStatus ? tweet.content : null}
               onChange={(e) =>
                 setTweet({
                   type: REDUCER_CONSTANTS.TWEETTEXT,

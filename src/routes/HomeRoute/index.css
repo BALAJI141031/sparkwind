@@ -9,11 +9,14 @@
 }
 
 .filters-div{
-    margin: 0px 5px 0px auto
+    margin: 0px 5px 0px 70%
 }
 
-.filters-div>button {
-    margin-right: 10px;
+.filters-div> .filter-icon {
+    margin-right: 20px;
+    width: 1.5rem;
+    height:1.5rem;
+    color: #F73D93;
 }
 
 .bottom-navbar{
@@ -23,5 +26,5 @@
     z-index: 9;
     bottom: 0%;
     padding: 5px 0px 5px 0px;
-    background-color: orange;       
+    background-color: #4C4C6D;       
 }

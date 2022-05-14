@@ -15,6 +15,8 @@ const getAllUsers = async () => {
 
 const getUser = async (userId) => {
   try {
+    const allUsers = await getAllUsers();
+    console.log("all existing users", allUsers);
     const user = await axios.get(`/api/users/${userId}`);
     console.log(user);
     return user.data.user;
