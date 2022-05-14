@@ -18,6 +18,9 @@ form{
     width: 1rem;
     height: 1rem;
 }
+.checkbox + p{
+    margin-top: 0px;
+}
 
 .account-info{
     display: flex;

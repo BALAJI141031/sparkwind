@@ -250,6 +250,7 @@ const getTweet = async (tweetId) => {
 };
 const loginUser = async (credentials) => {
   try {
+    console.log(credentials);
     const response = await axios.post("/api/auth/login", credentials);
     console.log(response);
 

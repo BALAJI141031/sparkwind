@@ -36,22 +36,24 @@ export function Login() {
     )
       validteCredentials({ email: true, password: true });
     else {
-      const loginResponse = await loginUser({
-        email: emailInput.current.value,
-        password: passwordInput.current.value,
-      });
-      setLogin(true);
-      navigate(location.state?.from?.pathname ?? "/", { replace: true });
-    }
-
-    try {
-    } catch (e) {
-      if (e.response.status === 401) {
-        toast.error("Invalid email or password. Please try again.");
-      } else if (e.response.status === 404) {
-        toast.error("No user found with this email. Please try again.");
-      } else {
-        toast.error("Unexpected error. Please try again in some time.");
+      try {
+        const loginResponse = await loginUser({
+          email: emailInput.current.value,
+          password: passwordInput.current.value,
+        });
+        setLogin(true);
+        navigate(location.state?.from?.pathname ?? "/", { replace: true });
+      } catch (e) {
+        // validteCredentials({ email: null, password: null });
+        emailInput.current.value = "";
+        passwordInput.current.value = "";
+        if (e.response.status === 401) {
+          toast.error("Invalid email or password. Please try again.");
+        } else if (e.response.status === 404) {
+          toast.error("No user found with this email. Please try again.");
+        } else {
+          toast.error("Unexpected error. Please try again in some time.");
+        }
       }
     }
   };
