@@ -3,7 +3,7 @@ import { AiOutlineClose, MdOutlineChangeCircle } from "../../icons";
 import { Cta } from "../index";
 import { useEffect, useRef, useState } from "react";
 import { editUser, getUser } from "../../networkCalls";
-export default function EditProfile({ userId }) {
+export default function EditProfile({ userId, editMyProfile }) {
   const hiddenFileInput = useRef(null);
   const username = useRef(null);
   const bio = useRef(null);
@@ -30,6 +30,7 @@ export default function EditProfile({ userId }) {
         bio: bio.current.value,
         portfolioUrl: portfolioUrl.current.value,
       });
+      editMyProfile(false);
     } catch (e) {
       console.log(e);
     }
@@ -39,7 +40,10 @@ export default function EditProfile({ userId }) {
     <div className="edit-profile-section">
       <div className="edit-profile">
         <div className="cancel-cta-div">
-          <AiOutlineClose className="cancel-cta" />
+          <AiOutlineClose
+            className="cancel-cta"
+            onClick={() => editMyProfile(false)}
+          />
         </div>
         <div>
           <div className="profile-content">

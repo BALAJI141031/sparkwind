@@ -8,9 +8,9 @@ import {
   Bookmarks,
   Login,
   Signup,
-} from "./routes";
-import { PATHS } from "./config/constants";
-import { Header } from "./components";
+} from "routes";
+import { PATHS } from "config/constants";
+import { Header } from "components";
 import Mockman from "mockman-js";
 function App() {
   return (

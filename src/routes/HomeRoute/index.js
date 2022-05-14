@@ -1,19 +1,19 @@
 import "./index.css";
-import { useTweet } from "../../contexts/";
+import { useTweet } from "contexts/";
 import { useEffect, useState } from "react";
-import {
-  Tweet,
-  BottomNavbar,
-  SuggestedProfile,
-  CreateTweet,
-} from "../../components";
-import { getAllPosts } from "../../networkCalls";
+import { Tweet, BottomNavbar, SuggestedProfile, CreateTweet } from "components";
+import { getAllPosts } from "networkCalls";
+
 export default function HomeRoute() {
   const { tweet, setTweet } = useTweet();
   const [createTweet, setCreateTweet] = useState(false);
   const [posts, setPosts] = useState(null);
   // created to handle useeffect
   const [isTweeted, setIsTweeted] = useState(false);
+  const [fromEdit, setFromEdit] = useState({
+    editStatus: false,
+    tweetId: null,
+  });
 
   useEffect(() => {
     (async () => {
@@ -33,7 +33,12 @@ export default function HomeRoute() {
       {posts &&
         posts.map((post) => (
           <div>
-            <Tweet post={post} setIsTweeted={setIsTweeted} />
+            <Tweet
+              post={post}
+              setIsTweeted={setIsTweeted}
+              setCreateTweet={setCreateTweet}
+              setFromEdit={setFromEdit}
+            />
           </div>
         ))}
 
@@ -44,6 +49,7 @@ export default function HomeRoute() {
         <CreateTweet
           setCreateTweet={setCreateTweet}
           setIsTweeted={setIsTweeted}
+          fromEdit={fromEdit}
         />
       )}
     </div>

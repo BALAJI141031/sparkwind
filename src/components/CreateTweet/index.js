@@ -1,23 +1,30 @@
-import { AiOutlineClose, BiUpload, BsEmojiSmile } from "../../icons";
-import { useRef, useState } from "react";
+import { AiOutlineClose, BiUpload, BsEmojiSmile } from "icons";
+import { useEffect, useRef, useState } from "react";
 import { Cta } from "../index";
-import { createTweet } from "../../networkCalls";
-import { useTweet, useNotifyUser } from "../../contexts";
-import { REDUCER_CONSTANTS, EMOJIS } from "../../config/constants";
+import { createTweet, getTweet } from "networkCalls";
+import { useTweet, useNotifyUser } from "contexts";
+import { REDUCER_CONSTANTS, EMOJIS } from "config/constants";
 import "./index.css";
+import { editTweet } from "../../networkCalls";
 
-export default function CreateTweet({ setCreateTweet, setIsTweeted }) {
+export default function CreateTweet({
+  setCreateTweet,
+  setIsTweeted,
+  fromEdit,
+}) {
   const { tweet, setTweet } = useTweet();
   const [imageName, setImageName] = useState(null);
-  const [emojis, setEmojis] = useState(null);
+  // const [emojis, setEmojis] = useState(null);
   const { toast } = useNotifyUser();
 
   // create tweet req
   const createTweetHandler = () => {
     (async () => {
+      toast("wow so easy");
       try {
-        toast("wow so easy");
-        const response = await createTweet(tweet);
+        const response = !fromEdit.editStatus
+          ? await createTweet(tweet)
+          : await editTweet(tweet, fromEdit.tweetId);
         setIsTweeted((prevState) => !prevState);
         setCreateTweet(false);
       } catch (e) {
@@ -28,6 +35,31 @@ export default function CreateTweet({ setCreateTweet, setIsTweeted }) {
 
   const hiddenFileInput = useRef(null);
 
+  useEffect(() => {
+    if (fromEdit.editStatus) {
+      (async () => {
+        try {
+          const tweetResponse = await getTweet(fromEdit.tweetId);
+
+          console.log("during updation", tweet);
+          setTweet({
+            type: REDUCER_CONSTANTS.CAPTION,
+            payload: tweetResponse.caption,
+          });
+          setTweet({
+            type: REDUCER_CONSTANTS.TWEETTEXT,
+            payload: tweetResponse.content,
+          });
+
+          console.log("yes i'm getting my response back", tweetResponse);
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
+  }, []);
+
+  console.log("should render after updatinon of text fileds", tweet);
   return (
     <div className="create-tweet-section">
       <div className="create-tweet">
@@ -46,6 +78,7 @@ export default function CreateTweet({ setCreateTweet, setIsTweeted }) {
             <input
               type="text"
               placeholder="Add caption here"
+              value={tweet.caption}
               onChange={(e) =>
                 setTweet({
                   type: REDUCER_CONSTANTS.CAPTION,
@@ -54,9 +87,8 @@ export default function CreateTweet({ setCreateTweet, setIsTweeted }) {
               }
             />
             <textarea
-              rows="4"
-              cols="10"
               placeholder="what's you are thinking?"
+              value={tweet.content}
               onChange={(e) =>
                 setTweet({
                   type: REDUCER_CONSTANTS.TWEETTEXT,

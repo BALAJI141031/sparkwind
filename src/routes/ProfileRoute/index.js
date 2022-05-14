@@ -1,33 +1,16 @@
-import { Cta, ProfileAnalytics } from "../../components";
-import { EditProfile } from "../../components";
+import { EditProfile, Cta, ProfileAnalytics } from "components";
 import { useParams } from "react-router-dom";
+import { jwtProfile } from "config/jwt";
 import "./index.css";
 import { useEffect, useState } from "react";
-import {
-  getAllUsers,
-  getUser,
-  followUser,
-  unfollowUser,
-} from "../../networkCalls";
-import { ADMIN, PROFILE_CONTSTANTS } from "../../config/constants";
-import jwt_decode from "jwt-decode";
-// thi sshould replace with cookies jwt token
-const decodedToken = jwt_decode(
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
-  process.env.REACT_APP_JWT_SECRET
-);
+import { getAllUsers, getUser, followUser, unfollowUser } from "networkCalls";
+import { ADMIN, PROFILE_CONTSTANTS } from "config/constants";
+
 export default function Profile() {
+  const myProfileDetials = jwtProfile();
   const [profile, setProfile] = useState(null);
   const [followsList, setFollowsList] = useState(null);
-  const [myProfile, editMyProfile] = useState({
-    showMyProfile: false,
-    userPhoto: null,
-    displayname: null,
-    portfolioUrl: null,
-    bio: null,
-    firstName: null,
-    lastName: null,
-  });
+  const [myProfile, editMyProfile] = useState(false);
   const { userId } = useParams();
 
   // get me the user
@@ -56,7 +39,7 @@ export default function Profile() {
   // deciding cta
   let ctaText;
   if (profile) {
-    if (profile.email === decodedToken.email) ctaText = "Edit Profile";
+    if (profile.email === myProfileDetials.email) ctaText = "Edit Profile";
     else if (profile.following.includes(profile._id)) {
       ctaText = "Following";
     } else {
@@ -85,14 +68,14 @@ export default function Profile() {
       }
     } else {
       // editMyProfile((myprofile)=>({...myProfile,showMyProfile:true})
-      editMyProfile((prev) => ({ ...prev, showMyProfile: true }));
+      editMyProfile(true);
     }
   }
 
   if (followsList) {
     const { followers, following } = followsList;
     for (let i = 0; i < followers.length; i++) {
-      if (followers[i].email === decodedToken.email) {
+      if (followers[i].email === myProfileDetials.email) {
         ctaText = "Following";
         break;
       }
@@ -136,7 +119,9 @@ export default function Profile() {
         </div>
       )}
       <h3>Your Posts</h3>
-      {myProfile.showMyProfile && <EditProfile userId={userId} />}
+      {myProfile && (
+        <EditProfile userId={userId} editMyProfile={editMyProfile} />
+      )}
     </div>
   );
 }

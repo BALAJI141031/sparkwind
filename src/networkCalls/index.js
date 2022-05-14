@@ -1,11 +1,8 @@
 // import
 import axios from "axios";
-import { ADMIN } from "../config/constants";
-import jwt_decode from "jwt-decode";
-const decodedToken = jwt_decode(
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
-  process.env.REACT_APP_JWT_SECRET
-);
+import { ADMIN } from "config/constants";
+import { jwtProfile } from "config/jwt";
+const myProfileDetials = jwtProfile();
 
 const getAllUsers = async () => {
   try {
@@ -48,11 +45,12 @@ const createTweet = async (payload) => {
     for (let i = 0; i < userResponse.length; i++) {
       // i have to decode jwt and need use email id here
       if (userResponse[i].email === ADMIN.EMAIL) {
-        payload.userId = userResponse[i]._id;
+        // payload.userId = userResponse[i]._id;
         payload.displayPicture = userResponse[i].userPhoto;
         payload.displayname = userResponse[i].displayname;
       }
     }
+    payload.userId = myProfileDetials._id;
 
     const createTweetResposne = await axios.post("/api/posts/", payload, {
       headers: {
@@ -239,6 +237,14 @@ const unfollowUser = async (userId) => {
   }
 };
 
+const getTweet = async (tweetId) => {
+  try {
+    const tweetResponse = await axios.get(`/api/posts/${tweetId}`);
+    return tweetResponse.data.post;
+  } catch (e) {
+    throw e;
+  }
+};
 export {
   createTweet,
   getAllPosts,
@@ -254,4 +260,5 @@ export {
   followUser,
   unfollowUser,
   editUser,
+  getTweet,
 };

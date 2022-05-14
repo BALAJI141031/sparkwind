@@ -1,12 +1,19 @@
 import { AnalyticsIcon } from "../index";
-import { FiMoreVertical } from "../../icons";
+import { FiMoreVertical } from "icons";
 import { useState, useEffect } from "react";
 import "./index.css";
-import { ADMIN, NOTIFICATIONS } from "../../config/constants";
-import { deleteTweet, editTweet, getAllBookMarks } from "../../networkCalls/";
-import { useNotifyUser } from "../../contexts";
+import { ADMIN, NOTIFICATIONS } from "config/constants";
+import { deleteTweet, editTweet, getAllBookMarks } from "networkCalls/";
+import { useNotifyUser } from "contexts";
 import { useNavigate } from "react-router-dom";
-export default function Tweet({ post, setIsTweeted }) {
+import { jwtProfile } from "config/jwt";
+export default function Tweet({
+  post,
+  setIsTweeted,
+  setCreateTweet,
+  setFromEdit,
+}) {
+  const myProfileDetials = jwtProfile();
   const { toast } = useNotifyUser();
   const navigate = useNavigate();
   const {
@@ -38,9 +45,8 @@ export default function Tweet({ post, setIsTweeted }) {
   // editHandler
   const editHandler = async () => {
     try {
-      const editResponse = await editTweet(postid);
-      setIsTweeted((prevState) => !prevState);
-      toast.success(NOTIFICATIONS.TWEET_UPDATED);
+      setCreateTweet(true);
+      setFromEdit((prev) => ({ ...prev, editStatus: true, tweetId: postid }));
     } catch (e) {
       throw e;
     }
@@ -93,8 +99,7 @@ export default function Tweet({ post, setIsTweeted }) {
           />
         </div>
       </div>
-      {/* emailId === ADMIN.EMAIL */}
-      {false && (
+      {myProfileDetials._id === userId && (
         <div className="options-div">
           <div
             onMouseEnter={() => setOptions(true)}
