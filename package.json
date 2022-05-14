@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "dayjs": "^1.11.2",
+    "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
     "miragejs": "^0.1.43",

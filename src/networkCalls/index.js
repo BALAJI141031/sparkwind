@@ -2,6 +2,7 @@
 import axios from "axios";
 import { ADMIN } from "config/constants";
 import { jwtProfile } from "config/jwt";
+import Cookies from "js-cookie";
 const myProfileDetials = jwtProfile();
 
 const getAllUsers = async () => {
@@ -247,6 +248,36 @@ const getTweet = async (tweetId) => {
     throw e;
   }
 };
+const loginUser = async (credentials) => {
+  try {
+    const response = await axios.post("/api/auth/login", credentials);
+    console.log(response);
+
+    if (response.status === 200) {
+      Cookies.set("jwt_token", response.data.encodedToken, {
+        expires: 1,
+      });
+      return response.status;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
+const signupUser = async (userData) => {
+  try {
+    const response = await axios.post("/api/auth/signup", userData);
+    console.log(response);
+    if (response.status === 201) {
+      Cookies.set("jwt_token", response.data.encodedToken, {
+        expires: 1,
+      });
+      return response.status;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
 export {
   createTweet,
   getAllPosts,
@@ -263,4 +294,6 @@ export {
   unfollowUser,
   editUser,
   getTweet,
+  loginUser,
+  signupUser,
 };

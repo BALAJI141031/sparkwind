@@ -1,5 +1,7 @@
-import { LandingHero, Cta } from "../../components";
-import { HERO } from "../../config/constants";
+import { LandingHero, Cta } from "components";
+import { HERO } from "config/constants";
+import { NavLink } from "react-router-dom";
+import { PATHS } from "config/constants";
 import "./index.css";
 export default function LandingRoute() {
   return (
@@ -12,9 +14,13 @@ export default function LandingRoute() {
           ))}
         </div>
         <div>
-          <Cta type={"primary-cta"} text={"JoinNow"} />
+          <NavLink to={PATHS.SIGNUP}>
+            <Cta type={"primary-cta"} text={"JoinNow"} />
+          </NavLink>
           <center>
-            <small>Already Have an Account?</small>
+            <NavLink to={PATHS.LOGIN}>
+              <strong>Already Have an Account?</strong>
+            </NavLink>
           </center>
         </div>
       </div>
