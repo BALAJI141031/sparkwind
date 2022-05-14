@@ -11,12 +11,30 @@
     bottom: 0;
     background-color: rgba(0,0.1,0.1,0.2);
     z-index: 99; 
+    width: 100%;
+}
+
+#profile-pic-div{
+    width: max-content;
+    position: relative;
+}
+
+.profile-change-icon{
+    position: absolute;
+    right: -15%;
+    bottom: 5%;
+    font-size: 1.5rem;
+}
+
+.profile-change-icon:hover{
+    color:"orange";
+    cursor: pointer;
 }
 
 .edit-profile{
     border: 0px solid;
    margin:0px 10px 0px 10px;
-   padding: 0px 0px 15px 15px ;
+   padding: 0px 15px 15px 15px ;
    border-radius: 5px;
    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
    background-color:white
@@ -27,8 +45,19 @@
 }
 
 input {
-    width:100%
+    width:100%;
+    margin-bottom:10px
 }
 textarea {
-    width:100%
+    width:100%;
+    margin-top:0px
+}
+
+#profile-pic{
+    /* width: 100%; */
+    /* border-radius: 20%; */
+    height: 3em;
+    width:3em;
+    object-fit: cover;
+
 }

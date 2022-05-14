@@ -35,8 +35,6 @@ export default function Profile() {
     (async () => {
       try {
         let user;
-        const allUsers = await getAllUsers();
-
         if (userId !== "admin") {
           user = await getUser(userId);
         } else {
@@ -49,7 +47,6 @@ export default function Profile() {
           }
         }
         setProfile(user);
-        console.log(user, "what's the response");
       } catch (e) {
         console.log(e);
       }
@@ -139,7 +136,7 @@ export default function Profile() {
         </div>
       )}
       <h3>Your Posts</h3>
-      {myProfile.showMyProfile && <EditProfile />}
+      {myProfile.showMyProfile && <EditProfile userId={userId} />}
     </div>
   );
 }

@@ -26,6 +26,21 @@ const getUser = async (userId) => {
   }
 };
 
+const editUser = async (userData) => {
+  try {
+    const editUserResponse = await axios.post("/api/users/edit", userData, {
+      headers: {
+        authorization:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4MTdhM2Q3My00MzQ2LTRjOGUtODljMC00OTk3NzJlZjcxODkiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.8zvlBM0EHofU7XOv1KLenlUKn7Jks3D6ijmQAf2_vk4",
+      },
+    });
+    // console.log(userData);
+    return editUserResponse;
+  } catch (e) {
+    throw e;
+  }
+};
+
 const createTweet = async (payload) => {
   console.log({ post: payload }, "what is this");
   try {
@@ -34,7 +49,6 @@ const createTweet = async (payload) => {
       // i have to decode jwt and need use email id here
       if (userResponse[i].email === ADMIN.EMAIL) {
         payload.userId = userResponse[i]._id;
-        // console.log(userResponse.userPhoto);
         payload.displayPicture = userResponse[i].userPhoto;
         payload.displayname = userResponse[i].displayname;
       }
@@ -239,4 +253,5 @@ export {
   getUser,
   followUser,
   unfollowUser,
+  editUser,
 };
