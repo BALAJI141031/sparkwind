@@ -6,6 +6,7 @@ import "./index.css";
 import Cookies from "js-cookie";
 import { useNavigate, useLocation } from "react-router-dom";
 import { loginUser, signupUser } from "networkCalls";
+
 export function Login() {
   const navigate = useNavigate();
   const { setLogin } = useAuthProvider();

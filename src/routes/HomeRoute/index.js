@@ -1,7 +1,13 @@
 import "./index.css";
 import { useTweet } from "contexts/";
 import { useEffect, useState } from "react";
-import { Tweet, BottomNavbar, SuggestedProfile, CreateTweet } from "components";
+import {
+  Tweet,
+  BottomNavbar,
+  SuggestedProfile,
+  CreateTweet,
+  Header,
+} from "components";
 import { getAllPosts } from "networkCalls";
 import { BiTrendingUp, ImSortNumbericDesc } from "icons";
 export default function HomeRoute() {
