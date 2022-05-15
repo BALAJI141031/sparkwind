@@ -7,6 +7,7 @@ import {
   SuggestedProfile,
   CreateTweet,
   Header,
+  Suggestions,
 } from "components";
 import { getAllPosts } from "networkCalls";
 import { BiTrendingUp, ImSortNumbericDesc } from "icons";
@@ -39,17 +40,26 @@ export default function HomeRoute() {
         <ImSortNumbericDesc className="filter-icon" />
       </div>
 
-      {posts &&
-        posts.map((post) => (
-          <div className="center-div">
-            <Tweet
-              post={post}
-              setIsTweeted={setIsTweeted}
-              setCreateTweet={setCreateTweet}
-              setFromEdit={setFromEdit}
-            />
+      <main className="main-div">
+        <div>
+          {posts &&
+            posts.map((post) => (
+              <div className="center-div">
+                <Tweet
+                  post={post}
+                  setIsTweeted={setIsTweeted}
+                  setCreateTweet={setCreateTweet}
+                  setFromEdit={setFromEdit}
+                />
+              </div>
+            ))}
+        </div>
+        <div className="suggestions-div">
+          <div>
+            <Suggestions />
           </div>
-        ))}
+        </div>
+      </main>
 
       <div className="bottom-navbar">
         <BottomNavbar

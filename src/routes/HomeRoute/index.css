@@ -11,8 +11,9 @@
 }
 
 .filters-div{
-    margin: 0px 5px 0px 70%
+    margin: 0px 5px 0px 20px
 }
+
 
 .filters-div> .filter-icon {
     margin-right: 20px;
@@ -34,6 +35,21 @@
 .center-div{
     display: flex;
     justify-content: center;
+}
+
+.main-div{
+    display: grid;
+    grid-template-columns: 0.6fr 0.3fr;
+    
+}
+
+.suggestions-div{
+    position: relative;
+    
+}
+.suggestions-div > div{
+    position: sticky;
+    top:10%;
 }
 
 @media screen and (min-width:820px) {

@@ -23,7 +23,8 @@
 }
 
 .tweet-pic{
-    width:100%
+    width:30%;
+    height:30%;
 }
 
 .options-detials{
@@ -87,7 +88,7 @@
     } */
     .tweet-section{
     display: grid;
-    width:40%;
+    width:90%;
     grid-template-columns:2.5rem;
     padding: 25px 0px 0px 25px;
     border: 0px solid;

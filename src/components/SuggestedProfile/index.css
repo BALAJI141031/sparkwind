@@ -1,7 +1,7 @@
 .profile-suggestion-div{
     display: grid;
     grid-template-columns: 0.5fr 0.5fr;
-    padding-top: 10rem;
+    /* padding-top: 10rem; */
 }
 
 .profile-suggestion{
