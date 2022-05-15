@@ -37,13 +37,25 @@
     justify-content: center;
 }
 
-.main-div{
-    display: grid;
-    grid-template-columns: 0.6fr 0.3fr;
+.suggestions-div{
+        display: none;
+    }
+
+
+
+@media screen and (min-width:820px) {
+    .bottom-navbar{
+        display: none;
+    }
+
     
+    .main-div{
+    display: grid;
+    grid-template-columns: 0.6fr 0.3fr;   
 }
 
 .suggestions-div{
+    display:block;
     position: relative;
     
 }
@@ -51,10 +63,5 @@
     position: sticky;
     top:10%;
 }
-
-@media screen and (min-width:820px) {
-    .bottom-navbar{
-        display: none;
-    }
     
 }

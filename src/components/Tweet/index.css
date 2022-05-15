@@ -23,8 +23,8 @@
 }
 
 .tweet-pic{
-    width:30%;
-    height:30%;
+    width:80%;
+    height:80%;
 }
 
 .options-detials{
@@ -64,6 +64,12 @@
     /* width: 100%; */
     
 }
+
+.tweet-pic{
+    width:80%;
+    height:80%;
+}
+
     
 }
 
@@ -79,6 +85,12 @@
     /* width: 100%; */
     
 }
+
+.tweet-pic{
+    width:70%;
+    height:70%;
+}
+
     
 }
 
@@ -96,6 +108,10 @@
     margin:15px;
     /* width: 100%; */
     
+}
+.tweet-pic{
+    width:40%;
+    height:40%;
 }
     
 }

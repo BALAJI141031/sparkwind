@@ -1,5 +1,6 @@
 .searchbar-div{
-    position: relative;   
+    position: relative;  
+    width:30% 
 }
 
 .search-bar{
@@ -15,7 +16,8 @@
     text-align: center;
     margin: 0px;
     position: absolute;
-    right:3%;
+    right:0%;
+    top:10%;
     padding-top:2px;
     z-index: 9;
 }
@@ -41,6 +43,11 @@
         width: 15rem;
         /* justify-content: space-evenly; */
     }
+
+    .searchbar-div{
+    position: relative;  
+    width:50% 
+}
 
     .device-header-cta{
         display: none;

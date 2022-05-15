@@ -14,9 +14,9 @@ export default function Header() {
           type="search"
           placeholder="search here...."
         />
-        {/* <button className="search-icon">
+        <button className="search-icon">
           <BiSearchAlt2 />
-        </button> */}
+        </button>
       </div>
       <div className="desktop-header-cta">
         <BottomNavbar

@@ -26,7 +26,7 @@ export default function HomeRoute() {
     (async () => {
       const postsResponse = await getAllPosts();
 
-      setPosts(postsResponse.data.posts);
+      setPosts(postsResponse.data.posts.reverse());
     })();
   }, [isTweeted]);
 
