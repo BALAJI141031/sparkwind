@@ -5,6 +5,8 @@
     display: grid;
     grid-template-columns:1fr;
     padding-top: 5rem;
+    /* align-content: center; */
+    justify-content: center;
     
 }
 
@@ -27,4 +29,16 @@
     bottom: 0%;
     padding: 5px 0px 5px 0px;
     background-color: #16003B;       
+}
+
+.center-div{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (min-width:820px) {
+    .bottom-navbar{
+        display: none;
+    }
+    
 }

@@ -4,8 +4,10 @@ import { useRef, useState } from "react";
 import { useNotifyUser, useAuthProvider } from "contexts";
 import "./index.css";
 import Cookies from "js-cookie";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { loginUser, signupUser } from "networkCalls";
+import { PATHS } from "config/constants";
+import { toast } from "react-toastify";
 
 export function Login() {
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ export function Login() {
           password: passwordInput.current.value,
         });
         setLogin(true);
-        navigate(location.state?.from?.pathname ?? "/", { replace: true });
+        navigate(location.state?.from?.pathname ?? "/home", { replace: true });
       } catch (e) {
         // validteCredentials({ email: null, password: null });
         emailInput.current.value = "";
@@ -117,56 +119,203 @@ export function Login() {
           <Cta type={"primary-cta"} text={"TestLogin"} />
         </div>
 
-        <div className="account-info">
-          <p>Create New Acccount</p>
-          <MdOutlineKeyboardArrowRight className="icon" />
-        </div>
+        <NavLink to={PATHS.SIGNUP}>
+          <div className="account-info">
+            <p>Create New Acccount</p>
+            <MdOutlineKeyboardArrowRight className="icon" />
+          </div>
+        </NavLink>
       </form>
     </div>
   );
 }
 
+// signup
+
 export function Signup() {
+  const { toast } = useNotifyUser();
+  const navigate = useNavigate();
+  const { setLogin } = useAuthProvider();
+  const location = useLocation();
+  let intialDetials = {
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+    confirmPassword: null,
+    displayname: null,
+    termsAndConditions: false,
+  };
+  const [detials, setDetials] = useState(intialDetials);
+  const submitSignupForm = async (e) => {
+    e.preventDefault();
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      termsAndConditions,
+    } = detials;
+    //   setError(initialErrorState);
+
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      setDetials((predDetials) => ({
+        ...predDetials,
+        password: "",
+        confirmPassword: "",
+      }));
+    } else if (password.search(/\d/) === -1) {
+      toast.error("Password must contain at least one number");
+      setDetials((predDetials) => ({
+        ...predDetials,
+        password: "",
+        confirmPassword: "",
+      }));
+    } else if (password.search(/[a-z]/) === -1) {
+      toast.error("Password must contain at least one lowercase letter");
+      setDetials((predDetials) => ({
+        ...predDetials,
+        password: "",
+        confirmPassword: "",
+      }));
+    } else if (password.search(/[A-Z]/) === -1) {
+      toast.error("Password must contain at least one Uppercase letter");
+      setDetials((predDetials) => ({
+        ...predDetials,
+        password: "",
+        confirmPassword: "",
+      }));
+    } else if (password !== confirmPassword) {
+      toast.error("Both Passwords Should Match");
+      setDetials((predDetials) => ({
+        ...predDetials,
+        password: "",
+        confirmPassword: "",
+      }));
+    } else if (!termsAndConditions) {
+      toast.warning("Please Select Termas&Conditions");
+    } else {
+      try {
+        const signupResponse = await signupUser({
+          firstName: detials.firstName,
+          lastName: detials.lastName,
+          email: detials.email,
+          password: detials.password,
+          displayname: detials.displayname,
+          userPhoto: "https://picturepan2.github.io/spectre/img/avatar-5.png",
+          portfolioUrl: "give your Portfolio address",
+          bio: "Change your Bio",
+        });
+        toast.success("Account created successfully!");
+        setLogin(true);
+        navigate(location.state?.from?.pathname ?? "/home", { replace: true });
+      } catch (e) {
+        if (e.response.status === 422) {
+          toast.error("Account already exists");
+          setDetials(intialDetials);
+        } else {
+          toast.error("Unexpected error");
+        }
+      }
+    }
+  };
+
+  const setDetialsHandler = (e) => {
+    if (e.target.name !== "termsAndConditions")
+      setDetials((prevCredentials) => ({
+        ...prevCredentials,
+        [e.target.name]: e.target.value,
+      }));
+    else
+      setDetials((prevCredentials) => ({
+        ...prevCredentials,
+        [e.target.name]: e.target.checked,
+      }));
+  };
+
   return (
     <div className="auth-form">
       <h2>SparkWind</h2>
-      <form>
+      <form onSubmit={submitSignupForm}>
         <center>
           <h2>Signup</h2>
         </center>
         <div>
-          <label>Fullname</label>
-          <input type="text" placeholder="name" />
+          <label>First Name</label>
+          <input
+            type="text"
+            placeholder="name"
+            name="firstName"
+            onChange={setDetialsHandler}
+          />
         </div>
         <div>
-          <label>Username</label>
-          <input type="text" placeholder="username" />
+          <label>Last Name</label>
+          <input
+            type="text"
+            placeholder="name"
+            name="lastName"
+            onChange={setDetialsHandler}
+          />
+        </div>
+        <div>
+          <label>User Name</label>
+          <input
+            type="text"
+            placeholder="username"
+            name="displayName"
+            onChange={setDetialsHandler}
+          />
         </div>
         <div>
           <label>Email address</label>
-          <input type="email" placeholder="email" />
+          <input
+            type="email"
+            placeholder="email"
+            name="email"
+            onChange={setDetialsHandler}
+          />
         </div>
         <div>
           <label>Password</label>
-          <input type="password" placeholder="********" />
+          <input
+            type="password"
+            placeholder="********"
+            name="password"
+            onChange={setDetialsHandler}
+          />
         </div>
         <div>
           <label>Confirm Password</label>
-          <input type="password" placeholder="********" />
+          <input
+            type="password"
+            placeholder="********"
+            name="confirmPassword"
+            onChange={setDetialsHandler}
+          />
         </div>
 
         <div className="flex-H-center-V">
-          <input type="checkbox" className="checkbox" />
+          <input
+            type="checkbox"
+            className="checkbox"
+            name="termsAndConditions"
+            onChange={setDetialsHandler}
+          />
           <p>I accept all terms and conditions</p>
         </div>
 
         <div>
           <Cta type={"primary-cta"} text={"Signup"} />
         </div>
-        <div className="account-info">
-          <p>Already have an account</p>
-          <MdOutlineKeyboardArrowRight className="icon" />
-        </div>
+        <NavLink to={PATHS.LOGIN}>
+          <div className="account-info">
+            <p>Already have an account</p>
+            <MdOutlineKeyboardArrowRight className="icon" />
+          </div>
+        </NavLink>
       </form>
     </div>
   );

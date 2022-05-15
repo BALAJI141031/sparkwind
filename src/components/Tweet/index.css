@@ -4,7 +4,8 @@
      padding: 25px 0px 0px 25px;
      border: 0px solid;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    margin:15px
+    margin:15px;
+    width:100%
 }
 
 .tweet-content > h4 {
@@ -47,4 +48,53 @@
 }
 .analytics-section{
     margin-top: 15px;
+}
+
+
+@media screen and (min-width:576px) {
+    .tweet-section{
+    display: grid;
+    width:90%;
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin:15px;
+    /* width: 100%; */
+    
+}
+    
+}
+
+@media screen and (min-width:820px) {
+    .tweet-section{
+    display: grid;
+    width:80%;
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin:15px;
+    /* width: 100%; */
+    
+}
+    
+}
+
+@media screen and (min-width:960px) {
+    /* html{
+        font-size: 1.5rem;
+    } */
+    .tweet-section{
+    display: grid;
+    width:40%;
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin:15px;
+    /* width: 100%; */
+    
+}
+    
 }

@@ -1,5 +1,6 @@
 import "./index.css";
-import { BiSearchAlt2 } from "../../icons";
+import { BiSearchAlt2 } from "icons";
+import { BottomNavbar } from "components";
 
 export default function Header() {
   return (
@@ -17,10 +18,22 @@ export default function Header() {
           <BiSearchAlt2 />
         </button> */}
       </div>
-      <img
-        src="https://picturepan2.github.io/spectre/img/avatar-4.png"
-        class="avatar avatar-xs"
-      />
+      <div className="desktop-header-cta">
+        <BottomNavbar
+        // setCreateTweet={setCreateTweet}
+        // setFromEdit={setFromEdit}
+        />
+        <img
+          src="https://picturepan2.github.io/spectre/img/avatar-4.png"
+          class="avatar avatar-xs"
+        />
+      </div>
+      <div className="device-header-cta">
+        <img
+          src="https://picturepan2.github.io/spectre/img/avatar-4.png"
+          class="avatar avatar-xs"
+        />
+      </div>
     </div>
   );
 }

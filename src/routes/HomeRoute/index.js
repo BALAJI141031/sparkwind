@@ -41,7 +41,7 @@ export default function HomeRoute() {
 
       {posts &&
         posts.map((post) => (
-          <div>
+          <div className="center-div">
             <Tweet
               post={post}
               setIsTweeted={setIsTweeted}

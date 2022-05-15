@@ -25,3 +25,25 @@
     background-color:#16003B ;
     border-bottom: 1px solid;
 }
+
+
+    .desktop-header-cta{
+        display:none
+    }
+
+
+
+@media screen and (min-width:820px) {
+
+    .desktop-header-cta{
+        display: flex;
+        align-items: center;
+        width: 15rem;
+        /* justify-content: space-evenly; */
+    }
+
+    .device-header-cta{
+        display: none;
+    }
+    
+}
