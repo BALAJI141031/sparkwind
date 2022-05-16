@@ -1,21 +1,18 @@
-import { BsHeart, GoComment, BsBookmarkCheck, AiFillHeart } from "../../icons";
+import { BsHeart, GoComment, BsBookmarkCheck, AiFillHeart } from "icons";
 import {
   likeTweet,
   unlikeTweet,
   bookMarkTweet,
   removeBookMarkTweet,
-} from "../../networkCalls";
+  editTweet,
+} from "networkCalls";
 import { useEffect, useState } from "react";
 import "./index.css";
 import { ADMIN } from "../../config/constants";
-export default function AnalyticsIcon({
-  icon,
-  likes,
-  postid,
-  setIsTweeted,
-  isTweetBookMarked,
-}) {
-  const [bookMarked, setBookMark] = useState(false);
+export default function AnalyticsIcon({ icon, post }) {
+  const { _id: postid, likes, bookMarked } = post;
+  const [localBookMark, setBookMark] = useState(false);
+  console.log(bookMarked, "i want to know status", localBookMark);
   const [liked, toggleLike] = useState(false);
 
   // like handler working alone but in seires with bookmarks giving serilization error
@@ -33,13 +30,12 @@ export default function AnalyticsIcon({
 
   // bookmark handler
   const toggleBookMark = async () => {
-    setBookMark((prevBookMarkStatus) => !prevBookMarkStatus);
     try {
-      const bookMarkResponse = !bookMarked
+      const bookMarkResponse = !localBookMark
         ? await bookMarkTweet(postid)
         : await removeBookMarkTweet(postid);
+      setBookMark((prevBookMarkStatus) => !prevBookMarkStatus);
       // setIsTweeted((prev) => !prev);
-      console.log(bookMarkResponse);
     } catch (e) {
       console.log(e);
     }
@@ -52,7 +48,7 @@ export default function AnalyticsIcon({
           onClick={toggleLikeHandler}
           className={liked && "style-analytics-icon"}
         />
-        {/* <p>{likes.likeCount}</p> */}
+        <p>{likes.likeCount}</p>
       </div>
       <div className="flex-H-center-V">
         <GoComment />
@@ -61,7 +57,7 @@ export default function AnalyticsIcon({
       <div>
         <BsBookmarkCheck
           onClick={toggleBookMark}
-          className={bookMarked && "style-analytics-icon"}
+          className={(localBookMark || bookMarked) && "style-analytics-icon"}
         />
       </div>
     </div>

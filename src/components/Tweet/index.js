@@ -30,6 +30,7 @@ export default function Tweet({
     emailId,
     _id: postid,
     userId,
+    bookMarked,
   } = post;
 
   const [options, setOptions] = useState(false);
@@ -38,7 +39,6 @@ export default function Tweet({
   const deleteHandler = async () => {
     try {
       const deleteResponse = await deleteTweet(postid);
-      // setIsTweeted((prevState) => !prevState);
       setHome({ type: "userTweeted", payload: true });
       toast.success(NOTIFICATIONS.TWEET_DELETED);
     } catch (e) {
@@ -50,7 +50,6 @@ export default function Tweet({
   const editHandler = async () => {
     try {
       setHome({ type: "createTweet", payload: true });
-      // setFromEdit((prev) => ({ ...prev, editStatus: true, tweetId: postid }));
       setHome({
         type: "editTweet",
         payload: { editStatus: true, tweetId: postid },
@@ -99,12 +98,7 @@ export default function Tweet({
           </div>
         )}
         <div className="analytics-section">
-          <AnalyticsIcon
-            className="icon"
-            likes={likes}
-            postid={postid}
-            // setIsTweeted={setIsTweeted}
-          />
+          <AnalyticsIcon className="icon" post={post} />
         </div>
       </div>
       {isLoggedIn && myProfileDetials._id === userId && (

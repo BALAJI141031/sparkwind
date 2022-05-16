@@ -147,7 +147,7 @@ const unlikeTweet = async (postid) => {
 
 const bookMarkTweet = async (postid) => {
   try {
-    console.log("coming until here while serilizing, book");
+    console.log("coming until here while serilizing, book", postid);
     const bookMarkTweetResposne = await axios.post(
       `/api/users/bookmark/${postid}`,
       {},
