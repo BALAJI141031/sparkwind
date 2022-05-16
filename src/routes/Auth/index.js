@@ -49,6 +49,10 @@ export function Login() {
         // validteCredentials({ email: null, password: null });
         emailInput.current.value = "";
         passwordInput.current.value = "";
+        setTestCredentials({
+          tesetEmail: "adarshbalika@gmail.com",
+          testPassword: "adarshBalika1234",
+        });
         if (e.response.status === 401) {
           toast.error("Invalid email or password. Please try again.");
         } else if (e.response.status === 404) {
