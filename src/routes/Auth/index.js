@@ -54,6 +54,7 @@ export function Login() {
         } else if (e.response.status === 404) {
           toast.error("No user found with this email. Please try again.");
         } else {
+          console.log(e, "buggggggggggggggggggg");
           toast.error("Unexpected error. Please try again in some time.");
         }
       }
