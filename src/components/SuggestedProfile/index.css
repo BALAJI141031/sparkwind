@@ -1,13 +1,17 @@
 .profile-suggestion-div{
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-columns: 1fr 4rem;
+    /* gap:20px */
     /* padding-top: 10rem; */
 }
 
 .profile-suggestion{
     display: flex;
     align-items: center;
+    margin-right: 10px;
 }
+
+
 
 .profile-suggestion-div > div > div >h6,small{
     margin: 0px;

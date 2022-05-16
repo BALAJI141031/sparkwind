@@ -3,16 +3,17 @@ import { BiSearchAlt2 } from "icons";
 import { BottomNavbar } from "components";
 import { useHome } from "contexts";
 import { jwtProfile } from "config/jwt";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { PATHS } from "config/constants";
 
 export default function Header() {
   const { setHome } = useHome();
   const navigate = useNavigate();
   return (
     <div class="flex-H-space-around" id="header-div">
-      <div>
+      <NavLink to={PATHS.HOME_PATH}>
         <sapn class="span-style">SL</sapn>
-      </div>
+      </NavLink>
       <div className="searchbar-div">
         <input
           className="search-bar"
@@ -24,10 +25,7 @@ export default function Header() {
         </button>
       </div>
       <div className="desktop-header-cta">
-        <BottomNavbar
-        // setCreateTweet={setCreateTweet}
-        // setFromEdit={setFromEdit}
-        />
+        <BottomNavbar />
 
         <img
           src="https://picturepan2.github.io/spectre/img/avatar-4.png"

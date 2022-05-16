@@ -22,7 +22,7 @@ export default function Suggestions() {
     })();
   }, []);
   return (
-    <div>
+    <div className="suggestions">
       <h3>Who To Follow?</h3>
       {users && users.map((user) => <SuggestedProfile user={user} />)}
       <h3>Show More</h3>

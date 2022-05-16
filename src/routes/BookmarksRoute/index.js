@@ -17,8 +17,10 @@ export default function Bookmarks() {
   }, []);
   return (
     <div className="bookmark-section">
-      <h4>Your Bookmarks</h4>
-      {bookMarks
+      <center>
+        <h4>Your Bookmarks</h4>
+      </center>
+      {bookMarks && bookMarks.length !== 0
         ? bookMarks.map((bookmark) => <Tweet post={bookmark} />)
         : "Not found"}
     </div>

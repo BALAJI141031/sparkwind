@@ -1,11 +1,10 @@
 .notification-section{
-    padding-top: 15%;
+    padding-top: 12%;
 }
 .notification-div{
 display: grid;
-    grid-template-columns:3rem 1fr;
-margin-bottom: 10px;
-    
+grid-template-columns:3rem 1fr;
+margin-bottom: 10px;    
 }
 .notification-from{
     display: grid;
@@ -17,7 +16,6 @@ margin-bottom: 10px;
 }
 
 .icon-div{
-    /* background-color: beige; */
      padding: 2px 5px 0px 5px;
 }
 .notification-icon{
@@ -38,3 +36,18 @@ margin-bottom: 10px;
 .notification-from > p {
     margin: 0px;
 } 
+
+
+@media screen and (min-width:700px) {
+
+    .notification-section{
+    padding-top: 10%;
+}
+}
+
+@media screen and (min-width:900px) {
+
+    .notification-section{
+    padding-top: 6%;
+}
+}

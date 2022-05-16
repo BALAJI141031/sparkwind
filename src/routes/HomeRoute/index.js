@@ -38,9 +38,7 @@ export default function HomeRoute() {
             ))}
         </div>
         <div className="suggestions-div">
-          <div>
-            <Suggestions />
-          </div>
+          <Suggestions />
         </div>
       </main>
 
