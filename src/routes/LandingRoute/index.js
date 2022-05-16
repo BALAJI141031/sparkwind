@@ -7,6 +7,9 @@ import "./index.css";
 export default function LandingRoute() {
   return (
     <main className="landing-section">
+      <div className="desktop-side-hero">
+        <h1>`Spark Your Words{` />`}</h1>
+      </div>
       <div>
         <h1>
           Spark Wind <GiWindSlap className="hero-icon" />

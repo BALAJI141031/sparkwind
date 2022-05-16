@@ -8,9 +8,14 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    scroll-behavior: none;
 }
 
-.landing-section > div{
+.desktop-side-hero{
+    display: none;
+}
+
+.landing-section >:nth-child(2){
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -18,3 +23,26 @@
 }
 
 
+
+@media screen and (min-width:950px) {
+    .landing-section{
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    height: 100vh;
+}
+.desktop-side-hero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+     min-height:100%;
+     width:100%;
+     background-image: linear-gradient( #FF004D , #141010);
+     color:#DBD8E3;
+     text-align: center;
+}
+.landing-section> :nth-child(2) {
+    align-self: center;
+    justify-self: center;
+}
+
+}
