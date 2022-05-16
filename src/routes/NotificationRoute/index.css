@@ -4,6 +4,7 @@
 .notification-div{
 display: grid;
     grid-template-columns:3rem 1fr;
+margin-bottom: 10px;
     
 }
 .notification-from{
@@ -24,6 +25,12 @@ display: grid;
     height:2rem;
 }
 
+.like-notification{
+    color: #F73D93;
+}
+.comment-notification{
+    color: #FFE194;
+}
 .notification-from > div > h4,p{
     margin:5px 0px 5px 5px
 } 

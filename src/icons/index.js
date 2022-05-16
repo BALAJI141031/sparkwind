@@ -4,6 +4,7 @@ import {
   BsEmojiSmile,
   BsBookmarkCheck,
   BsBookmarkStar,
+  BsHeartFill,
 } from "react-icons/bs";
 import { GoComment } from "react-icons/go";
 import { RiHome7Line, RiUserFollowLine } from "react-icons/ri";
@@ -17,6 +18,7 @@ import { AiOutlineClose, AiFillHeart } from "react-icons/ai";
 import { FiMoreVertical } from "react-icons/fi";
 
 import { ImSortNumbericDesc } from "react-icons/im";
+import { FaCommentAlt } from "react-icons/fa";
 
 export {
   BsHeart,
@@ -37,4 +39,6 @@ export {
   BiTrendingUp,
   ImSortNumbericDesc,
   BsBookmarkStar,
+  BsHeartFill,
+  FaCommentAlt,
 };

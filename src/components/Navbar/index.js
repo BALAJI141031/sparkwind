@@ -15,13 +15,16 @@ export default function BottomNavbar() {
       <NavLink to={PATHS.HOME_PATH}>
         <RiHome7Line className="icon" />
       </NavLink>
-      <BsPlusSquare
-        className="icon"
-        onClick={() => {
-          setHome({ type: "editTweet", payload: false });
-          setHome({ type: "createTweet", payload: true });
-        }}
-      />
+
+      <NavLink to={PATHS.HOME_PATH}>
+        <BsPlusSquare
+          className="icon"
+          onClick={() => {
+            setHome({ type: "editTweet", payload: false });
+            setHome({ type: "createTweet", payload: true });
+          }}
+        />
+      </NavLink>
       <NavLink to={PATHS.NOTIFICATIONS_PATH}>
         <MdOutlineNotifications className="icon" />
       </NavLink>
