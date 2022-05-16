@@ -1,10 +1,16 @@
-import { EditProfile, Cta, ProfileAnalytics } from "components";
+import { EditProfile, Cta, ProfileAnalytics, Tweet } from "components";
 import { useNavigate, useParams } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 import "./index.css";
 import { useAuthProvider } from "contexts";
 import { useEffect, useState } from "react";
-import { getAllUsers, getUser, followUser, unfollowUser } from "networkCalls";
+import {
+  getAllUsers,
+  getUser,
+  followUser,
+  unfollowUser,
+  getUserTweets,
+} from "networkCalls";
 import { ADMIN, PROFILE_CONTSTANTS } from "config/constants";
 import Cookies from "js-cookie";
 
@@ -17,6 +23,7 @@ export default function Profile() {
   const [myProfile, editMyProfile] = useState(false);
   const { userId } = useParams();
   const { setLogin } = useAuthProvider();
+  const [userTweets, setUserTweets] = useState(null);
 
   // get me the user
   useEffect(() => {
@@ -88,7 +95,17 @@ export default function Profile() {
     }
   }
 
-  // logout handler
+  // fetch user posts
+  useEffect(() => {
+    (async () => {
+      try {
+        const userTweets = await getUserTweets(userId);
+        setUserTweets(userTweets);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
 
   const logoutHandler = () => {
     Cookies.remove("jwt_token");
@@ -105,10 +122,15 @@ export default function Profile() {
             {profile.firstName} {profile.lastName} @{profile.displayname}
           </h3>
           <p>{profile.email}</p>
-          <button onClick={() => toggleFollow(ctaText)}>{ctaText}</button>
+          <div onClick={() => toggleFollow(ctaText)}>
+            <Cta text={ctaText} type={"primary-cta"} />
+          </div>
           {ctaText === "Edit Profile" && (
-            <button onClick={logoutHandler}>LogOut</button>
+            <div onClick={logoutHandler}>
+              <Cta text={"LogOut"} type={"primary-cta"} />
+            </div>
           )}
+
           <center>
             <p>{profile.bio}</p>
           </center>
@@ -135,6 +157,16 @@ export default function Profile() {
         </div>
       )}
       <h3>Your Posts</h3>
+      {userTweets !== null && userTweets.length !== 0 ? (
+        <div>
+          {userTweets.map((tweet) => (
+            <Tweet post={tweet} />
+          ))}
+        </div>
+      ) : (
+        "you dont have tweets"
+      )}
+
       {myProfile && (
         <EditProfile userId={userId} editMyProfile={editMyProfile} />
       )}

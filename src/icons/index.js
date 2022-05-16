@@ -19,6 +19,7 @@ import { FiMoreVertical } from "react-icons/fi";
 
 import { ImSortNumbericDesc } from "react-icons/im";
 import { FaCommentAlt } from "react-icons/fa";
+import { GiWindSlap } from "react-icons/gi";
 
 export {
   BsHeart,
@@ -41,4 +42,5 @@ export {
   BsBookmarkStar,
   BsHeartFill,
   FaCommentAlt,
+  GiWindSlap,
 };

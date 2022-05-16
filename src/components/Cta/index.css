@@ -1,6 +1,8 @@
 .primary-cta{
-    background-color: #B8DFD8;
-    color: #16003B;
+    background-color: #FF004D;
+    color: #DBD8E3;
+    font-weight:bolder ;
+
 }
 
 .secondary-cta{
@@ -14,4 +16,6 @@
     padding: 0.3em;
     font-size: 1rem;
 }
+
+button {margin-bottom: 5px;}
 

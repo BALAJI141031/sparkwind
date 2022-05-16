@@ -269,6 +269,16 @@ const signupUser = async (userData) => {
     throw e;
   }
 };
+
+const getUserTweets = async (userid) => {
+  try {
+    console.log(userid, "to fetch tweets");
+    const userTweets = await axios.get(`/api/posts/user/${userid}`);
+    return userTweets.data.posts;
+  } catch (e) {
+    console.log(e);
+  }
+};
 export {
   createTweet,
   getAllPosts,
@@ -287,4 +297,5 @@ export {
   getTweet,
   loginUser,
   signupUser,
+  getUserTweets,
 };
