@@ -12,6 +12,8 @@ import {
 import { getAllPosts } from "networkCalls";
 import { BiTrendingUp, ImSortNumbericDesc } from "icons";
 import { toast } from "react-toastify";
+import { NavLink } from "react-router-dom";
+import { PATHS } from "config/constants";
 export default function HomeRoute() {
   const { tweet, setTweet } = useTweet();
 

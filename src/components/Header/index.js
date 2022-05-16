@@ -28,6 +28,7 @@ export default function Header() {
         // setCreateTweet={setCreateTweet}
         // setFromEdit={setFromEdit}
         />
+
         <img
           src="https://picturepan2.github.io/spectre/img/avatar-4.png"
           class="avatar avatar-xs"

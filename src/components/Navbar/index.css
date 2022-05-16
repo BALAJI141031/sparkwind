@@ -10,3 +10,7 @@
     width: 2rem;
     color: var(--pale-white);
 }
+
+.active-navLink{
+    color:var(--primary-color)
+}

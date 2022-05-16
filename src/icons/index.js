@@ -3,6 +3,7 @@ import {
   BsPlusSquare,
   BsEmojiSmile,
   BsBookmarkCheck,
+  BsBookmarkStar,
 } from "react-icons/bs";
 import { GoComment } from "react-icons/go";
 import { RiHome7Line, RiUserFollowLine } from "react-icons/ri";
@@ -35,4 +36,5 @@ export {
   MdOutlineChangeCircle,
   BiTrendingUp,
   ImSortNumbericDesc,
+  BsBookmarkStar,
 };

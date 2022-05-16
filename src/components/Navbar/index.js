@@ -3,13 +3,18 @@ import {
   RiHome7Line,
   MdOutlineNotifications,
   BsPlusSquare,
-} from "../../icons/";
+  BsBookmarkStar,
+} from "icons/";
+import { NavLink } from "react-router-dom";
 import { useHome } from "contexts";
+import { PATHS } from "config/constants";
 export default function BottomNavbar() {
   const { home, setHome } = useHome();
   return (
     <div className="nav-section">
-      <RiHome7Line className="icon" />
+      <NavLink to={PATHS.HOME_PATH}>
+        <RiHome7Line className="icon" />
+      </NavLink>
       <BsPlusSquare
         className="icon"
         onClick={() => {
@@ -17,7 +22,12 @@ export default function BottomNavbar() {
           setHome({ type: "createTweet", payload: true });
         }}
       />
-      <MdOutlineNotifications className="icon" />
+      <NavLink to={PATHS.NOTIFICATIONS_PATH}>
+        <MdOutlineNotifications className="icon" />
+      </NavLink>
+      <NavLink to={PATHS.BOOKMARKS_PATH}>
+        <BsBookmarkStar className="icon" />
+      </NavLink>
     </div>
   );
 }
