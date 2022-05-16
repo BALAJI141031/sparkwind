@@ -1,5 +1,5 @@
 import { Cta } from "components";
-import { MdOutlineKeyboardArrowRight } from "icons";
+import { MdOutlineKeyboardArrowRight, GiWindSlap } from "icons";
 import { useRef, useState } from "react";
 import { useNotifyUser, useAuthProvider } from "contexts";
 import "./index.css";
@@ -61,7 +61,9 @@ export function Login() {
   };
   return (
     <div className="auth-form">
-      <h2>SparkWind</h2>
+      <h1>
+        Spark Wind <GiWindSlap className="hero-icon" />
+      </h1>
       <form onSubmit={submitLoginForm}>
         <center>
           <h2>Login</h2>
@@ -80,7 +82,9 @@ export function Login() {
               }))
             }
           />
-          {validatedCredentials.email && <p>Please Provide Email</p>}
+          {validatedCredentials.email && (
+            <p className="style-error">Please Provide Email</p>
+          )}
         </div>
         <div>
           <label>Password</label>
@@ -96,7 +100,9 @@ export function Login() {
               }))
             }
           />
-          {validatedCredentials.password && <p>Please Provide password</p>}
+          {validatedCredentials.password && (
+            <p className="style-error">Please Provide password</p>
+          )}
         </div>
         <div className="flex-H-space-bw">
           <div className="flex-H-center-V">
@@ -237,7 +243,9 @@ export function Signup() {
 
   return (
     <div className="auth-form">
-      <h2>SparkWind</h2>
+      <h1>
+        Spark Wind <GiWindSlap className="hero-icon" />
+      </h1>
       <form onSubmit={submitSignupForm}>
         <center>
           <h2>Signup</h2>

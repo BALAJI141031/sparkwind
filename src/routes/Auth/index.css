@@ -32,4 +32,28 @@ form{
     color:#FF004D
 }
 
+.style-error{
+   color:#FF004D 
+}
+
+@media screen and (min-width:700px) {
+    form{
+    width: 60%;
+}
+    
+}
+
+@media screen and (min-width:800px) {
+    form{
+    width: 50%;
+}
+    
+}
+
+@media screen and (min-width:1000px) {
+    form{
+    width: 30%;
+}
+    
+}
 
