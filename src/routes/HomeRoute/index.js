@@ -24,32 +24,23 @@ export default function HomeRoute() {
   // tweetId: null,
   // });
 
-  const { home, setHome } = useHome();
-  const { createTweet, posts, isTweeted, fromEdit } = home;
+  const { home, setHome, posts } = useHome();
+  const { createTweet, trending, sort } = home;
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const postsResponse = await getAllPosts();
-        setHome({
-          type: "updatePosts",
-          payload: postsResponse.data.posts.reverse(),
-        });
-        // setPosts(postsResponse.data.posts.reverse());
-      } catch (e) {
-        toast.warning("Unexpected Error Try Again!");
-      }
-    })();
-  }, [isTweeted]);
-
+  console.log(posts, "whts im getting");
   //trending posts
-  const toggleTrendingPosts = () => {};
 
   return (
     <div className="home-section">
       <div className="filters-div">
-        <BiTrendingUp className="filter-icon" onClick={toggleTrendingPosts} />
-        <ImSortNumbericDesc className="filter-icon" />
+        <BiTrendingUp
+          className={trending ? "styled-filter-icon" : "filter-icon"}
+          onClick={() => setHome({ type: "trending", payload: !trending })}
+        />
+        <ImSortNumbericDesc
+          className={sort ? "styled-filter-icon" : "filter-icon"}
+          onClick={() => setHome({ type: "sort", payload: !sort })}
+        />
       </div>
 
       <main className="main-div">
