@@ -4,7 +4,12 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { CreateTweet, NotifyUser, AuthProvider } from "./contexts";
+import {
+  CreateTweet,
+  NotifyUser,
+  AuthProvider,
+  HomeProvider,
+} from "./contexts";
 // Call make Server
 makeServer();
 
@@ -13,9 +18,11 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <NotifyUser>
-          <CreateTweet>
-            <App />
-          </CreateTweet>
+          <HomeProvider>
+            <CreateTweet>
+              <App />
+            </CreateTweet>
+          </HomeProvider>
         </NotifyUser>
       </AuthProvider>
     </Router>

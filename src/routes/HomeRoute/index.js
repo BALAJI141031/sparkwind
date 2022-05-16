@@ -1,5 +1,5 @@
 import "./index.css";
-import { useTweet } from "contexts/";
+import { useTweet, useHome } from "contexts/";
 import { useEffect, useState } from "react";
 import {
   Tweet,
@@ -11,22 +11,34 @@ import {
 } from "components";
 import { getAllPosts } from "networkCalls";
 import { BiTrendingUp, ImSortNumbericDesc } from "icons";
+import { toast } from "react-toastify";
 export default function HomeRoute() {
   const { tweet, setTweet } = useTweet();
-  const [createTweet, setCreateTweet] = useState(false);
-  const [posts, setPosts] = useState(null);
+
+  // const [createTweet, setCreateTweet] = useState(false);
+  // const [posts, setPosts] = useState(null);
   // created to handle useeffect
-  const [isTweeted, setIsTweeted] = useState(false);
-  const [fromEdit, setFromEdit] = useState({
-    editStatus: false,
-    tweetId: null,
-  });
+  // const [isTweeted, setIsTweeted] = useState(false);
+  // const [fromEdit, setFromEdit] = useState({
+  // editStatus: false,
+  // tweetId: null,
+  // });
+
+  const { home, setHome } = useHome();
+  const { createTweet, posts, isTweeted, fromEdit } = home;
 
   useEffect(() => {
     (async () => {
-      const postsResponse = await getAllPosts();
-
-      setPosts(postsResponse.data.posts.reverse());
+      try {
+        const postsResponse = await getAllPosts();
+        setHome({
+          type: "updatePosts",
+          payload: postsResponse.data.posts.reverse(),
+        });
+        // setPosts(postsResponse.data.posts.reverse());
+      } catch (e) {
+        toast.warning("Unexpected Error Try Again!");
+      }
     })();
   }, [isTweeted]);
 
@@ -47,9 +59,9 @@ export default function HomeRoute() {
               <div className="center-div">
                 <Tweet
                   post={post}
-                  setIsTweeted={setIsTweeted}
-                  setCreateTweet={setCreateTweet}
-                  setFromEdit={setFromEdit}
+                  // setIsTweeted={setIsTweeted}
+                  // setCreateTweet={setCreateTweet}
+                  // setFromEdit={setFromEdit}
                 />
               </div>
             ))}
@@ -63,16 +75,16 @@ export default function HomeRoute() {
 
       <div className="bottom-navbar">
         <BottomNavbar
-          setCreateTweet={setCreateTweet}
-          setFromEdit={setFromEdit}
+        // setCreateTweet={setCreateTweet}
+        // setFromEdit={setFromEdit}
         />
       </div>
       {createTweet && (
         <CreateTweet
-          setCreateTweet={setCreateTweet}
-          setIsTweeted={setIsTweeted}
-          fromEdit={fromEdit}
-          setFromEdit={setFromEdit}
+        // setCreateTweet={setCreateTweet}
+        // setIsTweeted={setIsTweeted}
+        // fromEdit={fromEdit}
+        // setFromEdit={setFromEdit}
         />
       )}
     </div>

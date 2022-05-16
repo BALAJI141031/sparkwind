@@ -1,17 +1,22 @@
 import { EditProfile, Cta, ProfileAnalytics } from "components";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 import "./index.css";
+import { useAuthProvider } from "contexts";
 import { useEffect, useState } from "react";
 import { getAllUsers, getUser, followUser, unfollowUser } from "networkCalls";
 import { ADMIN, PROFILE_CONTSTANTS } from "config/constants";
+import Cookies from "js-cookie";
 
 export default function Profile() {
-  const myProfileDetials = jwtProfile();
+  const { isLoggedIn } = useAuthProvider();
+  const navigate = useNavigate();
+  const myProfileDetials = isLoggedIn ? jwtProfile() : null;
   const [profile, setProfile] = useState(null);
   const [followsList, setFollowsList] = useState(null);
   const [myProfile, editMyProfile] = useState(false);
   const { userId } = useParams();
+  const { setLogin } = useAuthProvider();
 
   // get me the user
   useEffect(() => {
@@ -83,6 +88,14 @@ export default function Profile() {
     }
   }
 
+  // logout handler
+
+  const logoutHandler = () => {
+    Cookies.remove("jwt_token");
+    navigate("/", { replace: true });
+    setLogin(false);
+  };
+
   return (
     <div>
       {profile && (
@@ -93,6 +106,9 @@ export default function Profile() {
           </h3>
           <p>{profile.email}</p>
           <button onClick={() => toggleFollow(ctaText)}>{ctaText}</button>
+          {ctaText === "Edit Profile" && (
+            <button onClick={logoutHandler}>LogOut</button>
+          )}
           <center>
             <p>{profile.bio}</p>
           </center>

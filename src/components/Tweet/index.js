@@ -4,18 +4,21 @@ import { useState, useEffect } from "react";
 import "./index.css";
 import { ADMIN, NOTIFICATIONS } from "config/constants";
 import { deleteTweet, editTweet, getAllBookMarks } from "networkCalls/";
-import { useNotifyUser } from "contexts";
+import { useHome, useNotifyUser, useAuthProvider } from "contexts";
 import { useNavigate } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 export default function Tweet({
   post,
-  setIsTweeted,
-  setCreateTweet,
-  setFromEdit,
+  // setIsTweeted,
+  // setCreateTweet,
+  // setFromEdit,
 }) {
-  const myProfileDetials = jwtProfile();
+  const { isLoggedIn } = useAuthProvider();
+  const myProfileDetials = isLoggedIn ? jwtProfile() : null;
+  console.log(myProfileDetials, "buggggggg");
   const { toast } = useNotifyUser();
   const navigate = useNavigate();
+  const { setHome } = useHome();
   const {
     displayname,
     content,
@@ -35,7 +38,8 @@ export default function Tweet({
   const deleteHandler = async () => {
     try {
       const deleteResponse = await deleteTweet(postid);
-      setIsTweeted((prevState) => !prevState);
+      // setIsTweeted((prevState) => !prevState);
+      setHome({ type: "userTweeted", payload: true });
       toast.success(NOTIFICATIONS.TWEET_DELETED);
     } catch (e) {
       throw e;
@@ -45,8 +49,12 @@ export default function Tweet({
   // editHandler
   const editHandler = async () => {
     try {
-      setCreateTweet(true);
-      setFromEdit((prev) => ({ ...prev, editStatus: true, tweetId: postid }));
+      setHome({ type: "createTweet", payload: true });
+      // setFromEdit((prev) => ({ ...prev, editStatus: true, tweetId: postid }));
+      setHome({
+        type: "editTweet",
+        payload: { editStatus: true, tweetId: postid },
+      });
     } catch (e) {
       throw e;
     }
@@ -95,11 +103,11 @@ export default function Tweet({
             className="icon"
             likes={likes}
             postid={postid}
-            setIsTweeted={setIsTweeted}
+            // setIsTweeted={setIsTweeted}
           />
         </div>
       </div>
-      {myProfileDetials._id === userId && (
+      {isLoggedIn && myProfileDetials._id === userId && (
         <div className="options-div">
           <div
             onMouseEnter={() => setOptions(true)}

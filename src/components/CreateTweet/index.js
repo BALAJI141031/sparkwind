@@ -2,13 +2,22 @@ import { AiOutlineClose, BiUpload, BsEmojiSmile } from "icons";
 import { useEffect, useRef, useState } from "react";
 import { Cta } from "../index";
 import { createTweet, getTweet } from "networkCalls";
-import { useTweet, useNotifyUser } from "contexts";
+import { useTweet, useNotifyUser, useHome } from "contexts";
 import { REDUCER_CONSTANTS, EMOJIS } from "config/constants";
 import "./index.css";
 import { editTweet } from "../../networkCalls";
 
-export default function CreateTweet({ setCreateTweet, setIsTweeted, fromEdit, setFromEdit }) {
+export default function CreateTweet(
+  {
+    // setCreateTweet,
+    // setIsTweeted,
+    // fromEdit,
+    // setFromEdit,
+  }
+) {
   const { tweet, setTweet } = useTweet();
+  const { home, setHome } = useHome();
+  const { fromEdit, isTweeted } = home;
   const [imageName, setImageName] = useState(null);
   // const [emojis, setEmojis] = useState(null);
   const { toast } = useNotifyUser();
@@ -16,13 +25,13 @@ export default function CreateTweet({ setCreateTweet, setIsTweeted, fromEdit, se
   // create tweet req
   const createTweetHandler = () => {
     (async () => {
-      toast("wow so easy");
       try {
         const response = !fromEdit.editStatus
           ? await createTweet(tweet)
           : await editTweet(tweet, fromEdit.tweetId);
-        setIsTweeted((prevState) => !prevState);
-        setCreateTweet(false);
+        toast.success("Thanks For Your Tweet");
+        setHome({ type: "userTweeted", payload: !isTweeted });
+        setHome({ type: "createTweet", payload: false });
       } catch (e) {
         console.log(e);
       }
@@ -62,7 +71,7 @@ export default function CreateTweet({ setCreateTweet, setIsTweeted, fromEdit, se
         <div className="cancel-cta-div">
           <AiOutlineClose
             className="cancel-cta"
-            onClick={() => setCreateTweet(false)}
+            onClick={() => setHome({ type: "createTweet", payload: false })}
           />
         </div>
         <div className="tweet-section">
