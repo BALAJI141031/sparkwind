@@ -69,6 +69,7 @@ export const signupHandler = function (schema, request) {
 
 export const loginHandler = function (schema, request) {
   const { email, username, password } = JSON.parse(request.requestBody);
+  console.log(email, username, password, "from controller");
   try {
     const foundUser = schema.users.findBy({ email });
     if (!foundUser) {
@@ -83,10 +84,12 @@ export const loginHandler = function (schema, request) {
       );
     }
     if (password === foundUser.password) {
+      console.log("entered into the password check so let me sign the detials");
       const encodedToken = sign(
         { _id: foundUser._id, username, email },
         process.env.REACT_APP_JWT_SECRET
       );
+      console.log("passed");
       return new Response(200, {}, { foundUser, encodedToken });
     }
     return new Response(
