@@ -72,6 +72,7 @@ export const loginHandler = function (schema, request) {
   console.log(email, username, password, "from controller");
   try {
     const foundUser = schema.users.findBy({ email });
+    console.log(foundUser, "founduser");
     if (!foundUser) {
       return new Response(
         404,
