@@ -99,6 +99,7 @@ export const loginHandler = function (schema, request) {
       }
     );
   } catch (error) {
+    console.log("why you are coming in to this block what went wrong", error);
     return new Response(
       500,
       {},
