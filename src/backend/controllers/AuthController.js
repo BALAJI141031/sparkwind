@@ -85,6 +85,7 @@ export const loginHandler = function (schema, request) {
     }
     if (password === foundUser.password) {
       console.log("entered into the password check so let me sign the detials");
+      console.log("i'm not using username");
       const encodedToken = sign(
         { _id: foundUser._id, email },
         process.env.REACT_APP_JWT_SECRET
