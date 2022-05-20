@@ -1,3 +1,12 @@
+:root{
+    --primary-color:#FF004D;
+    --background-color:#16003B;
+    --cta-font-color:#DBD8E3;
+    --shadow:rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    --modal-background-color:rgba(0,0.1,0.1,0.2)
+
+}
+
 .create-tweet-section{
     padding-bottom:2rem;
     padding-top: 20%;
@@ -9,13 +18,12 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0,0.1,0.1,0.2);
+    background-color:var(--modal-background-color) ;
     z-index: 99; 
 }
 
 .cancel-cta-div{
-    /* border-bottom: 1px solid; */
-    box-shadow: 0 2px 0px rgb(0 0 0 / 0.2);
+    box-shadow: var(--shadow);
     margin-bottom: 5px;
 }
 
@@ -67,9 +75,9 @@ textarea{
 textarea:focus, input:focus{
     outline: none;
     border-style: solid;
-    border-width:4px;
+    border-width:2px;
     border-radius:2px;
-    border-color: #B8DFD8;
+    border-color: var(--primary-color);
 }
 
 .emojis-section{
@@ -83,7 +91,7 @@ textarea:focus, input:focus{
     padding:5px;
     z-index: 99;
     border: 0px solid ;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;;
+    box-shadow: var(--shadow);
     }
 
 li {
@@ -99,8 +107,8 @@ li {
    margin:0px 10px 0px 10px;
    padding-bottom: 15px;
    border-radius: 5px;
-   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-   background-color:white
+   box-shadow:var(--shadow);
+   background-color:var(--pale-white)
 
 }
 

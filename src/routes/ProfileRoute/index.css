@@ -5,17 +5,14 @@
     width: 100%;
 }
 
-/* .profile-section{
-    padding-left: 1rem;
-} */
 
 .profile-div{
     padding: 5rem 5px 5px 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  background-image: linear-gradient(to right, #141010,#FF004D);
- color:#DBD8E3;
+  background-image: linear-gradient(to right, var(--background-color),var(--primary-color));
+ color:var(--cta-font-color);
  width: 100%;
 
 }

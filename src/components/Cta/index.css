@@ -1,6 +1,6 @@
 .primary-cta{
-    background-color: #FF004D;
-    color: #DBD8E3;
+    background-color: var(--primary-color);
+    color: var(--cta-font-color);
     font-weight:bolder ;
 
 }

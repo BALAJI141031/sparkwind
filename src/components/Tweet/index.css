@@ -1,9 +1,9 @@
 .tweet-section{
     display: grid;
-     grid-template-columns:2.5rem;
-     padding: 25px 0px 0px 25px;
-     border: 0px solid;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    box-shadow: var(--shadow);
     margin:15px;
     width:100%
 }
@@ -19,7 +19,6 @@
 
 .options-div{
     position: relative;
-    /* background-color: aqua; */
 }
 
 .tweet-pic{
@@ -35,7 +34,7 @@
     left:  -240%;
     padding: 2px;
     border-radius:5px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-shadow: var(--shadow);
 }
 
 .options-detials > p{
@@ -59,10 +58,8 @@
     grid-template-columns:2.5rem;
     padding: 25px 0px 0px 25px;
     border: 0px solid;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-shadow:var(--shadow);
     margin:15px;
-    /* width: 100%; */
-    
 }
 
 .tweet-pic{
@@ -80,10 +77,7 @@
     grid-template-columns:2.5rem;
     padding: 25px 0px 0px 25px;
     border: 0px solid;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    margin:15px;
-    /* width: 100%; */
-    
+    margin:15px; 
 }
 
 .tweet-pic{
@@ -95,18 +89,13 @@
 }
 
 @media screen and (min-width:960px) {
-    /* html{
-        font-size: 1.5rem;
-    } */
     .tweet-section{
     display: grid;
     width:90%;
     grid-template-columns:2.5rem;
     padding: 25px 0px 0px 25px;
     border: 0px solid;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     margin:15px;
-    /* width: 100%; */
     
 }
 .tweet-pic{

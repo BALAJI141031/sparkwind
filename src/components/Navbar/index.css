@@ -8,7 +8,7 @@
 .icon{
     height: 2rem;
     width: 2rem;
-    color: #DBD8E3;
+    color: var(--cta-font-color);
 }
 
 .active-navLink{

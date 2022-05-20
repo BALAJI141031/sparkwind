@@ -1,6 +1,6 @@
 
 .hero-icon{
-    color:#FF004D;  
+    color:var(--primary-color);  
 }
 
 .landing-section{
@@ -36,8 +36,8 @@
     justify-content: center;
      min-height:100%;
      width:100%;
-     background-image: linear-gradient( #FF004D , #141010);
-     color:#DBD8E3;
+     background-image: linear-gradient( var(--primary-color) , var(--background-color));
+     color:var(--cta-font-color);
      text-align: center;
 }
 .landing-section> :nth-child(2) {

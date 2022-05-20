@@ -23,16 +23,12 @@
 
 #header-div{
     width:100%;
-    background-color:#16003B ;
-    /* border-bottom: 1px solid; */
+    background-color:var(--background-color) ;
 }
 
-
-    .desktop-header-cta{
+.desktop-header-cta{
         display:none
     }
-
-
 
 @media screen and (min-width:820px) {
 

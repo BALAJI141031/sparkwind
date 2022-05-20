@@ -9,7 +9,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0,0.1,0.1,0.2);
+    background-color: var(--modal-background-color);
     z-index: 99; 
     width: 100%;
 }
@@ -36,8 +36,8 @@
    margin:0px 10px 0px 10px;
    padding: 0px 15px 15px 15px ;
    border-radius: 5px;
-   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-   background-color:white
+   box-shadow: var(--shadow);
+   background-color:var(--pale-white)
 }
 
 .ml{
@@ -54,8 +54,6 @@ textarea {
 }
 
 #profile-pic{
-    /* width: 100%; */
-    /* border-radius: 20%; */
     height: 3em;
     width:3em;
     object-fit: cover;

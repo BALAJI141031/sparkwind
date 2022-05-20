@@ -24,7 +24,7 @@ margin-bottom: 10px;
 }
 
 .like-notification{
-    color: #F73D93;
+    color: var(--primary-color);
 }
 .comment-notification{
     color: #FFE194;
