@@ -3,18 +3,16 @@ import { AiOutlineClose, MdOutlineChangeCircle } from "../../icons";
 import { Cta } from "../index";
 import { useEffect, useRef, useState } from "react";
 import { editUser, getUser } from "../../networkCalls";
-export default function EditProfile({ userId, editMyProfile }) {
+export default function EditProfile({ userId, editMyProfile, setProfile }) {
   const hiddenFileInput = useRef(null);
   const username = useRef(null);
   const bio = useRef(null);
   const portfolioUrl = useRef(null);
   const [userPhoto, updateUserPhoto] = useState(null);
-
   useEffect(() => {
     (async () => {
       try {
         const userResponse = await getUser(userId);
-        console.log(userResponse, "here");
         updateUserPhoto(userResponse.userPhoto);
       } catch (e) {
         throw e;
@@ -30,6 +28,7 @@ export default function EditProfile({ userId, editMyProfile }) {
         bio: bio.current.value,
         portfolioUrl: portfolioUrl.current.value,
       });
+      setProfile(editUserResponse.data.user);
       editMyProfile(false);
     } catch (e) {
       console.log(e);
@@ -65,12 +64,9 @@ export default function EditProfile({ userId, editMyProfile }) {
                   type="file"
                   style={{ display: "none" }}
                   ref={hiddenFileInput}
-                  onChange={(e) => {
-                    updateUserPhoto((prevProfile) => ({
-                      ...prevProfile,
-                      userPhoto: URL.createObjectURL(e.target.files[0]),
-                    }));
-                  }}
+                  onChange={(e) =>
+                    updateUserPhoto(URL.createObjectURL(e.target.files[0]))
+                  }
                 />
               </div>
             </div>

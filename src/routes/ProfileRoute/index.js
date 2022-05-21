@@ -113,6 +113,8 @@ export default function Profile() {
     setLogin(false);
   };
 
+  console.log("after editing it should render", profile);
+
   return (
     <div>
       {profile && (
@@ -168,7 +170,11 @@ export default function Profile() {
       )}
 
       {myProfile && (
-        <EditProfile userId={userId} editMyProfile={editMyProfile} />
+        <EditProfile
+          userId={userId}
+          editMyProfile={editMyProfile}
+          setProfile={setProfile}
+        />
       )}
     </div>
   );
