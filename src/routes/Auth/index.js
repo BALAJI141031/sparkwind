@@ -278,7 +278,7 @@ export function Signup() {
           <input
             type="text"
             placeholder="username"
-            name="displayName"
+            name="displayname"
             onChange={setDetialsHandler}
           />
         </div>
