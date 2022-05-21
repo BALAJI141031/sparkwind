@@ -1,0 +1,17 @@
+.analytics-div{
+    display: flex;
+    align-items: center;
+}
+
+.analytics-div > div > p{
+    margin-left:5px;
+}
+
+.analytics-div > div{
+    margin-right:20px
+}
+
+.style-analytics-icon{
+    
+    fill: #F73D93;
+}

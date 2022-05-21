@@ -1,0 +1,50 @@
+.searchbar-div{
+    position: relative;  
+    width:30% 
+}
+
+.search-bar{
+    padding: 0.3rem;
+    border-radius:2px;
+    margin: 0px;    
+}
+.search-icon{
+    border:0px;
+    background-color: transparent;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0px;
+    position: absolute;
+    right:0%;
+    top:10%;
+    padding-top:2px;
+    z-index: 9;
+}
+
+#header-div{
+    width:100%;
+    background-color:var(--background-color) ;
+}
+
+.desktop-header-cta{
+        display:none
+    }
+
+@media screen and (min-width:820px) {
+
+    .desktop-header-cta{
+        display: flex;
+        align-items: center;
+        width: 15rem;
+    }
+
+    .searchbar-div{
+    position: relative;  
+    width:50% 
+}
+
+    .device-header-cta{
+        display: none;
+    }
+    
+}

@@ -15,10 +15,12 @@ const sign = require("jwt-encode");
  * */
 
 export const signupHandler = function (schema, request) {
-  const { username, password, ...rest } = JSON.parse(request.requestBody);
+  const { displayname, email, password, ...rest } = JSON.parse(
+    request.requestBody
+  );
   try {
     // check if username already exists
-    const foundUser = schema.users.findBy({ username: username });
+    const foundUser = schema.users.findBy({ email: email });
     if (foundUser) {
       return new Response(
         422,
@@ -34,8 +36,9 @@ export const signupHandler = function (schema, request) {
       _id,
       createdAt: formatDate(),
       updatedAt: formatDate(),
-      username,
+      displayname,
       password,
+      email,
       ...rest,
       followers: [],
       following: [],
@@ -43,7 +46,7 @@ export const signupHandler = function (schema, request) {
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign(
-      { _id, username },
+      { _id, displayname, email },
       process.env.REACT_APP_JWT_SECRET
     );
     return new Response(201, {}, { createdUser, encodedToken });
@@ -65,9 +68,11 @@ export const signupHandler = function (schema, request) {
  * */
 
 export const loginHandler = function (schema, request) {
-  const { username, password } = JSON.parse(request.requestBody);
+  const { email, username, password } = JSON.parse(request.requestBody);
+  console.log(email, username, password, "from controller");
   try {
-    const foundUser = schema.users.findBy({ username: username });
+    const foundUser = schema.users.findBy({ email });
+    console.log(foundUser, "founduser");
     if (!foundUser) {
       return new Response(
         404,
@@ -80,10 +85,13 @@ export const loginHandler = function (schema, request) {
       );
     }
     if (password === foundUser.password) {
+      console.log("entered into the password check so let me sign the detials");
+      console.log("i'm not using username", { _id: foundUser._id, email });
       const encodedToken = sign(
-        { _id: foundUser._id, username },
+        { _id: foundUser._id, email },
         process.env.REACT_APP_JWT_SECRET
       );
+      console.log("passed");
       return new Response(200, {}, { foundUser, encodedToken });
     }
     return new Response(
@@ -96,6 +104,7 @@ export const loginHandler = function (schema, request) {
       }
     );
   } catch (error) {
+    console.log("why you are coming in to this block what went wrong", error);
     return new Response(
       500,
       {},

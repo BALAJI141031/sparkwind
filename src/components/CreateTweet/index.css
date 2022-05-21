@@ -1,0 +1,120 @@
+:root{
+    --primary-color:#FF004D;
+    --background-color:#16003B;
+    --cta-font-color:#DBD8E3;
+    --shadow:rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    --modal-background-color:rgba(0,0.1,0.1,0.2)
+
+}
+
+.create-tweet-section{
+    padding-bottom:2rem;
+    padding-top: 20%;
+    border:0px solid; 
+    position: fixed;
+    min-width: 90%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color:var(--modal-background-color) ;
+    z-index: 99; 
+}
+
+.cancel-cta-div{
+    box-shadow: var(--shadow);
+    margin-bottom: 5px;
+}
+
+.crate-tweet-icon{
+    height:1.5rem;
+    width:1.5rem;
+    margin-right: 15px;
+}
+
+.icons-section{
+    display: flex;
+    padding: 5px;
+    margin-right:50%   
+}
+
+.tweet-section{
+    display: grid;
+    grid-template-columns:2.5rem 1fr 2rem;
+}
+
+.tweet-content > h4{
+    margin-top: 3px;
+}
+.primary-cta-div{
+    width:90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:1rem
+}
+
+
+input{
+    display: block;
+    width:90%;
+    height:2rem;
+    margin-bottom:5px
+}
+
+textarea{
+    width:90%
+}
+
+.cancel-cta{
+    width:2rem;
+    height:2rem
+}
+
+textarea:focus, input:focus{
+    outline: none;
+    border-style: solid;
+    border-width:2px;
+    border-radius:2px;
+    border-color: var(--primary-color);
+}
+
+.emojis-section{
+    position: relative;
+}
+
+.emojis-div{
+    position: absolute;
+    display: flex;
+    top:-155%;
+    padding:5px;
+    z-index: 99;
+    border: 0px solid ;
+    box-shadow: var(--shadow);
+    }
+
+li {
+    list-style: none;
+    margin-right:15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+.create-tweet{
+   border: 0px solid;
+   margin:0px 10px 0px 10px;
+   padding-bottom: 15px;
+   border-radius: 5px;
+   box-shadow:var(--shadow);
+   background-color:var(--pale-white)
+
+}
+
+
+@media screen and (min-width:700px) {
+    .create-tweet-section{
+        padding-top: 10%;
+    }
+}

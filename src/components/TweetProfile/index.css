@@ -1,0 +1,9 @@
+.profile-section{
+    display: flex;
+    align-items: center;
+}
+
+.profile-section > img {
+    margin-right: 1rem;
+}
+

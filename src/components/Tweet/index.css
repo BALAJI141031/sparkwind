@@ -1,0 +1,106 @@
+.tweet-section{
+    display: grid;
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    box-shadow: var(--shadow);
+    margin:15px;
+    width:100%
+}
+
+.tweet-content > h4 {
+    margin-top: 3px;
+    display: inline;
+}
+
+.tweet-content > h5{
+    margin: 5px;
+}
+
+.options-div{
+    position: relative;
+}
+
+.tweet-pic{
+    width:80%;
+    height:80%;
+}
+
+.options-detials{
+    position: absolute;
+    width:5rem;
+    border: 0px solid;
+    top: -3%;
+    left:  -240%;
+    padding: 2px;
+    border-radius:5px;
+    box-shadow: var(--shadow);
+}
+
+.options-detials > p{
+    margin: 0px 0px 5px 0px;
+    padding:1px;
+    cursor: pointer;
+}
+
+.options-icon{
+  cursor: pointer;
+}
+.analytics-section{
+    margin-top: 15px;
+}
+
+
+@media screen and (min-width:576px) {
+    .tweet-section{
+    display: grid;
+    width:90%;
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    box-shadow:var(--shadow);
+    margin:15px;
+}
+
+.tweet-pic{
+    width:80%;
+    height:80%;
+}
+
+    
+}
+
+@media screen and (min-width:820px) {
+    .tweet-section{
+    display: grid;
+    width:80%;
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    margin:15px; 
+}
+
+.tweet-pic{
+    width:70%;
+    height:70%;
+}
+
+    
+}
+
+@media screen and (min-width:960px) {
+    .tweet-section{
+    display: grid;
+    width:90%;
+    grid-template-columns:2.5rem;
+    padding: 25px 0px 0px 25px;
+    border: 0px solid;
+    margin:15px;
+    
+}
+.tweet-pic{
+    width:40%;
+    height:40%;
+}
+    
+}

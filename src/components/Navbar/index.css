@@ -1,0 +1,16 @@
+.nav-section{
+     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.icon{
+    height: 2rem;
+    width: 2rem;
+    color: var(--cta-font-color);
+}
+
+.active-navLink{
+    color:var(--primary-color)
+}

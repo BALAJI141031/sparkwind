@@ -1,0 +1,53 @@
+.notification-section{
+    padding-top: 12%;
+}
+.notification-div{
+display: grid;
+grid-template-columns:3rem 1fr;
+margin-bottom: 10px;    
+}
+.notification-from{
+    display: grid;
+    grid-template-columns:2rem max-content ;
+}
+#notification-tweet{
+ border: 1px solid ;   
+ margin: 0px 15px 0px 10px;
+}
+
+.icon-div{
+     padding: 2px 5px 0px 5px;
+}
+.notification-icon{
+    width: 2rem;
+    height:2rem;
+}
+
+.like-notification{
+    color: var(--primary-color);
+}
+.comment-notification{
+    color: #FFE194;
+}
+.notification-from > div > h4,p{
+    margin:5px 0px 5px 5px
+} 
+
+.notification-from > p {
+    margin: 0px;
+} 
+
+
+@media screen and (min-width:700px) {
+
+    .notification-section{
+    padding-top: 10%;
+}
+}
+
+@media screen and (min-width:900px) {
+
+    .notification-section{
+    padding-top: 6%;
+}
+}

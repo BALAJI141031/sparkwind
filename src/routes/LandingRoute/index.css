@@ -1,0 +1,48 @@
+
+.hero-icon{
+    color:var(--primary-color);  
+}
+
+.landing-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    scroll-behavior: none;
+}
+
+.desktop-side-hero{
+    display: none;
+}
+
+.landing-section >:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+
+
+
+@media screen and (min-width:950px) {
+    .landing-section{
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    height: 100vh;
+}
+.desktop-side-hero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+     min-height:100%;
+     width:100%;
+     background-image: linear-gradient( var(--primary-color) , var(--background-color));
+     color:var(--cta-font-color);
+     text-align: center;
+}
+.landing-section> :nth-child(2) {
+    align-self: center;
+    justify-self: center;
+}
+
+}
