@@ -9,6 +9,7 @@ module.exports = {
     LOGIN: "/user/login",
     SIGNUP: "/user/signup",
     MOCK: "/mock",
+    RANDOM: "*",
   },
   HERO: {
     LANDING_ROUTE_HERO_TEXTS: [

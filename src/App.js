@@ -8,6 +8,7 @@ import {
   Bookmarks,
   Login,
   Signup,
+  NotFoundRoute,
 } from "routes";
 import { PATHS } from "config/constants";
 import { RequireAuth } from "config/authentication";
@@ -62,6 +63,7 @@ function App() {
         />
 
         <Route path={PATHS.MOCK} element={<Mockman />} />
+        <Route path={PATHS.RANDOM} element={<NotFoundRoute />} />
       </Routes>
     </div>
   );
