@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 
 export const jwtProfile = () => {
   const myJwt = Cookies.get("jwt_token");
+  console.log(myJwt);
   // thi sshould replace with cookies jwt token
   if (Cookies.get("jwt_token")) {
     console.log("failing here", myJwt);

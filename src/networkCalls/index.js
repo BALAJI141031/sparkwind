@@ -3,8 +3,7 @@ import axios from "axios";
 import { ADMIN } from "config/constants";
 import { jwtProfile, getJwtToken } from "config/jwt";
 import Cookies from "js-cookie";
-
-const myProfileDetials = jwtProfile();
+import jwt_decode from "jwt-decode";
 
 const getAllUsers = async () => {
   try {
@@ -53,7 +52,11 @@ const createTweet = async (payload) => {
         payload.displayname = userResponse[i].displayname;
       }
     }
-    payload.userId = myProfileDetials._id;
+    // payload.userId = myProfileDetials._id;
+    payload.userId = jwt_decode(
+      Cookies.get("jwt_token"),
+      process.env.REACT_APP_JWT_SECRET
+    );
 
     const createTweetResposne = await axios.post("/api/posts/", payload, {
       headers: {
