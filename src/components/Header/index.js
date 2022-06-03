@@ -10,7 +10,7 @@ export default function Header() {
   const { setHome } = useHome();
   const navigate = useNavigate();
   return (
-    <div class="flex-H-space-around" id="header-div">
+    <div class="flex-H-space-around " id="header-div">
       <NavLink to={PATHS.HOME_PATH}>
         <sapn class="span-style">SL</sapn>
       </NavLink>

@@ -4,7 +4,7 @@
 .home-section{
     display: grid;
     grid-template-columns:1fr;
-    padding-top: 5rem;
+    padding-top: 70px;
     justify-content: center;
     
 }
@@ -43,6 +43,8 @@
 .center-div{
     display: flex;
     justify-content: center;
+    /* width:50%; */
+    justify-self:flex-start;
 }
 
 .suggestions-div{
@@ -51,9 +53,14 @@
 
 
 
-@media screen and (min-width:820px) {
+@media screen and (min-width:1000px) {
     .bottom-navbar{
         display: none;
+    }
+
+    .center-div { 
+        width:50%;
+        justify-self: flex-end;
     }
 
     

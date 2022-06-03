@@ -17,11 +17,11 @@ export default function Notications() {
     })();
   }, []);
   return (
-    <div className="notification-section">
+    <div className="notification-section flex flex-col  items-center">
       <h4>Notifications</h4>
       {notifications !== null && notifications.length !== 0 ? (
         notifications.map((notification, index) => (
-          <div className="notification-div">
+          <div className="notification-div w-1/2">
             <div className="icon-div">
               {index % 2 !== 0 ? (
                 <BsHeartFill className="notification-icon like-notification" />

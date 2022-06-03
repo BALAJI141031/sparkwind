@@ -29,7 +29,7 @@ export default function HomeRoute() {
       </div>
 
       <main className="main-div">
-        <div>
+        <div style={{display:"grid"}}>
           {posts &&
             posts.map((post) => (
               <div className="center-div">

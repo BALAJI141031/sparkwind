@@ -15,7 +15,6 @@ export default function Tweet({
 }) {
   const { isLoggedIn } = useAuthProvider();
   const myProfileDetials = isLoggedIn ? jwtProfile() : null;
-  console.log(myProfileDetials, "buggggggg");
   const { toast } = useNotifyUser();
   const navigate = useNavigate();
   const { setHome } = useHome();
@@ -93,9 +92,7 @@ export default function Tweet({
         <h5>{caption}</h5>
         <p>{content}</p>
         {picture && (
-          <div>
             <img src={picture} className="tweet-pic" />
-          </div>
         )}
         <div className="analytics-section">
           <AnalyticsIcon className="icon" post={post} />

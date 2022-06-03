@@ -1,19 +1,5 @@
 .bookmark-section{
-   padding-top: 15%;
+   padding-top: 70px;
    padding-left: 1rem;
 }
 
-
-@media screen and (min-width:700px) {
-
-    .bookmark-section{
-    padding-top: 10%;
-}
-}
-
-@media screen and (min-width:900px) {
-
-    .bookmark-section{
-    padding-top: 6%;
-}
-}

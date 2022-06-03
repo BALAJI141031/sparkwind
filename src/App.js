@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Switch } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import {
   LandingRoute,
   HomeRoute,
@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="routes-wrapper">
       {isLoggedIn && (
-        <div className="header">
+        <div className="header ">
           <Header />
         </div>
       )}
