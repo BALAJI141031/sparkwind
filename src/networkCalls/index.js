@@ -122,10 +122,9 @@ const likeTweet = async (postid) => {
         },
       }
     );
-    console.log("response");
     return likeTweetResposne;
   } catch (e) {
-    console.log("network");
+    console.log("network",e);
     throw e;
   }
 };
@@ -282,6 +281,18 @@ const getUserTweets = async (userid) => {
     console.log(e);
   }
 };
+
+const postComment = async(postid) => {
+  try {
+    const response = axios.post(`/api/comments/add/${postid}`, { commentData: "hello world" }, {
+      headers: {
+      authorization: getJwtToken()
+    }})
+    return response
+  } catch (e) {
+    throw e
+  }
+}
 export {
   createTweet,
   getAllPosts,
@@ -301,4 +312,5 @@ export {
   loginUser,
   signupUser,
   getUserTweets,
+  postComment
 };
