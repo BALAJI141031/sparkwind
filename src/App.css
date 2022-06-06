@@ -8,3 +8,11 @@
   font-size: 1rem;
 }
 
+.logo{
+  height: 1.5rem;
+  width: 1.5rem;
+  color: var(--cta-font-color);
+  background-color: var(--primary-color);
+  padding:1px 10px 1px 10px;
+  border-radius: 5px;
+}

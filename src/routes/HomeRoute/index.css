@@ -4,7 +4,7 @@
 .home-section{
     display: grid;
     grid-template-columns:1fr;
-    padding-top: 70px;
+    padding-top:5rem;
     justify-content: center;
     
 }
@@ -52,18 +52,25 @@
     }
 
 
+/* @media screen and (min-width:992px) {
+    .center-div { 
+        width:100%;
+        justify-self: flex-end;
+    }
+    
+} */
 
-@media screen and (min-width:1000px) {
+@media screen and (min-width:1250px) {
+    
     .bottom-navbar{
         display: none;
     }
 
     .center-div { 
-        width:50%;
+        width:60%;
         justify-self: flex-end;
     }
-
-    
+ 
     .main-div{
     display: grid;
     grid-template-columns: 0.6fr 0.3fr;   
@@ -76,7 +83,9 @@
 }
 .suggestions-div > div{
     position: sticky;
-    top:10%;
+    top:5rem;
 }
     
 }
+
+

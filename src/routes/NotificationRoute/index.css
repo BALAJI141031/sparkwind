@@ -4,6 +4,7 @@
 
 .notification-div{
 display: grid;
+/* width:8 em; */
 grid-template-columns:3rem 1fr;
 margin-bottom: 10px;    
 }

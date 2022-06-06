@@ -10,9 +10,9 @@ export default function Header() {
   const { setHome } = useHome();
   const navigate = useNavigate();
   return (
-    <div class="flex-H-space-around " id="header-div">
+    <div className="flex-H-space-around " id="header-div">
       <NavLink to={PATHS.HOME_PATH}>
-        <sapn class="span-style">SL</sapn>
+        <sapn className="logo">SL</sapn>
       </NavLink>
       <div className="searchbar-div">
         <input
@@ -29,7 +29,7 @@ export default function Header() {
 
         <img
           src="https://picturepan2.github.io/spectre/img/avatar-4.png"
-          class="avatar avatar-xs"
+          class="avatar avatar-xs icon"
           onClick={() => navigate(`/profile/${jwtProfile()._id}`)}
         />
       </div>
