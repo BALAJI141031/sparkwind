@@ -125,11 +125,11 @@ export default function Profile() {
           </h3>
           <p>{profile.email}</p>
           <div onClick={() => toggleFollow(ctaText)}>
-            <Cta text={ctaText} type={"primary-cta"} />
+            <Cta text={ctaText} />
           </div>
           {ctaText === "Edit Profile" && (
             <div onClick={logoutHandler}>
-              <Cta text={"LogOut"} type={"primary-cta"} />
+              <Cta text={"LogOut"}  />
             </div>
           )}
 

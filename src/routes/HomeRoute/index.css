@@ -51,15 +51,6 @@
         display: none;
     }
 
-
-/* @media screen and (min-width:992px) {
-    .center-div { 
-        width:100%;
-        justify-self: flex-end;
-    }
-    
-} */
-
 @media screen and (min-width:1250px) {
     
     .bottom-navbar{

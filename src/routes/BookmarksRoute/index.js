@@ -25,7 +25,7 @@ export default function Bookmarks() {
         <h4>Your Bookmarks</h4>
       </center>
       <div className="flex justify-center items-center">
-        <div className="w-1/4">      {bookMarks && bookMarks.length !== 0
+        <div className="bookmark-div">      {bookMarks && bookMarks.length !== 0
           ? bookMarks.map((bookmark) => <Tweet post={bookmark} setBookMarks={setBookMarks} setBookmarksUi={setBookmarksUi} />)
           : "Not found"}
         </div></div>
