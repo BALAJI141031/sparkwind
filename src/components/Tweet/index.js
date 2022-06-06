@@ -9,9 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 export default function Tweet({
   post,
-  // setIsTweeted,
-  // setCreateTweet,
-  // setFromEdit,
+  setBookmarksUi
 }) {
   const { isLoggedIn } = useAuthProvider();
   const myProfileDetials = isLoggedIn ? jwtProfile() : null;
@@ -36,9 +34,8 @@ export default function Tweet({
   } = post;
 
 
-  console.log(emailId,"==============>",myProfileDetials.email)
   const [options, setOptions] = useState(false);
-  const [bookMarks, setBookMarks] = useState(null);
+  const [previouslyBookmarked, setPreviouslyBookmarked] = useState(false);
   // deleteHandler
   const deleteHandler = async () => {
     try {
@@ -64,13 +61,13 @@ export default function Tweet({
   };
 
   // // book mark effects
-  // useEffect(() => {
-  //   (async () => {
-  //     const bookMarksResponse = await getAllBookMarks();
-
-  //     setBookMarks(bookMarksResponse.data.bookmarks);
-  //   })();
-  // }, [bookMarks]);
+  useEffect(() => {
+    (async () => {
+      const bookMarksResponse = await getAllBookMarks();
+      let previouslyBookmarked=bookMarksResponse.data.bookmarks.includes(postid)
+      setPreviouslyBookmarked(previouslyBookmarked);
+    })();
+  }, []);
 
   // // check if tweet is bookmarked or not by iterating
   // let isTweetBookMarked = false;
@@ -100,7 +97,7 @@ export default function Tweet({
             <img src={picture} className="tweet-pic" />
         )}
         <div className="analytics-section">
-          <AnalyticsIcon className="icon" post={post} isLiked={isLiked} toggleLike={toggleLike}/>
+          <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} />
         </div>
       </div>
       {(isLoggedIn && myProfileDetials.email === emailId) && (

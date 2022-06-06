@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import { useHome } from "contexts";
 import { jwtProfile } from "config/jwt";
-export default function AnalyticsIcon({post}) {
+export default function AnalyticsIcon({post,previouslyBookmarked,setBookmarksUi}) {
   const {setHome}=useHome()
   const { _id: postid, likes, bookMarked } = post;
   const { likedBy } = likes
@@ -43,10 +43,18 @@ export default function AnalyticsIcon({post}) {
   // bookmark handler
   const toggleBookMark = async () => {
     try {
-      const bookMarkResponse = !isBookMarked
+      const bookMarkResponse = !isBookMarked  
         ? await bookMarkTweet(postid)
         : await removeBookMarkTweet(postid);
+      
       setBookMark((prevBookMarkStatus) => !prevBookMarkStatus);
+
+      // this is to set book mark route
+      if (previouslyBookmarked) {
+        console.log("yes setting ui")
+        await removeBookMarkTweet(postid)
+        setBookmarksUi((prevStatus)=>!prevStatus)
+      }
     } catch (e) {
       console.log(e);
     }
@@ -86,7 +94,7 @@ export default function AnalyticsIcon({post}) {
       <div>
         <BsBookmarkCheck
           onClick={toggleBookMark}
-          className={isBookMarked ? "style-analytics-icon ":"cursor-pointer"}
+          className={isBookMarked || previouslyBookmarked ? "style-analytics-icon cursor-pointer":"cursor-pointer"}
         />
       </div>
     </div>
