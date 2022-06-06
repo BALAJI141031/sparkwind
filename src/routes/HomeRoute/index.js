@@ -31,11 +31,11 @@ export default function HomeRoute() {
       <main className="main-div">
         <div style={{display:"grid"}}>
           {posts &&
-            posts.map((post) => (
-              <div className="center-div">
-                <Tweet post={post} />
+            posts.map((post) => {
+             return <div className="center-div">
+                <Tweet post={post} key={post._id} />
               </div>
-            ))}
+            })}
         </div>
         <div className="suggestions-div">
           <Suggestions />

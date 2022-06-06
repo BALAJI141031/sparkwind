@@ -3,10 +3,9 @@ import Cookies from "js-cookie";
 
 export const jwtProfile = () => {
   const myJwt = Cookies.get("jwt_token");
-  console.log(myJwt);
+  // console.log(myJwt);
   // thi sshould replace with cookies jwt token
   if (Cookies.get("jwt_token")) {
-    console.log("failing here", myJwt);
     const decodedToken = jwt_decode(myJwt, process.env.REACT_APP_JWT_SECRET);
     return decodedToken;
   }

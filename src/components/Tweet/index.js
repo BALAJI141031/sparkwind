@@ -18,6 +18,8 @@ export default function Tweet({
   const { toast } = useNotifyUser();
   const navigate = useNavigate();
   const { setHome } = useHome();
+  const [isLiked, toggleLike] = useState(false);
+
   const {
     displayname,
     content,
@@ -95,7 +97,7 @@ export default function Tweet({
             <img src={picture} className="tweet-pic" />
         )}
         <div className="analytics-section">
-          <AnalyticsIcon className="icon" post={post} />
+          <AnalyticsIcon className="icon" post={post} isLiked={isLiked} toggleLike={toggleLike}/>
         </div>
       </div>
       {isLoggedIn && myProfileDetials._id === userId && (

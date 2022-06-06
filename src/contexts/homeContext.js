@@ -8,7 +8,8 @@ const homeContext = createContext();
 function HomeProvider({ children }) {
   const { toast } = useNotifyUser();
   const homeHandler = (prevState, action) => {
-    const { type, payload } = action;
+    const { type, payload,from } = action;
+    console.log(type,payload,from)
     switch (type) {
       case "createTweet":
         return { ...prevState, createTweet: payload };
@@ -32,12 +33,17 @@ function HomeProvider({ children }) {
     trending: false,
     sort: false,
   });
+
+
   let { isTweeted, trending, posts, sort } = home;
-  console.log();
+
+
   useEffect(() => {
     (async () => {
       try {
         const postsResponse = await getAllPosts();
+
+      console.log(postsResponse,"i want to know why it is liked by default");
         //   setHome({
         //     type: "updatePosts",
         //     payload: ,
@@ -45,7 +51,11 @@ function HomeProvider({ children }) {
         // tweetsFeed = postsResponse.data.posts.reverse();
         setHome({
           type: "updatePosts",
-          payload: postsResponse.data.posts.reverse(),
+          payload: postsResponse.data.posts.sort(
+      (postOne, postTwo) =>
+        new Date(postTwo.createdAt).getTime() -
+        new Date(postOne.createdAt).getTime()
+    )
         });
       } catch (e) {
         toast.warning("Unexpected Error Try Again!");
@@ -63,10 +73,7 @@ function HomeProvider({ children }) {
   }
 
   if (sort) {
-    console.log(
-      new Date(posts[0].updatedAt).getTime() ==
-        new Date(posts[1].updatedAt).getTime()
-    );
+    
     // console.log(new Date(posts[1].updatedAt));
     posts.sort(
       (postOne, postTwo) =>
@@ -80,6 +87,8 @@ function HomeProvider({ children }) {
         new Date(postOne.updatedAt).getTime()
     );
   }
+
+
   return (
     <homeContext.Provider value={{ home, setHome, posts }}>
       {children}
