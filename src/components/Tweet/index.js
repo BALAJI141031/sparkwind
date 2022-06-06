@@ -17,7 +17,8 @@ export default function Tweet({
   const myProfileDetials = isLoggedIn ? jwtProfile() : null;
   const { toast } = useNotifyUser();
   const navigate = useNavigate();
-  const { setHome } = useHome();
+  const { home, setHome } = useHome();
+  const { fromEdit, isTweeted } = home;
   const [isLiked, toggleLike] = useState(false);
 
   const {
@@ -34,13 +35,15 @@ export default function Tweet({
     bookMarked,
   } = post;
 
+
+  console.log(emailId,"==============>",myProfileDetials.email)
   const [options, setOptions] = useState(false);
   const [bookMarks, setBookMarks] = useState(null);
   // deleteHandler
   const deleteHandler = async () => {
     try {
       const deleteResponse = await deleteTweet(postid);
-      setHome({ type: "userTweeted", payload: true });
+      setHome({ type: "userTweeted", payload: !isTweeted });
       toast.success(NOTIFICATIONS.TWEET_DELETED);
     } catch (e) {
       throw e;
@@ -100,8 +103,8 @@ export default function Tweet({
           <AnalyticsIcon className="icon" post={post} isLiked={isLiked} toggleLike={toggleLike}/>
         </div>
       </div>
-      {isLoggedIn && myProfileDetials._id === userId && (
-        <div className="options-div">
+      {(isLoggedIn && myProfileDetials.email === emailId) && (
+        <div className="options-div cursor-pointer">
           <div
             onMouseEnter={() => setOptions(true)}
             onMouseLeave={() => {

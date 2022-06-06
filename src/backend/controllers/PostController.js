@@ -118,7 +118,7 @@ export const createPostHandler = function (schema, request) {
         }
       );
     }
-    const { content, caption, userId, picture, displayname, displayPicture } =
+    const { content, caption, userId, picture, displayname, displayPicture,emailId } =
       JSON.parse(request.requestBody);
     const post = {
       _id: uuid(),
@@ -139,6 +139,7 @@ export const createPostHandler = function (schema, request) {
       username: user.username,
       createdAt: formatDate(),
       updatedAt: formatDate(),
+      emailId
     };
     this.db.posts.insert(post);
     return new Response(201, {}, { posts: this.db.posts });

@@ -32,6 +32,7 @@ export default function HomeRoute() {
         <div style={{display:"grid"}}>
           {posts &&
             posts.map((post) => {
+              console.log(post,"why it don;t have email")
              return <div className="center-div">
                 <Tweet post={post} key={post._id} />
               </div>

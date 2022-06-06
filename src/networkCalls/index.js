@@ -53,10 +53,12 @@ const createTweet = async (payload) => {
       }
     }
     // payload.userId = myProfileDetials._id;
-    payload.userId = jwt_decode(
+    payload.emailId = jwt_decode(
       Cookies.get("jwt_token"),
       process.env.REACT_APP_JWT_SECRET
-    );
+    ).email;
+
+    console.log(payload,"beforeeeeeee tweeting")
 
     const createTweetResposne = await axios.post("/api/posts/", payload, {
       headers: {

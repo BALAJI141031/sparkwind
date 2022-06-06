@@ -16,10 +16,8 @@ export default function AnalyticsIcon({post}) {
   const {setHome}=useHome()
   const { _id: postid, likes, bookMarked } = post;
   const { likedBy } = likes
-  // const [localBookMark, setBookMark] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  // console.log(post, "i want to know status",);
-  //  console.log(post)
+  const [isBookMarked, setBookMark] = useState(false);
+  const [isLiked, setIsLiked] = useState({status:false,count:likes.likeCount});
 
   let isLikedFlag
   if (likedBy.length > 0) {
@@ -32,19 +30,10 @@ export default function AnalyticsIcon({post}) {
   
   const toggleLikeHandler = async () => {
     try {
-      const toggleLikeResponse = !isLiked
+      const toggleLikeResponse = !isLiked.status
         ? await likeTweet(postid)
         : await unlikeTweet(postid);
-      
-      // console.log(toggleLikeResponse.data.posts,"suffling order")
-      // const postResponse = await getTweet(postid)
-      // setHome({
-      //     type: "updatePosts",
-      //   payload: toggleLikeResponse.data.posts,
-      //     from:"after liking post"
-      //   });
-      
-      setIsLiked((prevStatus)=>!prevStatus)
+      setIsLiked((prevStatus)=> ({...prevStatus,status:!prevStatus.status,count:`${!isLiked.status ? isLiked.count+1 :isLiked.count-1}`}))
     } catch (e) {
       console.log(e)
       throw e;
@@ -52,16 +41,16 @@ export default function AnalyticsIcon({post}) {
   };
 
   // bookmark handler
-  // const toggleBookMark = async () => {
-  //   try {
-  //     const bookMarkResponse = !localBookMark
-  //       ? await bookMarkTweet(postid)
-  //       : await removeBookMarkTweet(postid);
-  //     setBookMark((prevBookMarkStatus) => !prevBookMarkStatus);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const toggleBookMark = async () => {
+    try {
+      const bookMarkResponse = !isBookMarked
+        ? await bookMarkTweet(postid)
+        : await removeBookMarkTweet(postid);
+      setBookMark((prevBookMarkStatus) => !prevBookMarkStatus);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
 
   // add comment
@@ -79,19 +68,6 @@ export default function AnalyticsIcon({post}) {
   //   }
   // }
 
-  // firebase comments
-//   useEffect(() => {
-//     // console.log("atleast you!!!");
-//     db.collection(`comments`).get().then((snap) => {
-//         snap.forEach(element => {
-//                 let data = element.data();
-//                 // setInfo(arr => [...arr , data]);
-//           console.log(data,"from firebase")
-             
-//             })
-//       }).catch((e)=>console.log(e))
-// }, [])
- 
   
   // console.log("yes it is rendering")
   return (
@@ -99,20 +75,20 @@ export default function AnalyticsIcon({post}) {
       <div className="flex-H-center-V">
         <BsHeart
           onClick={toggleLikeHandler}
-          className={isLiked || isLikedFlag ? "style-analytics-icon cursor-pointer ":"cursor-pointer"}
+          className={isLiked.status || isLikedFlag ? "style-analytics-icon cursor-pointer ":"cursor-pointer"}
         />
-        {/* <p>{isLiked.count}</p> */}
+        <p>{isLiked.count}</p>
       </div>
       <div className="flex-H-center-V cursor-pointer">
         <GoComment  />
         <p>0</p>
       </div>
-      {/* <div>
+      <div>
         <BsBookmarkCheck
           onClick={toggleBookMark}
-          className={(bookMarked) ? "style-analytics-icon ":"cursor-pointer"}
+          className={isBookMarked ? "style-analytics-icon ":"cursor-pointer"}
         />
-      </div> */}
+      </div>
     </div>
   );
 }

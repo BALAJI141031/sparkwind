@@ -56,7 +56,6 @@ export default function CreateTweet(
             payload: tweetResponse.content,
           });
 
-          console.log("yes i'm getting my response back", tweetResponse);
         } catch (e) {
           console.log(e);
         }
@@ -64,7 +63,6 @@ export default function CreateTweet(
     }
   }, []);
 
-  console.log("should render after updatinon of text fileds", tweet);
   return (
     <div className="create-tweet-section">
       <div className="create-tweet">

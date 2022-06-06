@@ -15,6 +15,7 @@ export default function Bookmarks() {
       }
     })();
   }, []);
+  console.log(bookMarks,"dont you have likes")
   return (
     <div className="bookmark-section">
       <center>
