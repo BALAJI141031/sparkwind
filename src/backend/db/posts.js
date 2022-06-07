@@ -26,6 +26,7 @@ export const posts = [
       "https://images.shiksha.com/mediadata/images/articles/1596046112phpALO4Er.jpeg",
     emailId: "anjalibalika@gmail.com",
     userId: "anjali",
+    comments:[]
   },
   {
     _id: uuid(),
@@ -45,6 +46,7 @@ export const posts = [
       "https://images.shiksha.com/mediadata/images/articles/1596046112phpALO4Er.jpeg",
     emailId: "anjalibalika@gmail.com",
     userId: "anjali",
+    comments:[]
   },
   {
     _id: uuid(),
@@ -64,6 +66,7 @@ export const posts = [
       "https://images.shiksha.com/mediadata/images/articles/1596046112phpALO4Er.jpeg",
     emailId: "anjalibalika@gmail.com",
     userId: "anjali",
+    comments:[]
   },
   {
     _id: uuid(),
@@ -83,6 +86,7 @@ export const posts = [
       "https://images.shiksha.com/mediadata/images/articles/1596046112phpALO4Er.jpeg",
     emailId: "anjalibalika@gmail.com",
     userId: "anjali",
+    comments:[]
   },
   {
     _id: uuid(),
@@ -102,6 +106,7 @@ export const posts = [
       "https://images.shiksha.com/mediadata/images/articles/1596046112phpALO4Er.jpeg",
     emailId: "anjalibalika@gmail.com",
     userId: "anjali",
+    comments:[]
   },
   {
     _id: uuid(),
@@ -119,5 +124,6 @@ export const posts = [
     caption: "holaaaa11",
     emailId: "anjalibalika@gmail.com",
     userId: "anjali",
+    comments:[]
   },
 ];

@@ -116,10 +116,10 @@ export function Login() {
           </div>
           <p>Forgot Your Password</p>
         </div>
-        <div>
+        <center>
           <Cta type={"primary-cta"} text={"Login"} />
-        </div>
-        <div
+        </center>
+        <center
           onClick={() =>
             setTestCredentials({
               tesetEmail: "adarshbalika@gmail.com",
@@ -128,7 +128,7 @@ export function Login() {
           }
         >
           <Cta type={"primary-cta"} text={"TestLogin"} />
-        </div>
+        </center>
 
         <NavLink to={PATHS.SIGNUP}>
           <div className="account-info">
@@ -319,10 +319,9 @@ export function Signup() {
           />
           <p>I accept all terms and conditions</p>
         </div>
-
-        <div>
+        <center>
           <Cta type={"primary-cta"} text={"Signup"} />
-        </div>
+        </center>
         <NavLink to={PATHS.LOGIN}>
           <div className="account-info">
             <p>Already have an account</p>

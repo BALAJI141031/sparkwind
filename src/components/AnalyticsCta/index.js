@@ -4,17 +4,17 @@ import {
   likeTweet,
   unlikeTweet,
   bookMarkTweet,
-  removeBookMarkTweet,
-  getTweet,
-  postComment
+  removeBookMarkTweet
 } from "networkCalls";
 import { useEffect, useState } from "react";
 import "./index.css";
 import { useHome } from "contexts";
 import { jwtProfile } from "config/jwt";
-export default function AnalyticsIcon({post,previouslyBookmarked,setBookmarksUi}) {
+import { useNavigate } from "react-router-dom";
+export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarksUi,commentsCount }) {
+  const navigate=useNavigate()
   const {setHome}=useHome()
-  const { _id: postid, likes, bookMarked } = post;
+  const { _id: postid, likes, bookMarked,comments } = post;
   const { likedBy } = likes
   const [isBookMarked, setBookMark] = useState(false);
   const [isLiked, setIsLiked] = useState({status:false,count:likes.likeCount});
@@ -61,20 +61,10 @@ export default function AnalyticsIcon({post,previouslyBookmarked,setBookmarksUi}
   };
 
 
-  // add comment
-  // const addComment = async () => {
-  //   try {
-  //     // const response = await postComment(postid)
-  //     // console.log(response)
-  //     db.child('comments').push({ content: "hello world", fullname: "balaji narayana", }, err => {
-  //       if (err) {
-  //         console.log(err)
-  //       }
-  //     })
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
+  const handleComments = (postid) => {
+    console.log(postid,"yes clicking")
+   navigate(`/user/tweet/comments/${postid}`)
+  }
 
   
   // console.log("yes it is rendering")
@@ -88,8 +78,8 @@ export default function AnalyticsIcon({post,previouslyBookmarked,setBookmarksUi}
         <p>{isLiked.count}</p>
       </div>
       <div className="flex-H-center-V cursor-pointer">
-        <GoComment  />
-        <p>0</p>
+        <GoComment  onClick={()=>handleComments(postid)}/>
+        <p>{commentsCount}</p>
       </div>
       <div>
         <BsBookmarkCheck

@@ -5,6 +5,7 @@ import Notications from "./NotificationRoute";
 import Bookmarks from "./BookmarksRoute";
 import NotFoundRoute from "./Random";
 import { Login, Signup } from "./Auth";
+import { Comments } from './CommentsRoute'
 
 export {
   LandingRoute,
@@ -15,4 +16,5 @@ export {
   Login,
   Signup,
   NotFoundRoute,
+  Comments
 };

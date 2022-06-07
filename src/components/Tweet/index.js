@@ -3,13 +3,14 @@ import { FiMoreVertical } from "icons";
 import { useState, useEffect } from "react";
 import "./index.css";
 import { ADMIN, NOTIFICATIONS } from "config/constants";
-import { deleteTweet, editTweet, getAllBookMarks } from "networkCalls/";
+import { deleteTweet, editTweet, getAllBookMarks,addComment } from "networkCalls/";
 import { useHome, useNotifyUser, useAuthProvider } from "contexts";
 import { useNavigate } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 export default function Tweet({
   post,
-  setBookmarksUi
+  setBookmarksUi,
+  setComments
 }) {
   const { isLoggedIn } = useAuthProvider();
   const myProfileDetials = isLoggedIn ? jwtProfile() : null;
@@ -17,23 +18,20 @@ export default function Tweet({
   const navigate = useNavigate();
   const { home, setHome } = useHome();
   const { fromEdit, isTweeted } = home;
-  const [isLiked, toggleLike] = useState(false);
+  const [comment, setComment] = useState("")
 
   const {
     displayname,
     content,
     caption,
-    likes,
     displayPicture,
     picture,
-    createdAt,
     emailId,
     _id: postid,
     userId,
-    bookMarked,
   } = post;
 
-
+ 
   const [options, setOptions] = useState(false);
   const [previouslyBookmarked, setPreviouslyBookmarked] = useState(false);
   // deleteHandler
@@ -69,21 +67,25 @@ export default function Tweet({
     })();
   }, []);
 
-  // // check if tweet is bookmarked or not by iterating
-  // let isTweetBookMarked = false;
-  // if (bookMarks !== null && bookMarks.length !== 0) {
-  //   for (let i = 0; i < bookMarks.length; i++) {
-  //     if (bookMarks[i]._id === postid) {
-  //       isTweetBookMarked = true;
-  //       break;
-  //     }
-  //   }
-  // }
+  // comment handler
+  const  commentHandler = async (id,payload) => {
+    try {
+      const commentResponse = await addComment(id, { commentData: { comment, commentedBy: jwtProfile()._id } })
+      setComment("")
+      toast.success("Comment added")
+    } catch (e) {
+      console.log(e)
+    }
+
+    
+  }
+
 
   // navigate handler
   const navigateToProfile = () => navigate(`/profile/${userId}`);
   return (
-    <div className="tweet-section">
+    <>
+      <div className="tweet-section cursor-pointer">
       <img
         src={displayPicture}
         className="avatar avatar-xs"
@@ -97,7 +99,16 @@ export default function Tweet({
             <img src={picture} className="tweet-pic" />
         )}
         <div className="analytics-section">
-          <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} />
+            <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} />
+        </div>
+        <div className="grid">
+          <input className="row-start-1 col-start-1 border-none text-sm" placeholder="Add Comment" onChange={(e)=>setComment(e.target.value)} value={comment}/>
+          <button className={(comment === "" || comment === null) ? "row-start-1 col-start-1 text-sm w-max justify-self-end self-center mr-1 mb-2 border-none bg-transparent cursor-pointer text-blue-600/50" : "row-start-1 col-start-1 text-sm w-max justify-self-end self-center mr-1 mb-2 border-none bg-transparent cursor-pointer text-blue-600/100"} onClick={(e) => {
+              commentHandler(postid, comment)
+              if(setComments) setComments((prevComments)=>!prevComments)
+            e.stopPropagation()
+          }
+          } >Post</button>
         </div>
       </div>
       {(isLoggedIn && myProfileDetials.email === emailId) && (
@@ -118,6 +129,9 @@ export default function Tweet({
           </div>
         </div>
       )}
-    </div>
+  
+      </div>
+    </>
+    
   );
 }

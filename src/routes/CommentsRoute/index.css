@@ -1,0 +1,47 @@
+.comments-div{
+    padding-top:5rem;
+    display: flex;
+    justify-content: center;
+    width: 25rem;
+    margin-bottom:3rem
+
+}
+
+.comments-div > div > button {
+    margin-left:15px;
+    border-style:none;
+    font-size: larger;
+    background: transparent;
+    cursor: pointer;
+
+}
+
+.comments-div > div > button:hover{
+    color: var(--primary-color);
+}
+
+.comment{
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    margin-left: 16px;
+    padding-left: 25px;
+    margin-bottom: 15px
+}
+
+.comment > div > h4  {
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
+.comment > div > h5 {
+    margin: 5px;
+} 
+
+.email{
+    color: var(--primary-color);
+}
+
+.comment-wrapper{
+  display: flex;
+  justify-content: center;
+}

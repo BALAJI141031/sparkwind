@@ -8,6 +8,10 @@
     width:100%
 }
 
+.input-el:focus {
+   box-shadow: none;
+}
+
 .tweet-content > h4 {
     margin-top: 3px;
     display: inline;

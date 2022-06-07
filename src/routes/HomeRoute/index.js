@@ -1,22 +1,18 @@
 import "./index.css";
-import { useTweet, useHome } from "contexts/";
-import { useEffect, useState } from "react";
+import {useHome } from "contexts/";
 import {
   Tweet,
   BottomNavbar,
-  SuggestedProfile,
   CreateTweet,
-  Header,
   Suggestions,
 } from "components";
-import { getAllPosts } from "networkCalls";
 import { BiTrendingUp, ImSortNumbericDesc } from "icons";
 
 export default function HomeRoute() {
   const { home, setHome, posts } = useHome();
   const { createTweet, trending, sort } = home;
   return (
-    <div className="home-section">
+    <div className="home-section relative min-h-screen ">
       <div className="filters-div">
         <BiTrendingUp
           className={trending ? "styled-filter-icon" : "filter-icon"}
@@ -32,7 +28,6 @@ export default function HomeRoute() {
         <div style={{display:"grid"}}>
           {posts &&
             posts.map((post) => {
-              console.log(post,"why it don;t have email")
              return <div className="center-div">
                 <Tweet post={post} key={post._id} />
               </div>

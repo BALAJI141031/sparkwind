@@ -9,6 +9,7 @@ import {
   Login,
   Signup,
   NotFoundRoute,
+  Comments
 } from "routes";
 import { PATHS } from "config/constants";
 import { RequireAuth } from "config/authentication";
@@ -17,7 +18,6 @@ import Mockman from "mockman-js";
 import { useAuthProvider } from "contexts";
 function App() {
   const { isLoggedIn } = useAuthProvider();
-  console.log(isLoggedIn, "is it true why");
   return (
     <div className="routes-wrapper">
       {isLoggedIn && (
@@ -63,6 +63,7 @@ function App() {
         />
 
         <Route path={PATHS.MOCK} element={<Mockman />} />
+        <Route path={PATHS.COMMENTS} element={ <Comments/>}/>
         <Route path={PATHS.RANDOM} element={<NotFoundRoute />} />
       </Routes>
     </div>

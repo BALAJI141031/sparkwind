@@ -26,6 +26,7 @@ export const getPostHandler = function (schema, request) {
     const post = schema.posts.findBy({ _id: postId }).attrs;
     return new Response(200, {}, { post });
   } catch (error) {
+    console.log("what is post id here",error)
     return new Response(
       500,
       {},

@@ -151,7 +151,6 @@ const unlikeTweet = async (postid) => {
 
 const bookMarkTweet = async (postid) => {
   try {
-    console.log("coming until here while serilizing, book", postid);
     const bookMarkTweetResposne = await axios.post(
       `/api/users/bookmark/${postid}`,
       {},
@@ -235,10 +234,13 @@ const unfollowUser = async (userId) => {
 };
 
 const getTweet = async (tweetId) => {
+  console.log(tweetId)
   try {
     const tweetResponse = await axios.get(`/api/posts/${tweetId}`);
+    console.log(tweetResponse,"from controllerr")
     return tweetResponse.data.post;
   } catch (e) {
+    console.log(e)
     throw e;
   }
 };
@@ -284,17 +286,28 @@ const getUserTweets = async (userid) => {
   }
 };
 
-const postComment = async(postid) => {
+
+
+const addComment = async (podtid, payload) => {
   try {
-    const response = axios.post(`/api/comments/add/${postid}`, { commentData: "hello world" }, {
-      headers: {
-      authorization: getJwtToken()
-    }})
+    const response = await axios.post(`/api/comments/add/${podtid}`, payload, { headers: { authorization: getJwtToken() } })
+    
     return response
+    
   } catch (e) {
     throw e
   }
 }
+
+const getComments = async (postid) => {
+  try {
+    const response = await axios.get(`/api/comments/${postid}`)
+    return response.data.comments
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export {
   createTweet,
   getAllPosts,
@@ -314,5 +327,6 @@ export {
   loginUser,
   signupUser,
   getUserTweets,
-  postComment
+  addComment,
+  getComments
 };

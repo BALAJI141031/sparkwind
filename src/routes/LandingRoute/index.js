@@ -20,9 +20,9 @@ export default function LandingRoute() {
           ))}
         </div>
         <div>
-          <NavLink to={PATHS.SIGNUP}>
+          <center><NavLink to={PATHS.SIGNUP}>
             <Cta type={"primary-cta"} text={"JoinNow"} />
-          </NavLink>
+          </NavLink></center>
           <NavLink to={PATHS.LOGIN}>
             <div className="account-info">
               <p>Already Have an Account</p>

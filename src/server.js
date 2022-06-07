@@ -26,6 +26,14 @@ import {
   editUserHandler,
 } from "./backend/controllers/UserController";
 
+import {
+  addPostCommentHandler,
+  editPostCommentHandler,
+  deletePostCommentHandler,
+  upvotePostCommentHandler,
+  downvotePostCommentHandler
+} from './backend/controllers/CommentController'
+
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -87,6 +95,13 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+
+       //post comments routes (private)
+      this.post("/comments/add/:postId", addPostCommentHandler.bind(this));
+      this.post("/comments/edit/:postId/:commentId", editPostCommentHandler.bind(this));
+      this.post("/comments/delete/:postId/:commentId", deletePostCommentHandler.bind(this));
+      this.post("/comments/upvote/:postId/:commentId", upvotePostCommentHandler.bind(this));
+      this.post("/comments/downvote/:postId/:commentId", downvotePostCommentHandler.bind(this));
     },
   });
 }

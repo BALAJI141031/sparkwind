@@ -9,6 +9,7 @@ module.exports = {
     LOGIN: "/user/login",
     SIGNUP: "/user/signup",
     MOCK: "/mock",
+    COMMENTS:"/user/tweet/comments/:id",
     RANDOM: "*",
   },
   HERO: {
