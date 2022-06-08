@@ -3,11 +3,9 @@ import { MdOutlineKeyboardArrowRight, GiWindSlap } from "icons";
 import { useRef, useState } from "react";
 import { useNotifyUser, useAuthProvider } from "contexts";
 import "./index.css";
-import Cookies from "js-cookie";
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { loginUser, signupUser } from "networkCalls";
 import { PATHS } from "config/constants";
-import { toast } from "react-toastify";
 
 export function Login() {
   const navigate = useNavigate();
@@ -58,20 +56,20 @@ export function Login() {
         } else if (e.response.status === 404) {
           toast.error("No user found with this email. Please try again.");
         } else {
-          console.log(e, "buggggggggggggggggggg");
           toast.error("Unexpected error. Please try again in some time.");
         }
       }
     }
   };
   return (
+    <div className="bg-black bg-opacity-90 absolute z-99 inset-0  min-h-screen">
     <div className="auth-form">
-      <h1>
+      <h1 className="text-gray-200">
         Spark Wind <GiWindSlap className="hero-icon" />
       </h1>
-      <form onSubmit={submitLoginForm}>
+      <form onSubmit={submitLoginForm} className="bg-gray-200">
         <center>
-          <h2>Login</h2>
+          <h2 className="text-rose-500">Login</h2>
         </center>
         <div>
           <label>Email address</label>
@@ -109,13 +107,11 @@ export function Login() {
             <p className="style-error">Please Provide password</p>
           )}
         </div>
-        <div className="flex-H-space-bw">
           <div className="flex-H-center-V">
             <input type="checkbox" className="checkbox" />
             <p>Remember Me</p>
           </div>
-          <p>Forgot Your Password</p>
-        </div>
+          
         <center>
           <Cta type={"primary-cta"} text={"Login"} />
         </center>
@@ -129,7 +125,6 @@ export function Login() {
         >
           <Cta type={"primary-cta"} text={"TestLogin"} />
         </center>
-
         <NavLink to={PATHS.SIGNUP}>
           <div className="account-info">
             <p>Create New Acccount</p>
@@ -137,7 +132,8 @@ export function Login() {
           </div>
         </NavLink>
       </form>
-    </div>
+      </div>
+      </div>
   );
 }
 
@@ -247,11 +243,12 @@ export function Signup() {
   };
 
   return (
+     <div className="bg-black bg-opacity-90 absolute z-99 inset-0  min-h-screen">
     <div className="auth-form">
-      <h1>
+      <h1 className="text-gray-200">
         Spark Wind <GiWindSlap className="hero-icon" />
       </h1>
-      <form onSubmit={submitSignupForm}>
+      <form onSubmit={submitSignupForm} className="bg-gray-200">
         <center>
           <h2>Signup</h2>
         </center>
@@ -329,6 +326,6 @@ export function Signup() {
           </div>
         </NavLink>
       </form>
-    </div>
+    </div></div>
   );
 }

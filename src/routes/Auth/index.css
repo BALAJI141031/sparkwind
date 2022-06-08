@@ -12,7 +12,7 @@ form > div {
 form{
     width: 100%;
     padding: 10px;
-     box-shadow: var(--shadow)
+    font-size: 0.8rem;
 }
 .checkbox{
     width: 1rem;
@@ -52,7 +52,7 @@ form{
 
 @media screen and (min-width:1000px) {
     form{
-    width: 30%;
+    width: 20rem;
 }
     
 }
