@@ -11,8 +11,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  background-image: linear-gradient(to right, var(--background-color),var(--primary-color));
- color:var(--cta-font-color);
- width: 100%;
+    background-image: linear-gradient(to right, var(--background-color),var(--primary-color));
+    color:var(--cta-font-color);
+    width: 100%;
 
+}
+
+.user-tweets{
+  width:50%
+}
+
+@media screen and (max-width:600px) {
+.user-tweets{
+  width:100%
+}
+    
 }

@@ -158,13 +158,13 @@ export default function Profile() {
           )}
         </div>
       )}
-      <h3>Your Posts</h3>
+      <center><h3>Your Posts</h3></center>
       {userTweets !== null && userTweets.length !== 0 ? (
-        <div>
+        <div className="flex justify-center"><div className="user-tweets">
           {userTweets.map((tweet) => (
             <Tweet post={tweet} />
           ))}
-        </div>
+        </div></div>
       ) : (
         "you dont have tweets"
       )}
