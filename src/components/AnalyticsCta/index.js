@@ -73,7 +73,7 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarks
       <div className="flex-H-center-V">
         <BsHeart
           onClick={toggleLikeHandler}
-          className={isLiked.status || isLikedFlag ? "style-analytics-icon cursor-pointer ":"cursor-pointer"}
+          className={isLiked.status || isLikedFlag ? "style-analytics-icon cursor-pointer ":"cursor-pointer hover:bg-primary"}
         />
         <p>{isLiked.count}</p>
       </div>

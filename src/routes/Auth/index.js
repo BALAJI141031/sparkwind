@@ -118,8 +118,8 @@ export function Login() {
         <center
           onClick={() =>
             setTestCredentials({
-              tesetEmail: "adarshbalika@gmail.com",
-              testPassword: "adarshBalika1234",
+              tesetEmail: "sanjay1999@gmail.com",
+              testPassword: "sanjay1999",
             })
           }
         >

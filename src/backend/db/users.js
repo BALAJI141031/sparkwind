@@ -9,8 +9,8 @@ export const users = [
   {
     _id: "anjali",
     firstName: "Anjali",
-    lastName: "Balika",
-    email: "anjalibalika@gmail.com",
+    lastName: "Angel",
+    email: "anjali1234@gmail.com",
     password: "anjaliBalika1234",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -22,10 +22,10 @@ export const users = [
 
   {
     _id: "testAdmin",
-    firstName: "Adarsh",
-    lastName: "Balika",
-    email: "adarshbalika@gmail.com",
-    password: "adarshBalika1234",
+    firstName: "sanjay",
+    lastName: "yadav",
+    email: "sanjay1999@gmail.com",
+    password: "sanjay1999",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     userPhoto: "https://picturepan2.github.io/spectre/img/avatar-4.png",
