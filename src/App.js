@@ -1,5 +1,6 @@
 import "./App.css";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import {Helmet} from "react-helmet";
 import {
   LandingRoute,
   HomeRoute,
@@ -17,6 +18,13 @@ import { Header } from "components";
 import Mockman from "mockman-js";
 import { useAuthProvider } from "contexts";
 function App() {
+
+  <Helmet>
+  <meta charSet="utf-8" />
+  <title>My Title</title>
+  <link rel="canonical" href="http://mysite.com/example" />
+  <meta name="description" content="social media platform for aspirants" />
+  </Helmet>
   const { isLoggedIn } = useAuthProvider();
   return (
     <div className="routes-wrapper">

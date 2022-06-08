@@ -11,13 +11,13 @@ import "./index.css";
 import { useHome } from "contexts";
 import { jwtProfile } from "config/jwt";
 import { useNavigate } from "react-router-dom";
-export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarksUi,commentsCount }) {
+export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarksUi,commentsCount}) {
   const navigate=useNavigate()
   const {setHome}=useHome()
   const { _id: postid, likes, bookMarked,comments } = post;
   const { likedBy } = likes
   const [isBookMarked, setBookMark] = useState(false);
-  const [isLiked, setIsLiked] = useState({status:false,count:likes.likeCount});
+  const [isLiked, setIsLiked] = useState({ status: false, count: likes.likeCount });
 
   let isLikedFlag
   if (likedBy.length > 0) {

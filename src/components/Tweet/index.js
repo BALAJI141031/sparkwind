@@ -29,11 +29,14 @@ export default function Tweet({
     emailId,
     _id: postid,
     userId,
+    comments
   } = post;
 
  
   const [options, setOptions] = useState(false);
   const [previouslyBookmarked, setPreviouslyBookmarked] = useState(false);
+  const [commentsCount,setCommentsCount]=useState(comments.length)
+
   // deleteHandler
   const deleteHandler = async () => {
     try {
@@ -72,6 +75,7 @@ export default function Tweet({
     try {
       const commentResponse = await addComment(id, { commentData: { comment, commentedBy: jwtProfile()._id } })
       setComment("")
+      setCommentsCount((prevCount)=>prevCount+1)
       toast.success("Comment added")
     } catch (e) {
       console.log(e)
@@ -99,7 +103,7 @@ export default function Tweet({
             <img src={picture} className="tweet-pic" />
         )}
         <div className="analytics-section">
-            <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} />
+            <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} commentsCount={commentsCount}/>
         </div>
         <div className="grid">
           <input className="row-start-1 col-start-1 border-none text-sm" placeholder="Add Comment" onChange={(e)=>setComment(e.target.value)} value={comment}/>
