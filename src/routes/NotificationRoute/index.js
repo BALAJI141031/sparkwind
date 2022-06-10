@@ -3,7 +3,9 @@ import { BsHeartFill, FaCommentAlt, RiUserFollowLine } from "../../icons";
 import { Tweet } from "../../components";
 import { getAllBookMarks,getAllPosts   } from "networkCalls";
 import { useState, useEffect } from "react";
+import {useNotifyUser} from 'contexts'
 export default function Notications() {
+  const { toast } = useNotifyUser();
   const [notifications, setNotifications] = useState(null);
   // fetch bookmarks
   useEffect(() => {
@@ -14,7 +16,7 @@ export default function Notications() {
         const bookMarkPosts=allPosts.data.posts.filter((post)=>bookmarks.data.bookmarks.includes(post._id))
         setNotifications(bookMarkPosts);
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     })();
   }, []);

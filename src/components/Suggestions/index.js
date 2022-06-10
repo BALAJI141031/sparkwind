@@ -2,9 +2,10 @@ import { jwtProfile } from "config/jwt";
 import { getAllUsers } from "networkCalls";
 import { useEffect, useState } from "react";
 import { SuggestedProfile } from "../index";
-import { useAuthProvider } from "contexts";
+import { useAuthProvider,useNotifyUser } from "contexts";
 
 export default function Suggestions() {
+  const { toast } = useNotifyUser();
   const { isLoggedIn } = useAuthProvider();
   const myProfile = isLoggedIn && jwtProfile();
   const [users, setUsers] = useState(null);
@@ -17,7 +18,7 @@ export default function Suggestions() {
         );
         setUsers(suggestedUsers);
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     })();
   }, []);

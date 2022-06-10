@@ -61,7 +61,6 @@ export const addPostCommentHandler = function (schema, request) {
     this.db.posts.update({ _id: postId }, post);
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
-    console.log(error);
     return new Response(
       500,
       {},

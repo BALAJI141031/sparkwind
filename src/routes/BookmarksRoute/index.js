@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Tweet } from "../../components";
 import { getAllBookMarks, getAllPosts } from "networkCalls";
+import {useNotifyUser} from 'contexts'
 import "./index.css";
 export default function Bookmarks() {
+  const { toast } = useNotifyUser();
   const [bookMarks, setBookMarks] = useState(null);
   const [bookmarksUi,setBookmarksUi]=useState(false)
 
@@ -15,7 +17,7 @@ export default function Bookmarks() {
         const bookMarkPosts=allPosts.data.posts.filter((post)=>bookmarks.data.bookmarks.includes(post._id))
         setBookMarks(bookMarkPosts);
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     })();
   }, [bookmarksUi]);

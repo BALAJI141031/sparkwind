@@ -26,7 +26,6 @@ export const getPostHandler = function (schema, request) {
     const post = schema.posts.findBy({ _id: postId }).attrs;
     return new Response(200, {}, { post });
   } catch (error) {
-    console.log("what is post id here",error)
     return new Response(
       500,
       {},
@@ -44,7 +43,6 @@ export const getPostHandler = function (schema, request) {
 
 export const getAllUserPostsHandler = function (schema, request) {
   const { username } = request.params;
-  console.log(username, "from controllersss");
   try {
     const posts = schema.posts.where({ userId: username })?.models;
     return new Response(200, {}, { posts });
@@ -106,7 +104,6 @@ export const getAllUserPostsHandler = function (schema, request) {
 // };
 export const createPostHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  console.log(user, "coming here");
   try {
     if (!user) {
       return new Response(

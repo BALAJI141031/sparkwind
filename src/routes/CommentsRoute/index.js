@@ -2,9 +2,11 @@ import {Tweet} from '../../components'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getTweet, getComments } from "networkCalls"
+import {useNotifyUser} from 'contexts'
 import {Link} from 'react-router-dom'
 import './index.css'
 function Comments() {
+  const { toast } = useNotifyUser();
   const { id } = useParams()
   const [post, setPost] = useState(null)
   const [comments,setComments]=useState(false)
@@ -12,11 +14,10 @@ function Comments() {
     (async () => {
       try {
         const tweetResponse = await getTweet(id)
-        console.log(tweetResponse)
         
         setPost(tweetResponse)
       } catch (e) {
-        console.log(e)
+       toast.error("Unexpected error. Please try again in some time.")
       }
     })()
   }, [comments])

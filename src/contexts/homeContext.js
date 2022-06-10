@@ -8,8 +8,7 @@ const homeContext = createContext();
 function HomeProvider({ children }) {
   const { toast } = useNotifyUser();
   const homeHandler = (prevState, action) => {
-    const { type, payload,from } = action;
-    console.log(type,payload,from)
+    const { type, payload } = action;
     switch (type) {
       case "createTweet":
         return { ...prevState, createTweet: payload };
@@ -43,7 +42,6 @@ function HomeProvider({ children }) {
       try {
         const postsResponse = await getAllPosts();
 
-      console.log(postsResponse,"i want to know why it is liked by default");
         //   setHome({
         //     type: "updatePosts",
         //     payload: ,
@@ -69,12 +67,10 @@ function HomeProvider({ children }) {
     posts.sort(
       (postOne, postTwo) => postOne.likes.likeCount - postTwo.likes.likeCount
     );
-    console.log("inside if block", posts);
   }
 
   if (sort) {
     
-    // console.log(new Date(posts[1].updatedAt));
     posts.sort(
       (postOne, postTwo) =>
         new Date(postOne.updatedAt).getTime() -

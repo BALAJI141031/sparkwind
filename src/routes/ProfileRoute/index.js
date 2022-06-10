@@ -2,7 +2,7 @@ import { EditProfile, Cta, ProfileAnalytics, Tweet } from "components";
 import { useNavigate, useParams } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 import "./index.css";
-import { useAuthProvider } from "contexts";
+import { useAuthProvider,useNotifyUser } from "contexts";
 import { useEffect, useState } from "react";
 import {
   getAllUsers,
@@ -15,6 +15,7 @@ import { ADMIN, PROFILE_CONTSTANTS } from "config/constants";
 import Cookies from "js-cookie";
 
 export default function Profile() {
+  const { toast } = useNotifyUser();
   const { isLoggedIn } = useAuthProvider();
   const navigate = useNavigate();
   const myProfileDetials = isLoggedIn ? jwtProfile() : null;
@@ -43,7 +44,7 @@ export default function Profile() {
         }
         setProfile(user);
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     })();
   }, []);
@@ -62,21 +63,18 @@ export default function Profile() {
   // toggle follow handler
   async function toggleFollow(ctaText) {
     if (ctaText === "Follow") {
-      console.log(ctaText);
       try {
         const followResponse = await followUser(userId);
         setFollowsList(followResponse.data.followUser);
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     } else if (ctaText === "Following") {
-      console.log(ctaText);
       try {
         const unfollowResponse = await unfollowUser(userId);
         setFollowsList(unfollowResponse.data.followUser);
-        console.log(unfollowResponse);
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     } else {
       // editMyProfile((myprofile)=>({...myProfile,showMyProfile:true})
@@ -102,7 +100,7 @@ export default function Profile() {
         const userTweets = await getUserTweets(userId);
         setUserTweets(userTweets);
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     })();
   }, []);
@@ -113,7 +111,6 @@ export default function Profile() {
     setLogin(false);
   };
 
-  console.log("after editing it should render", profile);
 
   return (
     <div>

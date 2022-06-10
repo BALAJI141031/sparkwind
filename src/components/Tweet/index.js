@@ -78,7 +78,7 @@ export default function Tweet({
       setCommentsCount((prevCount)=>prevCount+1)
       toast.success("Comment added")
     } catch (e) {
-      console.log(e)
+      toast.error("Unexpected error. Please try again in some time.")
     }
 
     

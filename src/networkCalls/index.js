@@ -17,9 +17,7 @@ const getAllUsers = async () => {
 const getUser = async (userId) => {
   try {
     const allUsers = await getAllUsers();
-    console.log("all existing users", allUsers);
     const user = await axios.get(`/api/users/${userId}`);
-    console.log(user);
     return user.data.user;
   } catch (e) {
     throw e;
@@ -33,7 +31,6 @@ const editUser = async (userData) => {
         authorization: getJwtToken(),
       },
     });
-    // console.log(userData);
     return editUserResponse;
   } catch (e) {
     throw e;
@@ -41,7 +38,6 @@ const editUser = async (userData) => {
 };
 
 const createTweet = async (payload) => {
-  console.log({ post: payload }, "what is this");
   try {
     const userResponse = await getAllUsers();
     for (let i = 0; i < userResponse.length; i++) {
@@ -58,7 +54,6 @@ const createTweet = async (payload) => {
       process.env.REACT_APP_JWT_SECRET
     ).email;
 
-    console.log(payload,"beforeeeeeee tweeting")
 
     const createTweetResposne = await axios.post("/api/posts/", payload, {
       headers: {
@@ -67,7 +62,6 @@ const createTweet = async (payload) => {
     });
     return createTweetResposne;
   } catch (e) {
-    console.log(e, "whats the error");
     throw e;
   }
 };
@@ -95,7 +89,6 @@ const deleteTweet = async (postid) => {
 };
 
 const editTweet = async (payload, postid) => {
-  console.log({ postData: payload }, "what is this");
   try {
     const createTweetResposne = await axios.post(
       `/api/posts/edit/${postid}`,
@@ -114,7 +107,6 @@ const editTweet = async (payload, postid) => {
 
 const likeTweet = async (postid) => {
   try {
-    console.log("coming until here while serilizing, book", postid);
     const likeTweetResposne = await axios.post(
       `/api/posts/like/${postid}`,
       {},
@@ -126,14 +118,12 @@ const likeTweet = async (postid) => {
     );
     return likeTweetResposne;
   } catch (e) {
-    console.log("network",e);
     throw e;
   }
 };
 
 const unlikeTweet = async (postid) => {
   try {
-    console.log(postid);
     const likeTweetResposne = await axios.post(
       `/api/posts/dislike/${postid}`,
       {},
@@ -168,7 +158,6 @@ const bookMarkTweet = async (postid) => {
 
 const removeBookMarkTweet = async (postid) => {
   try {
-    console.log("coming until here while serilizing, book");
     const removeBokkMarkResponse = await axios.post(
       `/api/users/remove-bookmark/${postid}`,
       {},
@@ -198,7 +187,6 @@ const getAllBookMarks = async () => {
 };
 
 const followUser = async (userId) => {
-  console.log(userId);
   try {
     const followResponse = await axios.post(
       `/api/users/follow/${userId}`,
@@ -217,7 +205,6 @@ const followUser = async (userId) => {
 
 const unfollowUser = async (userId) => {
   try {
-    console.log(userId);
     const unfollowResponse = await axios.post(
       `/api/users/unfollow/${userId}`,
       {},
@@ -234,21 +221,16 @@ const unfollowUser = async (userId) => {
 };
 
 const getTweet = async (tweetId) => {
-  console.log(tweetId)
   try {
     const tweetResponse = await axios.get(`/api/posts/${tweetId}`);
-    console.log(tweetResponse,"from controllerr")
     return tweetResponse.data.post;
   } catch (e) {
-    console.log(e)
     throw e;
   }
 };
 const loginUser = async (credentials) => {
   try {
-    console.log(credentials);
     const response = await axios.post("/api/auth/login", credentials);
-    console.log(response);
 
     if (response.status === 200) {
       Cookies.set("jwt_token", response.data.encodedToken, {
@@ -264,7 +246,6 @@ const loginUser = async (credentials) => {
 const signupUser = async (userData) => {
   try {
     const response = await axios.post("/api/auth/signup", userData);
-    console.log(response);
     if (response.status === 201) {
       Cookies.set("jwt_token", response.data.encodedToken, {
         expires: 1,
@@ -278,11 +259,10 @@ const signupUser = async (userData) => {
 
 const getUserTweets = async (userid) => {
   try {
-    console.log(userid, "to fetch tweets");
     const userTweets = await axios.get(`/api/posts/user/${userid}`);
     return userTweets.data.posts;
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };
 
@@ -304,7 +284,7 @@ const getComments = async (postid) => {
     const response = await axios.get(`/api/comments/${postid}`)
     return response.data.comments
   } catch (e) {
-    console.log(e)
+   throw e
   }
 }
 

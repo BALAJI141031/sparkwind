@@ -3,9 +3,11 @@ import { AiOutlineClose, MdOutlineChangeCircle } from "../../icons";
 import { Cta } from "../index";
 import { useEffect, useRef, useState } from "react";
 import { editUser, getUser } from "../../networkCalls";
+import {useNotifyUser} from 'contexts'
 export default function EditProfile({ userId, editMyProfile, setProfile }) {
   const hiddenFileInput = useRef(null);
   const username = useRef(null);
+  const { toast } = useNotifyUser();
   const bio = useRef(null);
   const portfolioUrl = useRef(null);
   const [userPhoto, updateUserPhoto] = useState(null);
@@ -31,7 +33,7 @@ export default function EditProfile({ userId, editMyProfile, setProfile }) {
       setProfile(editUserResponse.data.user);
       editMyProfile(false);
     } catch (e) {
-      console.log(e);
+      toast.error("Unexpected error. Please try again in some time.")
     }
   };
 

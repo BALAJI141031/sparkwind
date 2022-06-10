@@ -8,10 +8,11 @@ import {
 } from "networkCalls";
 import { useEffect, useState } from "react";
 import "./index.css";
-import { useHome } from "contexts";
+import { useHome,useNotifyUser } from "contexts";
 import { jwtProfile } from "config/jwt";
 import { useNavigate } from "react-router-dom";
-export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarksUi,commentsCount}) {
+export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarksUi, commentsCount }) {
+  const { toast } = useNotifyUser();
   const navigate=useNavigate()
   const {setHome}=useHome()
   const { _id: postid, likes, bookMarked,comments } = post;
@@ -35,7 +36,6 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarks
         : await unlikeTweet(postid);
       setIsLiked((prevStatus)=> ({...prevStatus,status:!prevStatus.status,count:`${!isLiked.status ? isLiked.count+1 :isLiked.count-1}`}))
     } catch (e) {
-      console.log(e)
       throw e;
     }
   };
@@ -51,23 +51,20 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarks
 
       // this is to set book mark route
       if (previouslyBookmarked) {
-        console.log("yes setting ui")
         await removeBookMarkTweet(postid)
         setBookmarksUi((prevStatus)=>!prevStatus)
       }
     } catch (e) {
-      console.log(e);
+      toast.error("Unexpected error. Please try again in some time.");
     }
   };
 
 
   const handleComments = (postid) => {
-    console.log(postid,"yes clicking")
    navigate(`/user/tweet/comments/${postid}`)
   }
 
   
-  // console.log("yes it is rendering")
   return (
     <div className="analytics-div">
       <div className="flex-H-center-V">

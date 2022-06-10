@@ -33,7 +33,7 @@ export default function CreateTweet(
         setHome({ type: "userTweeted", payload: !isTweeted });
         setHome({ type: "createTweet", payload: false });
       } catch (e) {
-        console.log(e);
+        toast.error("Unexpected error. Please try again in some time.")
       }
     })();
   };
@@ -46,7 +46,6 @@ export default function CreateTweet(
         try {
           const tweetResponse = await getTweet(fromEdit.tweetId);
 
-          console.log("during updation", tweet);
           setTweet({
             type: REDUCER_CONSTANTS.CAPTION,
             payload: tweetResponse.caption,
@@ -57,7 +56,7 @@ export default function CreateTweet(
           });
 
         } catch (e) {
-          console.log(e);
+          toast.error("Unexpected error. Please try again in some time.");
         }
       })();
     }
@@ -132,7 +131,6 @@ export default function CreateTweet(
                       {emojis.map((emoji) => (
                         <li
                           onClick={() => {
-                            console.log(emoji, "jj", tweet.tweetText + emoji);
                             setTweet({
                               type: REDUCER_CONSTANTS.TWEETTEXT,
                               payload: tweet.tweetText + emoji,
