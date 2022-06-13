@@ -9,6 +9,7 @@ import {
   NotifyUser,
   AuthProvider,
   HomeProvider,
+  CommentProvider
 } from "./contexts";
 // Call make Server
 makeServer();
@@ -17,13 +18,15 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
+        <CommentProvider>
         <NotifyUser>
           <HomeProvider>
             <CreateTweet>
               <App />
             </CreateTweet>
           </HomeProvider>
-        </NotifyUser>
+          </NotifyUser>
+          </CommentProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

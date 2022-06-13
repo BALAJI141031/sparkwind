@@ -13,8 +13,7 @@ function Comments() {
   useEffect(() => {
     (async () => {
       try {
-        const tweetResponse = await getTweet(id)
-        
+        const tweetResponse = await getTweet(id)   
         setPost(tweetResponse)
       } catch (e) {
        toast.error("Unexpected error. Please try again in some time.")

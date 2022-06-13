@@ -282,6 +282,7 @@ const addComment = async (podtid, payload) => {
 const getComments = async (postid) => {
   try {
     const response = await axios.get(`/api/comments/${postid}`)
+    console.log(response)
     return response.data.comments
   } catch (e) {
    throw e

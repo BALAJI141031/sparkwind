@@ -15,10 +15,9 @@ import { useNavigate } from "react-router-dom";
 export default function AnalyticsIcon({ post, previouslyBookmarked, isLiked, commentsCount,alreadyLiked,setIsLiked,alreadyBookMarked,setAlreadyBookMarked,isBookMarked,setBookMark,setBookmarksUi}) {
   const { toast } = useNotifyUser();
   const navigate=useNavigate()
-  const { _id: postid, likes, bookMarked, comments } = post;
+  const { _id: postid} = post;
     
-  const toggleLikeHandler = async () => {
-    
+  const toggleLikeHandler = async () => {    
     try {
       let toggleLikeResponse
       if (!isLiked.status && !alreadyLiked) {
@@ -63,7 +62,7 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, isLiked, com
   const handleComments = (postid) => {
    navigate(`/user/tweet/comments/${postid}`)
   }
-
+  console.count()
   return (
     <div className="analytics-div">
       <div className="flex-H-center-V">

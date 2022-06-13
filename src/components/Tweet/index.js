@@ -3,8 +3,8 @@ import { FiMoreVertical } from "icons";
 import { useState, useEffect } from "react";
 import "./index.css";
 import { ADMIN, NOTIFICATIONS } from "config/constants";
-import { deleteTweet, editTweet, getAllBookMarks,addComment,getTweet } from "networkCalls/";
-import { useHome, useNotifyUser, useAuthProvider } from "contexts";
+import { deleteTweet, editTweet, getAllBookMarks,addComment,getTweet,getComments } from "networkCalls/";
+import { useHome, useNotifyUser, useAuthProvider,useCommentProvider } from "contexts";
 import { useNavigate } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 export default function Tweet({
@@ -19,6 +19,7 @@ export default function Tweet({
   const { home, setHome } = useHome();
   const { fromEdit, isTweeted } = home;
   const [comment, setComment] = useState("")
+  const {previousCommentsCount}=useCommentProvider()
 
   const {
     displayname,
@@ -29,13 +30,11 @@ export default function Tweet({
     emailId,
     _id: postid,
     userId,
-    comments
   } = post;
 
  
   const [options, setOptions] = useState(false);
-  const [previouslyBookmarked, setPreviouslyBookmarked] = useState(false);
-  const [commentsCount,setCommentsCount]=useState(comments.length)
+  const [commentsCount,setCommentsCount]=useState(0)
 
   // deleteHandler
   const deleteHandler = async () => {
@@ -65,7 +64,8 @@ export default function Tweet({
   
   const [isBookMarked, setBookMark] = useState(false);
   const [alreadyBookMarked,setAlreadyBookMarked]=useState(false)
- useEffect(() => {
+  useEffect(() => {
+    console.log("book mark effect");
    (async () => {
      const bookMarksResponse = await getAllBookMarks();
       let previouslyBookmarked= await bookMarksResponse.data.bookmarks.includes(postid)
@@ -85,11 +85,10 @@ export default function Tweet({
       toast.success("Comment added")
     } catch (e) {
       toast.error("Unexpected error. Please try again in some time.")
-    }
-
-    
+    }  
   }
 
+   
 
 
   // likess handler
@@ -116,13 +115,25 @@ export default function Tweet({
     }
     })()
      
-  }, [isLiked])
+  }, [isLiked.status])
 
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const post = await getTweet(postid)
+        setCommentsCount(post?.comments.length)
+        
+      } catch (e) {
+        setCommentsCount(1)
+      }
+    })()    
+  }, [previousCommentsCount])
 
 
   // navigate handler
   const navigateToProfile = () => navigate(`/profile/${userId}`);
+  console.log(commentsCount,"count byeyy")
   return (
     <>
       <div className="tweet-section cursor-pointer">
@@ -140,7 +151,8 @@ export default function Tweet({
             <img src={picture} className="tweet-pic" />
         )}
         <div className="analytics-section">
-            <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} commentsCount={commentsCount} isLiked={isLiked} alreadyLiked={alreadyLiked} setAlreadyLiked={setAlreadyLiked} setIsLiked={setIsLiked} setBookMark={setBookMark} isBookMarked={isBookMarked} alreadyBookMarked={alreadyBookMarked} setAlreadyBookMarked={setAlreadyBookMarked}/>
+            <AnalyticsIcon className="icon" post={post} setIsLiked={setIsLiked} isLiked={isLiked} alreadyLiked={alreadyLiked}
+              setBookmarksUi={setBookmarksUi} setBookMark={setBookMark} isBookMarked={isBookMarked} alreadyBookMarked={alreadyBookMarked} setAlreadyBookMarked={setAlreadyBookMarked} commentsCount={commentsCount}/>
         </div>
         <div className="grid">
           <input className="row-start-1 col-start-1 border-none text-sm" placeholder="Add Comment" onChange={(e)=>setComment(e.target.value)} value={comment}/>

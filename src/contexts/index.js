@@ -2,6 +2,7 @@ import { CreateTweet, useTweet } from "./createTweet";
 import { NotifyUser, useNotifyUser } from "./toast";
 import { AuthProvider, useAuthProvider } from "./authContext";
 import { HomeProvider, useHome } from "./homeContext";
+import {useCommentProvider,CommentProvider} from "./commentContext"
 
 export {
   CreateTweet,
@@ -12,4 +13,6 @@ export {
   useAuthProvider,
   HomeProvider,
   useHome,
+  useCommentProvider,
+  CommentProvider
 };

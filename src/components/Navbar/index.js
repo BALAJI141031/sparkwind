@@ -6,15 +6,21 @@ import {
   BsBookmarkStar,
 } from "icons/";
 import { NavLink } from "react-router-dom";
-import { useHome } from "contexts";
+import { useHome,useCommentProvider } from "contexts";
 import { PATHS } from "config/constants";
 export default function BottomNavbar() {
   const { home, setHome, } = useHome();
+const {setPreviousCommentCount}=useCommentProvider()
+ console.log(setPreviousCommentCount)
   return (
     <div className="nav-section">
-      <NavLink to={PATHS.HOME_PATH}>
+      {/* <NavLink to={PATHS.HOME_PATH}>
         <RiHome7Line className="icon" onClick={()=>setHome({ type: "userTweeted", payload: !home.isTweeted })}/>
-      </NavLink>
+      </NavLink> */}
+
+      <NavLink to={PATHS.HOME_PATH}>
+        <RiHome7Line className="icon" onClick={()=>setPreviousCommentCount((prev)=>!prev)}/>
+      </NavLink> 
 
       <NavLink to={PATHS.HOME_PATH}>
         <BsPlusSquare
