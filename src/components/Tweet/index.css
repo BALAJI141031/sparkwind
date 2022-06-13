@@ -3,13 +3,16 @@
     grid-template-columns:2.5rem;
     padding: 25px 0px 0px 25px;
     border: 1px solid;
-    /* box-shadow: var(--shadow); */
     margin:15px;
     width:100%
 }
 
 .input-el:focus {
    box-shadow: none;
+}
+
+.tweet-content{
+    overflow: auto;
 }
 
 .tweet-content > h4 {

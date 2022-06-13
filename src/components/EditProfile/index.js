@@ -94,11 +94,9 @@ export default function EditProfile({ userId, editMyProfile, setProfile }) {
                 name="website"
               />
             </div>
-            <div className="">
-              <div onClick={editProfileHandler}>
+              <div onClick={editProfileHandler} className="flex justify-end">
                 <Cta type="primary-cta" text="Update" />
-              </div>
-            </div>
+              </div>  
           </div>
         </div>
       </div>

@@ -162,9 +162,9 @@ export default function Profile() {
             <Tweet post={tweet} />
           ))}
         </div></div>
-      ) : (
-        "you dont have tweets"
-      )}
+      ) : 
+        <center>Tweets Not Found</center>
+      }
 
       {myProfile && (
         <EditProfile
