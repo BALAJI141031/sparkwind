@@ -29,7 +29,7 @@ export default function HomeRoute() {
           {posts &&
             posts.map((post) => {
               return <div className="center-div">
-                <Tweet post={post} key={post._id} />
+                <Tweet post={post} key={post._id} fromHome={true}/>
               </div>
             })}
         </div>

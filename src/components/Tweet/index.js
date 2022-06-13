@@ -1,16 +1,17 @@
 import { AnalyticsIcon } from "../index";
 import { FiMoreVertical } from "icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import "./index.css";
-import { ADMIN, NOTIFICATIONS } from "config/constants";
-import { deleteTweet, editTweet, getAllBookMarks,addComment,getTweet,getComments } from "networkCalls/";
+import { NOTIFICATIONS } from "config/constants";
+import { deleteTweet, getAllBookMarks,addComment,getTweet,getComments } from "networkCalls/";
 import { useHome, useNotifyUser, useAuthProvider,useCommentProvider } from "contexts";
 import { useNavigate } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
 export default function Tweet({
   post,
   setBookmarksUi,
-  setComments
+  setComments,
+  fromHome
 }) {
   const { isLoggedIn } = useAuthProvider();
   const myProfileDetials = isLoggedIn ? jwtProfile() : null;
@@ -19,7 +20,8 @@ export default function Tweet({
   const { home, setHome } = useHome();
   const { fromEdit, isTweeted } = home;
   const [comment, setComment] = useState("")
-  const {previousCommentsCount}=useCommentProvider()
+  const { previousCommentsCount } = useCommentProvider()
+  const [isCommentEmpty, setIsCommentEmpty] = useState(true)
 
   const {
     displayname,
@@ -80,6 +82,7 @@ export default function Tweet({
     try {
       const commentResponse = await addComment(id, { commentData: { comment, commentedBy: jwtProfile()._id } })
       setComment("")
+      setIsCommentEmpty(true)
       setCommentsCount((prevCount)=>prevCount+1)
       toast.success("Comment added")
     } catch (e) {
@@ -151,17 +154,24 @@ export default function Tweet({
             <AnalyticsIcon className="icon" post={post} setIsLiked={setIsLiked} isLiked={isLiked} alreadyLiked={alreadyLiked}
               setBookmarksUi={setBookmarksUi} setBookMark={setBookMark} isBookMarked={isBookMarked} alreadyBookMarked={alreadyBookMarked} setAlreadyBookMarked={setAlreadyBookMarked} commentsCount={commentsCount}/>
         </div>
-        <div className="grid">
-          <input className="row-start-1 col-start-1 border-none text-sm" placeholder="Add Comment" onChange={(e)=>setComment(e.target.value)} value={comment}/>
-          <button className={(comment === "" || comment === null) ? "row-start-1 col-start-1 text-sm w-max justify-self-end self-center mr-1 mb-2 border-none bg-transparent cursor-pointer text-blue-600/50" : "row-start-1 col-start-1 text-sm w-max justify-self-end self-center mr-1 mb-2 border-none bg-transparent cursor-pointer text-blue-600/100"} onClick={(e) => {
+        <div className="grid comment-grid">
+            <input className="border-none text-sm" placeholder="Add Comment" onChange={(e) => {
+              let comment=e.target.value
+              if (comment !== "") setIsCommentEmpty(false)
+              if(comment==="") setIsCommentEmpty(true)
+              setComment(comment)
+            }
+            } value={comment} />
+          <button className={(comment === "" || comment === null) ? "text-sm w-max mr-1 mb-2 border-none bg-transparent cursor-pointer text-blue-600/50" : " text-sm w-max  mr-1 mb-2 border-none bg-transparent cursor-pointer text-blue-600/100"} onClick={(e) => {
               commentHandler(postid, comment)
               if(setComments) setComments((prevComments)=>!prevComments)
             e.stopPropagation()
-          }
-          } >Post</button>
+            }
+            
+          } disabled={ isCommentEmpty && true}>Post</button>
         </div>
       </div>
-      {(isLoggedIn && myProfileDetials.email === emailId) && (
+      {(isLoggedIn && myProfileDetials.email === emailId && fromHome ) && (
         <div className="options-div cursor-pointer">
           <div
             onMouseEnter={() => setOptions(true)}

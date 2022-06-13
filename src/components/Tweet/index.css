@@ -89,6 +89,15 @@
     
 }
 
+.comment-grid{
+    display: grid;
+    grid-template-columns: 1fr max-content;
+}
+
+.comment-grid > input {
+    overflow: auto;
+}
+
 @media screen and (min-width:960px) {
     .tweet-section{
     display: grid;

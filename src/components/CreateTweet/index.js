@@ -123,31 +123,7 @@ export default function CreateTweet(
                   onClick={() => {
                     hiddenFileInput.current.click();
                   }}
-                />
-                <div className="emojis-section">
-                  <BsEmojiSmile
-                    className="crate-tweet-icon"
-                    // onClick={() =>
-                    //   !emojis ? setEmojis(EMOJIS) : setEmojis(null)
-                    // }
-                  />
-                  {/* {emojis && (
-                    <div className="emojis-div">
-                      {emojis.map((emoji) => (
-                        <li
-                          onClick={() => {
-                            setTweet({
-                              type: REDUCER_CONSTANTS.TWEETTEXT,
-                              payload: tweet.tweetText + emoji,
-                            });
-                          }}
-                        >
-                          {emoji}
-                        </li>
-                      ))}
-                    </div>
-                  )} */}
-                </div>
+                />            
               </div>
               <div onClick={createTweetHandler}>
                 <Cta type="primary-cta" text="Tweet" />
