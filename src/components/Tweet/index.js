@@ -3,7 +3,7 @@ import { FiMoreVertical } from "icons";
 import { useState, useEffect } from "react";
 import "./index.css";
 import { ADMIN, NOTIFICATIONS } from "config/constants";
-import { deleteTweet, editTweet, getAllBookMarks,addComment } from "networkCalls/";
+import { deleteTweet, editTweet, getAllBookMarks,addComment,getTweet } from "networkCalls/";
 import { useHome, useNotifyUser, useAuthProvider } from "contexts";
 import { useNavigate } from "react-router-dom";
 import { jwtProfile } from "config/jwt";
@@ -62,13 +62,19 @@ export default function Tweet({
   };
 
   // // book mark effects
-  useEffect(() => {
-    (async () => {
-      const bookMarksResponse = await getAllBookMarks();
-      let previouslyBookmarked=bookMarksResponse.data.bookmarks.includes(postid)
-      setPreviouslyBookmarked(previouslyBookmarked);
+  
+  const [isBookMarked, setBookMark] = useState(false);
+  const [alreadyBookMarked,setAlreadyBookMarked]=useState(false)
+ useEffect(() => {
+   (async () => {
+     const bookMarksResponse = await getAllBookMarks();
+      let previouslyBookmarked= await bookMarksResponse.data.bookmarks.includes(postid)
+      setAlreadyBookMarked(previouslyBookmarked);
     })();
-  }, []);
+  }, [alreadyBookMarked]);
+
+
+
 
   // comment handler
   const  commentHandler = async (id,payload) => {
@@ -85,6 +91,36 @@ export default function Tweet({
   }
 
 
+
+  // likess handler
+    // get post to update likes while mounting
+  const [isLiked, setIsLiked] = useState({ status: false, count:0});
+  const [alreadyLiked, setAlreadyLiked] = useState(false)
+  
+  useEffect(() => {
+    (async () => {
+      try {
+        const postResponse = await getTweet(postid);
+        setIsLiked((prevState) => ({ ...prevState, count: postResponse.likes.likeCount }), [])
+        let alreadyLiked=false
+        for (let i = 0; i < postResponse.likes.likedBy.length; i++){
+          if (postResponse.likes.likedBy[i]._id === jwtProfile()._id) {
+            alreadyLiked = true
+            break
+          }
+        }
+        setAlreadyLiked(alreadyLiked)
+
+    } catch (e) {
+      toast.error("unexpected error try after some time")
+    }
+    })()
+     
+  }, [isLiked])
+
+
+
+
   // navigate handler
   const navigateToProfile = () => navigate(`/profile/${userId}`);
   return (
@@ -93,7 +129,8 @@ export default function Tweet({
       <img
         src={displayPicture}
         className="avatar avatar-xs"
-        onClick={navigateToProfile}
+          onClick={navigateToProfile}
+          alt="dp"
       />
       <div className="tweet-content">
         <h4 onClick={navigateToProfile}>{displayname}</h4>
@@ -103,7 +140,7 @@ export default function Tweet({
             <img src={picture} className="tweet-pic" />
         )}
         <div className="analytics-section">
-            <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} commentsCount={commentsCount}/>
+            <AnalyticsIcon className="icon" post={post} previouslyBookmarked={previouslyBookmarked} setBookmarksUi={setBookmarksUi} commentsCount={commentsCount} isLiked={isLiked} alreadyLiked={alreadyLiked} setAlreadyLiked={setAlreadyLiked} setIsLiked={setIsLiked} setBookMark={setBookMark} isBookMarked={isBookMarked} alreadyBookMarked={alreadyBookMarked} setAlreadyBookMarked={setAlreadyBookMarked}/>
         </div>
         <div className="grid">
           <input className="row-start-1 col-start-1 border-none text-sm" placeholder="Add Comment" onChange={(e)=>setComment(e.target.value)} value={comment}/>

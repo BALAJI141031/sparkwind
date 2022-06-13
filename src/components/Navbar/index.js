@@ -9,11 +9,11 @@ import { NavLink } from "react-router-dom";
 import { useHome } from "contexts";
 import { PATHS } from "config/constants";
 export default function BottomNavbar() {
-  const { home, setHome } = useHome();
+  const { home, setHome, } = useHome();
   return (
     <div className="nav-section">
       <NavLink to={PATHS.HOME_PATH}>
-        <RiHome7Line className="icon" />
+        <RiHome7Line className="icon" onClick={()=>setHome({ type: "userTweeted", payload: !home.isTweeted })}/>
       </NavLink>
 
       <NavLink to={PATHS.HOME_PATH}>

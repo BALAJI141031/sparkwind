@@ -28,7 +28,7 @@ export default function HomeRoute() {
         <div style={{display:"grid"}}>
           {posts &&
             posts.map((post) => {
-             return <div className="center-div">
+              return <div className="center-div">
                 <Tweet post={post} key={post._id} />
               </div>
             })}

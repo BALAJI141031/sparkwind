@@ -5,7 +5,8 @@ import { createTweet, getTweet } from "networkCalls";
 import { useTweet, useNotifyUser, useHome } from "contexts";
 import { REDUCER_CONSTANTS, EMOJIS } from "config/constants";
 import "./index.css";
-import { editTweet } from "../../networkCalls";
+import { editTweet,getUser } from "../../networkCalls";
+import {jwtProfile} from 'config/jwt'
 
 export default function CreateTweet(
   {
@@ -26,6 +27,10 @@ export default function CreateTweet(
   const createTweetHandler = () => {
     (async () => {
       try {
+         const userId= jwtProfile()._id
+        const userProfile = await getUser(userId)
+        tweet["displayPicture"] = userProfile.userPhoto
+        tweet["displayname"] = userProfile.displayname
         const response = !fromEdit.editStatus
           ? await createTweet(tweet)
           : await editTweet(tweet, fromEdit.tweetId);

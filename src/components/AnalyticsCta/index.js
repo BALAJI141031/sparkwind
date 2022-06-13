@@ -1,60 +1,60 @@
-import { BsHeart, GoComment, BsBookmarkCheck, AiFillHeart } from "icons";
+import { BsHeart, GoComment, BsBookmarkCheck} from "icons";
 
 import {
   likeTweet,
   unlikeTweet,
   bookMarkTweet,
-  removeBookMarkTweet
+  removeBookMarkTweet,
+  getTweet
 } from "networkCalls";
 import { useEffect, useState } from "react";
 import "./index.css";
-import { useHome,useNotifyUser } from "contexts";
+import {useNotifyUser } from "contexts";
 import { jwtProfile } from "config/jwt";
 import { useNavigate } from "react-router-dom";
-export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarksUi, commentsCount }) {
+export default function AnalyticsIcon({ post, previouslyBookmarked, isLiked, commentsCount,alreadyLiked,setIsLiked,alreadyBookMarked,setAlreadyBookMarked,isBookMarked,setBookMark,setBookmarksUi}) {
   const { toast } = useNotifyUser();
   const navigate=useNavigate()
-  const {setHome}=useHome()
-  const { _id: postid, likes, bookMarked,comments } = post;
-  const { likedBy } = likes
-  const [isBookMarked, setBookMark] = useState(false);
-  const [isLiked, setIsLiked] = useState({ status: false, count: likes.likeCount });
-
-  let isLikedFlag
-  if (likedBy.length > 0) {
-    for (let i = 0; i < likedBy.length; i++){
-      if(likedBy[i]._id===jwtProfile()._id) isLikedFlag=true
-    }
+  const { _id: postid, likes, bookMarked, comments } = post;
     
-  }
-
-  
   const toggleLikeHandler = async () => {
+    
     try {
-      const toggleLikeResponse = !isLiked.status
-        ? await likeTweet(postid)
-        : await unlikeTweet(postid);
-      setIsLiked((prevStatus)=> ({...prevStatus,status:!prevStatus.status,count:`${!isLiked.status ? isLiked.count+1 :isLiked.count-1}`}))
+      let toggleLikeResponse
+      if (!isLiked.status && !alreadyLiked) {
+        toggleLikeResponse = await likeTweet(postid)
+        let togleLikePost = toggleLikeResponse.data.posts.filter((post) => post._id === postid)
+        setIsLiked((prevStatus)=> ({...prevStatus,status:true,count:togleLikePost[0].likes.likeCount}))
+      } else {
+        toggleLikeResponse = await unlikeTweet(postid)
+        let togleLikePost = toggleLikeResponse.data.posts.filter((post) => post._id === postid)
+        setIsLiked((prevStatus) => ({ ...prevStatus, status: false, count: togleLikePost[0].likes.likeCount }))
+      }
     } catch (e) {
-      throw e;
+      toast.error("Unexpected error. Please try again in some time.");
     }
   };
 
   // bookmark handler
   const toggleBookMark = async () => {
     try {
-      const bookMarkResponse = !isBookMarked  
-        ? await bookMarkTweet(postid)
-        : await removeBookMarkTweet(postid);
-      
-      setBookMark((prevBookMarkStatus) => !prevBookMarkStatus);
+        if (!isBookMarked && !alreadyBookMarked) {
+        const response = await bookMarkTweet(postid)
+        setBookMark(true);
+      } else {
+        const response = await removeBookMarkTweet(postid)
+          setBookMark(false);
+          setAlreadyBookMarked(false)
 
-      // this is to set book mark route
-      if (previouslyBookmarked) {
-        await removeBookMarkTweet(postid)
-        setBookmarksUi((prevStatus)=>!prevStatus)
+          if (setBookmarksUi) {
+            setBookmarksUi((prevStatus) => !prevStatus)
+          }
       }
+      
+      // this is to set book mark route
+      
     } catch (e) {
+      console.log(e)
       toast.error("Unexpected error. Please try again in some time.");
     }
   };
@@ -64,13 +64,12 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarks
    navigate(`/user/tweet/comments/${postid}`)
   }
 
-  
   return (
     <div className="analytics-div">
       <div className="flex-H-center-V">
         <BsHeart
           onClick={toggleLikeHandler}
-          className={isLiked.status || isLikedFlag ? "style-analytics-icon cursor-pointer ":"cursor-pointer hover:bg-primary"}
+          className={isLiked.status  || alreadyLiked ? "style-analytics-icon cursor-pointer ":"cursor-pointer hover:bg-primary"}
         />
         <p>{isLiked.count}</p>
       </div>
@@ -81,7 +80,7 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, setBookmarks
       <div>
         <BsBookmarkCheck
           onClick={toggleBookMark}
-          className={isBookMarked || previouslyBookmarked ? "style-analytics-icon cursor-pointer":"cursor-pointer"}
+          className={isBookMarked || alreadyBookMarked  ? "style-analytics-icon cursor-pointer":"cursor-pointer"}
         />
       </div>
     </div>

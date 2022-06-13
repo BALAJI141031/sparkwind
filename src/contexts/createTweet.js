@@ -1,9 +1,12 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import {useNotifyUser} from 'contexts'
 import { REDUCER_CONSTANTS } from "../config/constants";
+
 
 const tweetContext = createContext();
 
 function CreateTweet({ children }) {
+  const {toast} =useNotifyUser()
   const tweetHandler = (prevTweet, action) => {
     const { type, payload } = action;
     switch (type) {
@@ -23,6 +26,8 @@ function CreateTweet({ children }) {
     content: "",
     picture: null,
     emoji: null,
+    // displayPicture: null,
+    // displayname: null,
   });
   return (
     <tweetContext.Provider value={{ tweet, setTweet }}>
