@@ -65,7 +65,6 @@ export default function Tweet({
   const [isBookMarked, setBookMark] = useState(false);
   const [alreadyBookMarked,setAlreadyBookMarked]=useState(false)
   useEffect(() => {
-    console.log("book mark effect");
    (async () => {
      const bookMarksResponse = await getAllBookMarks();
       let previouslyBookmarked= await bookMarksResponse.data.bookmarks.includes(postid)
@@ -124,8 +123,7 @@ export default function Tweet({
         const post = await getTweet(postid)
         setCommentsCount(post?.comments.length)
         
-      } catch (e) {
-        setCommentsCount(1)
+      } catch (e){
       }
     })()    
   }, [previousCommentsCount])
@@ -133,7 +131,6 @@ export default function Tweet({
 
   // navigate handler
   const navigateToProfile = () => navigate(`/profile/${userId}`);
-  console.log(commentsCount,"count byeyy")
   return (
     <>
       <div className="tweet-section cursor-pointer">

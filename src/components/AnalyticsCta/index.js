@@ -5,12 +5,9 @@ import {
   unlikeTweet,
   bookMarkTweet,
   removeBookMarkTweet,
-  getTweet
 } from "networkCalls";
-import { useEffect, useState } from "react";
 import "./index.css";
 import {useNotifyUser } from "contexts";
-import { jwtProfile } from "config/jwt";
 import { useNavigate } from "react-router-dom";
 export default function AnalyticsIcon({ post, previouslyBookmarked, isLiked, commentsCount,alreadyLiked,setIsLiked,alreadyBookMarked,setAlreadyBookMarked,isBookMarked,setBookMark,setBookmarksUi}) {
   const { toast } = useNotifyUser();
@@ -53,7 +50,6 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, isLiked, com
       // this is to set book mark route
       
     } catch (e) {
-      console.log(e)
       toast.error("Unexpected error. Please try again in some time.");
     }
   };
@@ -62,7 +58,6 @@ export default function AnalyticsIcon({ post, previouslyBookmarked, isLiked, com
   const handleComments = (postid) => {
    navigate(`/user/tweet/comments/${postid}`)
   }
-  console.count()
   return (
     <div className="analytics-div">
       <div className="flex-H-center-V">

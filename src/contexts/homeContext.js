@@ -41,7 +41,6 @@ function HomeProvider({ children }) {
     (async () => {
       try {
         const postsResponse = await getAllPosts();
-        console.log("hey after navigating also you should effect")
 
         //   setHome({
         //     type: "updatePosts",

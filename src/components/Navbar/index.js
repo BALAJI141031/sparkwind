@@ -11,7 +11,6 @@ import { PATHS } from "config/constants";
 export default function BottomNavbar() {
   const { home, setHome, } = useHome();
 const {setPreviousCommentCount}=useCommentProvider()
- console.log(setPreviousCommentCount)
   return (
     <div className="nav-section">
       {/* <NavLink to={PATHS.HOME_PATH}>
