@@ -14,7 +14,9 @@ export default function Header() {
       <NavLink to={PATHS.HOME_PATH}>
         <sapn className="logo">SL</sapn>
       </NavLink>
-      <div className="searchbar-div">
+
+      {/* have to implement search feature */}
+      {/* <div className="searchbar-div">
         <input
           className="search-bar"
           type="search"
@@ -23,7 +25,7 @@ export default function Header() {
         <button className="search-icon">
           <BiSearchAlt2 />
         </button>
-      </div>
+      </div> */}
       <div className="desktop-header-cta">
         <BottomNavbar />
 
