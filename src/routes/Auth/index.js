@@ -112,9 +112,13 @@ export function Login() {
             <p>Remember Me</p>
           </div>
           
-        <center>
+        {/* <center>
           <Cta type={"primary-cta"} text={"Login"} />
-        </center>
+        </center> */}
+        <button className="primary-cta cursor-pointer" id="cta">
+          Login
+        </button>
+        
         <center
           onClick={() =>
             setTestCredentials({
@@ -123,7 +127,10 @@ export function Login() {
             })
           }
         >
-          <Cta type={"primary-cta"} text={"TestLogin"} />
+          {/* <Cta type={"primary-cta"} text={"TestLogin"} /> */}
+          <button className="primary-cta cursor-pointer" id="cta">
+          Test Login
+        </button>
         </center>
         <NavLink to={PATHS.SIGNUP}>
           <div className="account-info">
@@ -139,19 +146,213 @@ export function Login() {
 
 // signup
 
+// export function Signup() {
+//   const { toast } = useNotifyUser();
+//   const navigate = useNavigate();
+//   const { setLogin } = useAuthProvider();
+//   const location = useLocation();
+//   let intialDetials = {
+//     firstName: null,
+//     lastName: null,
+//     email: null,
+//     password: null,
+//     confirmPassword: null,
+//     displayname: null,
+//     termsAndConditions: false,
+//   };
+//   const [detials, setDetials] = useState(intialDetials);
+//   const submitSignupForm = async (e) => {
+//     e.preventDefault();
+//     const {
+//       firstName,
+//       lastName,
+//       email,
+//       password,
+//       confirmPassword,
+//       termsAndConditions,
+//     } = detials;
+//     //   setError(initialErrorState);
+
+//     if (password.length < 6) {
+//       toast.error("Password must be at least 6 characters long");
+//       setDetials((predDetials) => ({
+//         ...predDetials,
+//         password: "",
+//         confirmPassword: "",
+//       }));
+//     } else if (password.search(/\d/) === -1) {
+//       toast.error("Password must contain at least one number");
+//       setDetials((predDetials) => ({
+//         ...predDetials,
+//         password: "",
+//         confirmPassword: "",
+//       }));
+//     } else if (password.search(/[a-z]/) === -1) {
+//       toast.error("Password must contain at least one lowercase letter");
+//       setDetials((predDetials) => ({
+//         ...predDetials,
+//         password: "",
+//         confirmPassword: "",
+//       }));
+//     } else if (password.search(/[A-Z]/) === -1) {
+//       toast.error("Password must contain at least one Uppercase letter");
+//       setDetials((predDetials) => ({
+//         ...predDetials,
+//         password: "",
+//         confirmPassword: "",
+//       }));
+//     } else if (password !== confirmPassword) {
+//       toast.error("Both Passwords Should Match");
+//       setDetials((predDetials) => ({
+//         ...predDetials,
+//         password: "",
+//         confirmPassword: "",
+//       }));
+//     } else if (!termsAndConditions) {
+//       toast.warning("Please Select Termas&Conditions");
+//     } else {
+//       try {
+//         const signupResponse = await signupUser({
+//           firstName: detials.firstName,
+//           lastName: detials.lastName,
+//           email: detials.email,
+//           password: detials.password,
+//           displayname: detials.displayname,
+//           userPhoto: "https://picturepan2.github.io/spectre/img/avatar-5.png",
+//           portfolioUrl: "give your Portfolio address",
+//           bio: "Change your Bio",
+//         });
+//         toast.success("Account created successfully!");
+//         setLogin(true);
+//         navigate(location.state?.from?.pathname ?? "/home", { replace: true });
+//       } catch (e) {
+//         if (e.response.status === 422) {
+//           toast.error("Account already exists");
+//           setDetials(intialDetials);
+//         } else {
+//           toast.error("Unexpected error");
+//         }
+//       }
+//     }
+//   };
+
+//   const setDetialsHandler = (e) => {
+//     if (e.target.name !== "termsAndConditions")
+//       setDetials((prevCredentials) => ({
+//         ...prevCredentials,
+//         [e.target.name]: e.target.value,
+//       }));
+//     else
+//       setDetials((prevCredentials) => ({
+//         ...prevCredentials,
+//         [e.target.name]: e.target.checked,
+//       }));
+//   };
+
+//   return (
+//      <div className="bg-black bg-opacity-90 absolute z-99 inset-0  min-h-screen">
+//     <div className="auth-form">
+//       <h1 className="text-gray-200">
+//         Spark Wind <GiWindSlap className="hero-icon" />
+//       </h1>
+//       <form onSubmit={submitSignupForm} className="bg-gray-200">
+//         <center>
+//           <h2>Signup</h2>
+//         </center>
+//         <div>
+//           <label>First Name</label>
+//           <input
+//             type="text"
+//             placeholder="name"
+//             name="firstName"
+//             onChange={setDetialsHandler}
+//           />
+//         </div>
+//         <div>
+//           <label>Last Name</label>
+//           <input
+//             type="text"
+//             placeholder="name"
+//             name="lastName"
+//             onChange={setDetialsHandler}
+//           />
+//         </div>
+//         <div>
+//           <label>User Name</label>
+//           <input
+//             type="text"
+//             placeholder="username"
+//             name="displayname"
+//             onChange={setDetialsHandler}
+//           />
+//         </div>
+//         <div>
+//           <label>Email address</label>
+//           <input
+//             type="email"
+//             placeholder="email"
+//             name="email"
+//             onChange={setDetialsHandler}
+//           />
+//         </div>
+//         <div>
+//           <label>Password</label>
+//           <input
+//             type="password"
+//             placeholder="********"
+//             name="password"
+//             onChange={setDetialsHandler}
+//           />
+//         </div>
+//         <div>
+//           <label>Confirm Password</label>
+//           <input
+//             type="password"
+//             placeholder="********"
+//             name="confirmPassword"
+//             onChange={setDetialsHandler}
+//           />
+//         </div>
+
+//         <div className="flex-H-center-V">
+//           <input
+//             type="checkbox"
+//             className="checkbox"
+//             name="termsAndConditions"
+//             onChange={setDetialsHandler}
+//           />
+//           <p>I accept all terms and conditions</p>
+//         </div>
+//         <center>
+//           {/* <Cta type={"primary-cta"} text={"Signup"} /> */}
+//            <button className="primary-cta cursor-pointer" id="cta" type="submit">
+//           Signup
+//         </button>
+//         </center>
+//         <NavLink to={PATHS.LOGIN}>
+//           <div className="account-info">
+//             <p>Already have an account</p>
+//             <MdOutlineKeyboardArrowRight className="icon" />
+//           </div>
+//         </NavLink>
+//       </form>
+//     </div></div>
+//   );
+// }
+
+
 export function Signup() {
-  const { toast } = useNotifyUser();
   const navigate = useNavigate();
   const { setLogin } = useAuthProvider();
+  const { toast } = useNotifyUser();
   const location = useLocation();
   let intialDetials = {
-    firstName: null,
-    lastName: null,
-    email: null,
-    password: null,
-    confirmPassword: null,
-    displayname: null,
-    termsAndConditions: false,
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    displayname: "",
   };
   const [detials, setDetials] = useState(intialDetials);
   const submitSignupForm = async (e) => {
@@ -162,48 +363,57 @@ export function Signup() {
       email,
       password,
       confirmPassword,
-      termsAndConditions,
+      displayname,
     } = detials;
-    //   setError(initialErrorState);
 
-    if (password.length < 6) {
-      toast.error("Password must be at least 6 characters long");
+    if(firstName===""){
+          toast.error("Please Provide FirstName!");
+    }
+    else if (lastName==="") {
+      toast.error("Please Provide LastName!");
+    }else if (displayname==="") {
+     toast.error("Please Provide displayname!");
+    }  else if (email==="") {
+    toast.error("Please Provide email!");
+    }
+    else if (password.length < 6) {
+      toast.error("password must be atleast 6 charecters long");
       setDetials((predDetials) => ({
         ...predDetials,
         password: "",
         confirmPassword: "",
       }));
-    } else if (password.search(/\d/) === -1) {
-      toast.error("Password must contain at least one number");
+    }  else if (password.search(/\d/) === -1) {
+      toast.error("Password must contain at least one number!");
       setDetials((predDetials) => ({
         ...predDetials,
         password: "",
         confirmPassword: "",
       }));
     } else if (password.search(/[a-z]/) === -1) {
-      toast.error("Password must contain at least one lowercase letter");
+      toast.error("Password must contain at least one lowercase letter!");
+      
       setDetials((predDetials) => ({
         ...predDetials,
         password: "",
         confirmPassword: "",
       }));
     } else if (password.search(/[A-Z]/) === -1) {
-      toast.error("Password must contain at least one Uppercase letter");
+      toast.error("Password must contain at least one Uppercase letter!");
+      
       setDetials((predDetials) => ({
         ...predDetials,
         password: "",
         confirmPassword: "",
       }));
     } else if (password !== confirmPassword) {
-      toast.error("Both Passwords Should Match");
       setDetials((predDetials) => ({
         ...predDetials,
         password: "",
         confirmPassword: "",
       }));
-    } else if (!termsAndConditions) {
-      toast.warning("Please Select Termas&Conditions");
-    } else {
+      toast.error("Password must contain at least one Uppercase letter!");
+    }else {
       try {
         const signupResponse = await signupUser({
           firstName: detials.firstName,
@@ -243,12 +453,11 @@ export function Signup() {
   };
 
   return (
-     <div className="bg-black bg-opacity-90 absolute z-99 inset-0  min-h-screen">
     <div className="auth-form">
-      <h1 className="text-gray-200">
-        Spark Wind <GiWindSlap className="hero-icon" />
+      <h1>
+        Spark Library <GiWindSlap className="hero-icon" />
       </h1>
-      <form onSubmit={submitSignupForm} className="bg-gray-200">
+      <form onSubmit={submitSignupForm}>
         <center>
           <h2>Signup</h2>
         </center>
@@ -306,26 +515,16 @@ export function Signup() {
             onChange={setDetialsHandler}
           />
         </div>
-
-        <div className="flex-H-center-V">
-          <input
-            type="checkbox"
-            className="checkbox"
-            name="termsAndConditions"
-            onChange={setDetialsHandler}
-          />
-          <p>I accept all terms and conditions</p>
-        </div>
-        <center>
-          <Cta type={"primary-cta"} text={"Signup"} />
-        </center>
-        <NavLink to={PATHS.LOGIN}>
+        <button className="primary-cta cursor-pointer" id="cta">
+          Signup
+        </button>
+        <NavLink to="/user/login">
           <div className="account-info">
             <p>Already have an account</p>
             <MdOutlineKeyboardArrowRight className="icon" />
           </div>
         </NavLink>
       </form>
-    </div></div>
+    </div>
   );
 }

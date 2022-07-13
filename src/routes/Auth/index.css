@@ -36,6 +36,22 @@ form{
    color:var(--primary-color) 
 }
 
+.primary-cta{
+   background-color: var(--primary-color);
+    color: var(--cta-font-color);
+    font-weight:bolder ;
+    padding:5px;
+    border-style: none;
+}
+
+#cta{
+    text-align: center;
+    width: 100%;
+    border-style: none;
+    padding: 0.3em;
+    font-size: 1rem;
+}
+
 @media screen and (min-width:700px) {
     form{
     width: 60%;

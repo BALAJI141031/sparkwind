@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import {
   LandingRoute,
   HomeRoute,
@@ -10,7 +10,7 @@ import {
   Login,
   Signup,
   NotFoundRoute,
-  Comments
+  Comments,
 } from "routes";
 import { PATHS } from "config/constants";
 import { RequireAuth } from "config/authentication";
@@ -18,13 +18,12 @@ import { Header } from "components";
 import Mockman from "mockman-js";
 import { useAuthProvider } from "contexts";
 function App() {
-
   <Helmet>
-  <meta charSet="utf-8" />
-  <title>My Title</title>
-  <link rel="canonical" href="http://mysite.com/example" />
-  <meta name="description" content="social media platform for aspirants" />
-  </Helmet>
+    <meta charSet="utf-8" />
+    <title>My Title</title>
+    <link rel="canonical" href="http://mysite.com/example" />
+    <meta name="description" content="social media platform for aspirants" />
+  </Helmet>;
   const { isLoggedIn } = useAuthProvider();
   return (
     <div className="routes-wrapper">
@@ -71,7 +70,7 @@ function App() {
         />
 
         <Route path={PATHS.MOCK} element={<Mockman />} />
-        <Route path={PATHS.COMMENTS} element={ <Comments/>}/>
+        <Route path={PATHS.COMMENTS} element={<Comments />} />
         <Route path={PATHS.RANDOM} element={<NotFoundRoute />} />
       </Routes>
     </div>
